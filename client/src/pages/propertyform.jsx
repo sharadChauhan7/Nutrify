@@ -7,8 +7,8 @@ const Type = React.lazy(()=>import('../components/form/type.jsx'));
 const Location = React.lazy(()=>import('../components/form/location.jsx'));
 const Basics = React.lazy(()=>import('../components/form/basics.jsx'));
 function Propertyform() {
-    // let idx = useSelector((state)=>state.flow.value);
-    let idx = 2;
+    let idx = useSelector((state)=>state.flow.value);
+    // let idx = 2;
     let property = useSelector((state) => state.property.property);
     let dispatch = useDispatch();
     
