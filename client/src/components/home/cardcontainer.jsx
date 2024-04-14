@@ -1,6 +1,6 @@
 import { Box, Grid } from '@mui/material'
 import React from 'react'
-import Card from './card'
+import Card from './propertycard'
 
 function cardcontainer() {
   return (
