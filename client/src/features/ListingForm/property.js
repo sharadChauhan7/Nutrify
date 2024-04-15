@@ -12,7 +12,7 @@ let initialState={
             guests:0,
             beds:0,
         },
-        photos:[],
+        photos:{photo1: "", photo2: "", photo3: "", photo4: "", photo5: ""},
         description:"",
         price:0,
     }
@@ -46,6 +46,7 @@ export const propertySlice=createSlice({
             state.property.basic.beds=action.payload;
         },
         setPhotos:(state,action)=>{
+            console.log(action.payload);
             state.property.photos=action.payload;
         },
         setDescription:(state,action)=>{
