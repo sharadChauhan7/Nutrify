@@ -8,10 +8,13 @@ import BathtubIcon from '@mui/icons-material/Bathtub';
 import HotelIcon from '@mui/icons-material/Hotel';
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import { Link } from 'react-router-dom';
 
 export default function card({ property}) {
   console.log(property);
   return (
+
+      <Link to={`/${property._id}`}>
     <Card sx={{ maxWidth: { md: 345, sm: 500 } }}>
       <CardActionArea>
         <CardMedia
@@ -28,12 +31,12 @@ export default function card({ property}) {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <Typography variant="div" color="text.secondary" display={'flex'} alignItems={'center'}>
-                  <HotelIcon sx={{ fontSize: "1.2rem", mr: "5px" }} /> 1 Bedroom
+                  <HotelIcon sx={{ fontSize: "1.2rem", mr: "5px" }} /> {property.basic.bedrooms} Bedroom
                 </Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="div" color="text.secondary" display={'flex'} alignItems={'center'}>
-                  <BathtubIcon sx={{ fontSize: "1.2rem", mr: "5px" }} /> Bathroom
+                  <BathtubIcon sx={{ fontSize: "1.2rem", mr: "5px" }} />{property.basic.bathrooms} Bathroom
                 </Typography>
               </Grid>
               <Grid item xs={6}>
@@ -43,7 +46,7 @@ export default function card({ property}) {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="div" color="text.secondary" display={'flex'} alignItems={'center'}>
-                  <AttachMoneyIcon sx={{ fontSize: "1.2rem", mr: "5px" }} /> 10000/month
+                  <AttachMoneyIcon sx={{ fontSize: "1.2rem", mr: "5px" }} /> {property.price}/month
                 </Typography>
               </Grid>
             </Grid>
@@ -51,5 +54,6 @@ export default function card({ property}) {
         </CardContent>
       </CardActionArea>
     </Card>
+      </Link>
   );
 }

@@ -42,7 +42,6 @@ let [loading,setLoading]=React.useState(true);
     }
   return (
     // Suspense
-    <React.Suspense fallback={<div>Loading...</div>}>
     <Box sx={{display:"flex",justifyContent:"center",flexWrap:"wrap", p:{md:"3rem", sm:"2rem", xs:"1rem"}}}>
         <Grid container spacing={5}>
             <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -52,7 +51,6 @@ let [loading,setLoading]=React.useState(true);
             </Grid>
         </Grid>
     </Box>
-    </React.Suspense>
   )
 }
 
