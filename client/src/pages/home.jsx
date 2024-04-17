@@ -11,7 +11,7 @@ function home() {
         Discover the best rental properties near your college
         </Typography>
       </Container>
-      {/* <CardContainer /> */}
+      <CardContainer />
     </>
   )
 }

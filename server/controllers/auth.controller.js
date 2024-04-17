@@ -1,4 +1,4 @@
-import User from '../modals/user.js'
+import User from '../modals/user.modal.js'
 import jwt from 'jsonwebtoken';
 import 'dotenv/config'
 

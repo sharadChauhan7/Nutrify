@@ -6,7 +6,8 @@ import { setPrice } from '../../features/ListingForm/property'
 function Price({property}) {
     let dispatch = useDispatch();
     function handelPrice(e){
-        dispatch(setPrice(e.target.value));
+      let tonumber=parseInt(e.target.value);
+        dispatch(setPrice(tonumber));
     }
   return (
     <Stack justifyContent={"center"} alignItems={"center"}>

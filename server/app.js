@@ -1,14 +1,13 @@
 import express from 'express';
-import auth from './routes/auth.js';
+import auth from './routes/auth.route.js';
+import property from './routes/property.route.js';
 import cors from 'cors';
-
-
 
 
 const app = express();
 
 const corsOptions = {
-  origin: '*',
+  origin: 'http://localhost:5173',
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
@@ -33,3 +32,4 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', auth);
+app.use('/', property);

@@ -3,6 +3,7 @@ import question from '../util/formdata.js'
 import { useSelector, useDispatch } from 'react-redux';
 import { next, prev } from '../features/ListingForm/flow.js'
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
+import axios from 'axios';
 const Type = React.lazy(() => import('../components/form/type.jsx'));
 const Location = React.lazy(() => import('../components/form/location.jsx'));
 const Basics = React.lazy(() => import('../components/form/basics.jsx'));
@@ -18,6 +19,14 @@ function Propertyform() {
     let property = useSelector((state) => state.property.property);
     let dispatch = useDispatch();
 
+    const handleSubmit = async () => {
+        try {
+            let res = await axios.post("http://localhost:3000/property", property);
+            console.log(res);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <>
@@ -41,7 +50,7 @@ function Propertyform() {
                     </Box>
                     <Stack spacing={12} sx={{ my: "24px" }} direction={"row"} justifyContent={"center"}>
                         <Button size='large' variant='contained' disabled={idx === 0} onClick={() => { dispatch(prev()) }}>Prev</Button>
-                        <Button size='large' variant='contained' disabled={idx === question.length - 1} onClick={() => { dispatch(next()) }}>Next</Button>
+                        {idx!=8?<Button size='large' variant='contained' onClick={() => { dispatch(next()) }}>Next</Button>:<Button size='large' variant='contained' onClick={handleSubmit}>Submit</Button>}
                     </Stack>
                 </Box>
             </Container>
