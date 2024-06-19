@@ -1,1 +1,1 @@
-export default ["Which of the best describe your place", "Where's your place located?", "Share some basics about your place", "Tell what your place has to offer", "Add some photos of you place","Your page will look like this", "Now, let's give your place a title", "Create your discription", "Now , Set yout price"];
+export default ["What's your Gender", "How old are You","Tell us your approx weight","Tell us your approx height","Are you Seffering from any medical condition" ];

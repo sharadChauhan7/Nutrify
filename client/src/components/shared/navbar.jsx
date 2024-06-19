@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
 
-const pages = [['Manage Property','addproperty'], ["PG's","pg"], ['Mess',"mess"]];
+const pages = [['Dashboard','dashboard']];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function navbar() {

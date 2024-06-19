@@ -1,6 +1,6 @@
 import express from 'express';
 import auth from './routes/auth.route.js';
-import property from './routes/property.route.js';
+// import property from './routes/property.route.js';
 import cors from 'cors';
 
 
@@ -32,4 +32,4 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', auth);
-app.use('/', property);
+// app.use('/', property);

@@ -9,7 +9,7 @@ main().then((res)=>{console.log("Connection is up")}).catch(err => console.log(e
 console.log("Hello");
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/Ghar');
+  await mongoose.connect('mongodb://127.0.0.1:27017/Health');
 }
 
 
@@ -32,7 +32,8 @@ const userSchema = new Schema({
     email:{
         type:String,
         required:true
-    }
+    },
+    
 });
 
 const User = mongoose.model('User',userSchema);
