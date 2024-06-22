@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/shared/navbar.jsx'
 import { useParams } from 'react-router-dom';
 // Laxy load the home page
-const Home = React.lazy(() => import('./pages/home.jsx'));
+const Home = React.lazy(() => import('./pages/Home.jsx'));
 // const Property = React.lazy(() => import('./pages/property.jsx'));
 import Privateroute from './components/auth/privateroute.jsx'
 

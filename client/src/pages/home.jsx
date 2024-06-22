@@ -1,25 +1,25 @@
 import React from 'react'
-import Navbar from '../components/shared/navbar'
-import { Container, Typography } from '@mui/material'
-function home() {
+import Camera from '../components/shared/Camera.jsx'
+function Home() {
+  // const [webcam, setWebcan] = React.useState(false);
+  // const [imgSrc, setImgSrc] = React.useState(null);
+  const webcamRef = React.useRef(null);
+  function capture() {
+    setWebcan(false)
+    console.log(webcamRef.current);
+    const imageSrc = webcamRef.current.getScreenshot();
+    console.log(imageSrc);
+    setImgSrc(imageSrc);
+  }
   return (
     <>
-    {/* <Navbar /> */}
-      <Container className='flex justify-center items-center flex-col  border-2'>
-        <Typography className='text-center' >
-          Drag and drop the files to upload of click to capture the image
-        </Typography>
-        {/* Box to get image */}
-        <Container sx={{display:"flex",justifyContent:"center",alignItems:"center",width:{md:"60%",sm:"80%",xs:"100%",border:"2px solid red"}}}>
-          {/* <input type="file" id="file" style={{display:"none"}} /> */}
-          <label htmlFor="file" style={{cursor:"pointer"}}>
-            <img src="https://img.icons8.com/ios/452/camera--v1.png" alt="camera" style={{width:"100px",height:"100px"}} />
-          </label>
-          </Container>
-      </Container>
-      {/* <CardContainer /> */}
+    <div className='main flex items-center flex-col h-screen pt-16'>
+      <h1 className='text-5xl font-bold  my-4'>Snap a picture</h1>
+      {/* Webcam */}
+      <Camera/>
+    </div>
     </>
   )
 }
 
-export default home
+export default Home

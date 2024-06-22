@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-// import todoreducers from '../features/Todo/todoslice'
 import flowreducers from '../features/ListingForm/flow'
 import propertyreducers from '../features/ListingForm/property'
-
+import webcamreducers from '../features/Webcam/webcamSlice'
 export const  store = configureStore({
     reducer: {
         flow:flowreducers,
-        property:propertyreducers
+        property:propertyreducers,
+        webcam:webcamreducers
     }
 })
