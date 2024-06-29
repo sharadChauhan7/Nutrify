@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { store } from './app/store.js'
 import { Provider } from 'react-redux'
-import { createTheme, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 import './index.css'
 
 const theam = createTheme({
   palette: {
     primary: {
-      main: "#2196f3"
+      main: "#ffd60a"
     }
   },
   typography: {

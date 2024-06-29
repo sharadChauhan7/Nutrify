@@ -1,31 +1,17 @@
-
 import React,{ useState } from "react";
 import { Typography } from "@mui/material";
+import { useDispatch,useSelector } from "react-redux";
+import{setName,setEmail,setPassword} from '../../features/User/user'
+import { redirect } from "react-router-dom";
 function Signup_comp({ toggleAuth }) {
 
-  const userName = {
-    value: "",
-    error: "",
-    changeHandler: (e) => {
-      userName.value = e.target.value;
-    },
-  };
-  const phoneNumber = {
-    value: "",
-    error: "",
-    changeHandler: (e) => {
-      phoneNumber.value = e.target.value;
-    },
-  };
-  const password = {
-    value: "",
-    error: "",
-    changeHandler: (e) => {
-      password.value = e.target.value;
-    },
-  };
+const {userInfo} = useSelector((state)=>state.userInfo);
+const dispatch = useDispatch();
 
-  
+function handleSignup(e){
+  console.log(userInfo);
+  redirect('/register');
+}
   return (
     <form className="w-full" >
       <div className="flex justify-between">
@@ -53,31 +39,21 @@ function Signup_comp({ toggleAuth }) {
           id="name"
           placeholder="Name"
           className="w-full border-b-2  border-gray-300 py-2 focus:outline-none focus:border-blue-500"
-          value={userName.value}
-          onChange={userName.changeHandler}
+          value={userInfo.userName}
+          onChange={(e)=>dispatch(setName(e.target.value))}
           required
         />
-        {userName.error && (
-          <Typography variant="caption" color="error">
-            {userName.error}
-          </Typography>
-        )}
       </div>
       <div className="mb-5">
         <input
-          type="text"
-          id="phone"
-          placeholder="Phone"
+          type="email"
+          id="email"
+          placeholder="Email"
           className="w-full border-b-2  border-gray-300 py-2 focus:outline-none focus:border-blue-500"
-          value={phoneNumber.value}
-          onChange={phoneNumber.changeHandler}
+          value={userInfo.email}
+          onChange={(e)=>dispatch(setEmail(e.target.value))}
           required
         />
-        {phoneNumber.error && (
-          <Typography variant="caption" color="error">
-            {phoneNumber.error}
-          </Typography>
-        )}
       </div>
       <div className="mb-5">
         <input
@@ -85,18 +61,13 @@ function Signup_comp({ toggleAuth }) {
           id="password"
           placeholder="Password"
           className="w-full border-b-2 border-gray-300  py-2  focus:outline-none focus:border-blue-500"
-          value={password.value}
-          onChange={password.changeHandler}
+          value={userInfo.password}
+          onChange={(e)=>dispatch(setPassword(e.target.value))}
           required
         />
-        {password.error && (
-          <Typography variant="caption" color="error">
-            {password.error}
-          </Typography>
-        )}
       </div>
       <div className="mb-5">
-        <button className="w-full bg-black text-xl text-white py-2 rounded-md" >
+        <button className="w-full bg-black text-xl text-white py-2 rounded-md" onClick={handleSignup} >
           Signup
         </button>
       </div>

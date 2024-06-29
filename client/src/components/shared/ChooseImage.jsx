@@ -3,6 +3,7 @@ import PhotoCamera from '@mui/icons-material/PhotoCamera'
 import { capture } from '../../features/Webcam/webcamSlice';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 function ChooseImage() {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function ChooseImage() {
         file.readAsDataURL(e.target.files[0]);
     }
   return (
-    <div className='w-1/2 min-w-64 border-2 mt-2 relative z-10'>
+    <div className=''>
     <input
         accept="image/*"
         className="hidden"
@@ -28,10 +29,9 @@ function ChooseImage() {
             variant="contained"
             color="primary"
             component="span"
-            startIcon={<PhotoCamera />}
-            className="text-xl w-full"
+            className="text-4xl rounded-full"
         >
-            Upload Your Image
+        <UploadFileIcon className='text-5xl'/>
         </Button>
     </label>
 </div>

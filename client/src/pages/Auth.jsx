@@ -5,6 +5,7 @@ import Login_Component from '../components/auth/login_comp'
 import Signup_Component from '../components/auth/signup_comp'
 function Auth() {
   let [auth, setAuth] = useState(true);
+  document.title = 'Auth'
   return (
     <div className='py-20 px-36 bg-slate-300  h-screen'>
       <div className='bg-white flex h-[80vh]'>

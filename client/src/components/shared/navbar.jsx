@@ -3,6 +3,7 @@ import { AppBar, Box, Toolbar, IconButton, Typography } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
+import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import { Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
 
 const pages = [['Dashboard','dashboard']];
@@ -32,7 +33,7 @@ function navbar() {
         <AppBar position="fixed">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <EnergySavingsLeafIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -43,12 +44,12 @@ function navbar() {
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        MyHealth
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -87,7 +88,7 @@ function navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <EnergySavingsLeafIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
@@ -99,12 +100,12 @@ function navbar() {
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '0.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        MyHealth
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (

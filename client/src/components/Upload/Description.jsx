@@ -1,8 +1,8 @@
 import React from 'react'
 import { Stack, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import {setDescription} from '../../features/ListingForm/property.js';
-function Description({property}) {
+import {setDescription} from '../../Features/ProblemForm/problemSlice.js';
+function Description({problem}) {
 
   let dispatch=useDispatch();
 
@@ -13,10 +13,10 @@ function Description({property}) {
     <Stack justifyContent={"center"} alignItems={"center"}>
        <TextField
           id="outlined-multiline-static"
-          label="Description"
+          label="Problem Description"
           multiline
-          rows={4}
-          value={property.description}
+          rows={15}
+          value={problem.description}
           onChange={handleDescription}
           sx={{width:"100%",height:"100%"}}
         />
