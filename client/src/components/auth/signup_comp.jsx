@@ -1,16 +1,31 @@
 import React,{ useState } from "react";
 import { Typography } from "@mui/material";
 import { useDispatch,useSelector } from "react-redux";
-import{setName,setEmail,setPassword} from '../../features/User/user'
-import { redirect } from "react-router-dom";
+import{setName,setEmail,setPassword,login} from '../../features/User/user'
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Signup_comp({ toggleAuth }) {
 
 const {userInfo} = useSelector((state)=>state.userInfo);
 const dispatch = useDispatch();
+const navigate = useNavigate();
 
-function handleSignup(e){
-  console.log(userInfo);
-  redirect('/register');
+async function handleSignup(e){
+  try{
+    e.preventDefault();
+    const response = await axios.post('http://localhost:3000/api/auth/signup', 
+       userInfo,
+      { withCredentials: true } // Important for sending cookies
+  );
+    if(response.status===200){
+      console.log(response.data);
+      navigate('/register');
+      // dispatch(login());
+    }
+  }
+  catch(e){
+    console.log(e);
+  }
 }
   return (
     <form className="w-full" >

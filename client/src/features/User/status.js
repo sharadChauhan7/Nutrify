@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 let initialState = {
     userStatus:{
         address:"",
-        age:"20",
-        weight:"60",
-        height:"162",
-        target_weight:"",
+        age:null,
+        weight:null,
+        height:null,
+        target_weight:null,
         phy_activity:"",
         target_speed:"",
-        target_calories:"",
-        disease:['None']
+        target_calories:null,
+        disease:[]
     }
 }
 
@@ -21,25 +21,24 @@ let userSlice = createSlice({
             state.userStatus.address=action.payload;
         },
         setAge:(state,action)=>{
-            state.userStatus.age=action.payload;
+            // Set age as number
+            state.userStatus.age=parseInt(action.payload);
         },
         setWeight:(state,action)=>{
-            state.userStatus.weight=action.payload;
+            state.userStatus.weight=parseInt(action.payload);
+
         },
         setHeight:(state,action)=>{
-            state.userStatus.height=action.payload;
+            state.userStatus.height=parseInt(action.payload);
         },
         setTargetWeight:(state,action)=>{
-            state.userStatus.target_weight=action.payload;
+            state.userStatus.target_weight=parseInt(action.payload);
         },
         setPhyActivity:(state,action)=>{
             state.userStatus.phy_activity=action.payload;
         },
         setTargetSpeed:(state,action)=>{
             state.userStatus.target_speed=action.payload;
-        },
-        setTargetCalories:(state,action)=>{
-            state.userStatus.target_calories=action.payload;
         },
         setDisease:(state,action)=>{
             state.userStatus.disease=action.payload;

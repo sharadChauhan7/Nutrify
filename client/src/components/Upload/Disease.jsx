@@ -20,7 +20,7 @@ function Dificulty({userStatus}) {
     <>
     <div className='flex flex-wrap justify-center items-center gap-5' >
         {common_disease.map((disease,index)=>{
-            let style=userStatus.disease.includes(disease)?'border-2 border-[#ffd60a] w-1/3 border-4 ':'w-1/3 border-2 border-black';
+            let style=userStatus.disease.includes(disease)?' border-[#ffd60a] w-1/3 border-4 ':'w-1/3 border-4 border-black';
             return(
                 <div className={`${style} text-center cursor-pointer`} id={disease} key={index} onClick={handleChange} >
                     <div>

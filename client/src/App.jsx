@@ -1,13 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/shared/navbar.jsx'
-import { useParams,useLocation } from 'react-router-dom';
-// Laxy load the home page
-// const Property = React.lazy(() => import('./pages/property.jsx'));
+import { useParams,useLocation } from 'react-router-dom'
 import Privateroute from './components/auth/privateroute.jsx'
 import Form from './pages/Form.jsx'
-const Home = React.lazy(() => import('./pages/Home.jsx'));
-const Auth = React.lazy(()=>import('./pages/Auth.jsx'));
+import Home from './pages/Home.jsx'
+import Auth from './pages/Auth.jsx'
+import { useSelector } from 'react-redux'
 function App() {
   return (
     <Router>
@@ -20,20 +19,24 @@ function App() {
     const noNavbarRoutes = ['/auth', '/register']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
     let { id } = useParams();
-    let islogin = true;
+    const {isLogin} = useSelector((state)=>state.userInfo);
   return (
     <>
     {showNavbar && <Navbar />}
         <Routes>
-          <Route path='/auth' element={<Privateroute user={!islogin} path='/'>
+          <Route path='/auth' element={<Privateroute user={!isLogin} path='/'>
             <Auth />
           </Privateroute>} />
-          <Route element={<Privateroute user={islogin}/>}>
+          <Route element={<Privateroute user={isLogin}/>}>
             <Route path='/' element={<Home />} />
             <Route path='/dashboard' element={<Home />} />
+          </Route> 
+          <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
           </Route> 
+
         </Routes>
+
     </>
   )
 }

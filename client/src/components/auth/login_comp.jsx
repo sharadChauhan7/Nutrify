@@ -1,44 +1,29 @@
 import React from 'react'
 import { Typography } from '@mui/material';
-
+import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import{setName,setEmail,setPassword,login} from '../../features/User/user'
 import axios from 'axios';
 function Login_comp({toggleAuth}) {
+  const {userInfo} = useSelector((state)=>state.userInfo);
 
-  const navigate=useNavigate();
-  const phoneNumber = {
-    value: '',
-    error: '',
-    changeHandler: (e) => {
-      phoneNumber.value = e.target.value;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handelLogin = async (e) => {
+    try{
+      e.preventDefault();
+      const response = await axios.post('http://localhost:3000/api/auth/login', 
+         userInfo,
+        { withCredentials: true } // Important for sending cookies
+    );
+      if(response.status===200){
+        dispatch(login());
+      }
     }
-  }
-  const password = {
-    value: '',
-    error: '',
-    changeHandler: (e) => {
-      password.value = e.target.value;
+    catch(e){
+      console.log(e);
     }
-  }
-  const handelLogin = (e) => {
-    e.preventDefault();
-    if(phoneNumber.value.length<10){
-      phoneNumber.error='Phone number must be 10 digits';
-      return;
-    }
-    if(password.value.length<6){
-      password.error='Password must be 6 digits';
-      return;
-    }
-    axios.post('http://localhost:5000/api/auth/login',{phone:phoneNumber.value,password:password.value})
-    .then(res=>{
-      console.log(res.data);
-      localStorage.setItem('token',res.data.token);
-      navigate('/');
-    })
-    .catch(err=>{
-      console.log(err);
-    })
   }
 
 
@@ -49,12 +34,10 @@ function Login_comp({toggleAuth}) {
             <h1 className='text-4xl font-semi-bold mb-5'>Login</h1>
             <p className='mb-6'>Welcome back! Please enter your details.</p>
             <div className='mb-5'>
-              <input type="text" id='phone' placeholder='Phone' className='w-full border-b-2  border-gray-300 py-2 focus:outline-none focus:border-blue-500' value={phoneNumber.value} onChange={phoneNumber.changeHandler} required/>
-              {phoneNumber.error&&<Typography variant='caption' color='error'>{phoneNumber.error}</Typography>}
+              <input type="text" id='email' placeholder='Email' className='w-full border-b-2  border-gray-300 py-2 focus:outline-none focus:border-blue-500' value={userInfo.email} onChange={(e)=>{dispatch(setEmail(e.target.value))}} required/>
             </div>
             <div className='mb-5'>
-              <input type="password" id='password' placeholder='Password' className='w-full border-b-2 border-gray-300  py-2  focus:outline-none focus:border-blue-500' value={password.value} onChange={password.changeHandler} required />
-              {password.error&&<Typography variant='caption' color='error'>{password.error}</Typography>}
+              <input type="password" id='password' placeholder='Password' className='w-full border-b-2 border-gray-300  py-2  focus:outline-none focus:border-blue-500' value={userInfo.password} onChange={(e)=>{dispatch(setPassword(e.target.value))}} required />
             </div>
             <div className='mb-5'>
               <button className='w-full bg-black text-xl text-white py-2 rounded-md' onClick={handelLogin}>Login</button>

@@ -2,9 +2,12 @@ import * as React from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import { Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
+import {useDispatch} from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { logout } from '../../features/User/user';
 
 const pages = [['Dashboard','dashboard']];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -13,6 +16,8 @@ function navbar() {
     
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -20,12 +25,16 @@ function navbar() {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu =async  (e) => {
+        if(e.target.id=='Logout'){
+            dispatch(logout());
+            navigate('/auth')
+        }
+
         setAnchorElUser(null);
     };
 
@@ -143,8 +152,8 @@ function navbar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                <MenuItem key={setting} onClick={handleCloseUserMenu} sx={{width:"100%"}}>
+                                    <Typography textAlign="center" id={setting} >{setting}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setAge } from '../../features/User/status'
+import { next } from '../../features/User/flow'
+
 const Picker = ({userStatus,selections,unit="",dispatcher}) => {
     const dispatch = useDispatch(); // Default value
     const pickerValue = userStatus;
     const handleSelect = (value) => {
         dispatch(dispatcher(value));
+        dispatch(next());
     };
 
     return (
