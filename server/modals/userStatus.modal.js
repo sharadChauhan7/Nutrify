@@ -42,6 +42,11 @@ const userStatusSchema = new Schema({
         type: Number,
         default: null,
     },
+    gender:{
+        type:String,
+        default:"",
+        required:true
+    },
     disease: {
         type: [String],
         default: [],

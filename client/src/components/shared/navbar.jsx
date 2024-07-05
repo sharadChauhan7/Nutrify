@@ -34,6 +34,9 @@ function navbar() {
             dispatch(logout());
             navigate('/auth')
         }
+        if(e.target.id=='Profile'){
+            navigate('/profile');
+        }
 
         setAnchorElUser(null);
     };

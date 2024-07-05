@@ -20,8 +20,8 @@ const userSchema = new Schema({
     },
     phone:{
         type:Number,
-        unique:true,
         min:10,
+        default:null
     },
     password:{
         type:String,

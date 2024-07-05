@@ -1,4 +1,4 @@
-export default ["Do you have any of below problem's", "How old are You","How active are You?","How much do you weight","How much are you aiming for.","How Fast you want to reach Your goal.","How tall are You" ];
+export default ["What is your Gender?","Do you have any of below problem's", "How old are You","How active are You?","How much do you weight","How much are you aiming for.","How Fast you want to reach Your goal.","How tall are You" ];
 
 export const common_disease = [
     "None",

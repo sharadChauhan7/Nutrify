@@ -8,7 +8,7 @@ export const setUserStatus = async (req, res) => {
         let  status  = req.body;
         let user = req.cookies.user;
         user = await JSON.parse(user);
-        status.user = user._id;
+        status.user = user;
         let userStatus = new UserStatus( status );
         await userStatus.save();
         res.send("Status set");
@@ -16,5 +16,25 @@ export const setUserStatus = async (req, res) => {
     catch (err) {
         console.log(err.message);
         res.status(400).send("Error in saving status");
+    }
+}
+
+export const getUserStatus = async (req, res) => {
+    try {
+        let user = req.cookies.user;
+        console.log(user);
+        user = await JSON.parse(user);
+        console.log(user);
+        if(user){
+            let userStatus = await UserStatus.findOne({user:user});
+            userStatus = await userStatus.populate('user');
+            res.status(200).send(userStatus);
+        }
+        else{
+            res.status(400).send("User not found");
+        }
+    }
+    catch(err){
+        console.log(err);
     }
 }

@@ -18,7 +18,7 @@ const Picker = ({userStatus,selections,unit="",dispatcher}) => {
                         {selections[name].map((option) => (
                             <div
                                 key={option}
-                                className={`picker-item w-full text-2xl text-center  cursor-pointer ${pickerValue === option ? 'bg-[#ffd60a] hover:bg-[#ffd60a] cursor-pointer text-white' : 'bg-white text-black hover:bg-[#f5e180]'} `}
+                                className={`picker-item w-full text-2xl text-center  cursor-pointer ${pickerValue === option ? 'bg-primary hover:bg-primary cursor-pointer text-white' : 'bg-white text-black hover:bg-[#f5e180]'} `}
                                 onClick={() => handleSelect(option)}
                                 style={{ padding: '10px' }}
                             >

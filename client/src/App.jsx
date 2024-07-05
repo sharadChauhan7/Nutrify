@@ -6,6 +6,7 @@ import Privateroute from './components/auth/privateroute.jsx'
 import Form from './pages/Form.jsx'
 import Home from './pages/Home.jsx'
 import Auth from './pages/Auth.jsx'
+import Profile from './pages/Profile.jsx'
 import { useSelector } from 'react-redux'
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route element={<Privateroute user={isLogin}/>}>
             <Route path='/' element={<Home />} />
             <Route path='/dashboard' element={<Home />} />
+            <Route path='/profile' element={<Profile />} />
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />

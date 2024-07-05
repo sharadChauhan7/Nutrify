@@ -8,6 +8,7 @@ let initialState = {
         target_weight:null,
         phy_activity:"",
         target_speed:"",
+        gender:"",
         target_calories:null,
         disease:[]
     }
@@ -42,10 +43,13 @@ let userSlice = createSlice({
         },
         setDisease:(state,action)=>{
             state.userStatus.disease=action.payload;
+        },
+        setGender:(state,action)=>{
+            state.userStatus.gender=action.payload;
         }
     }
 })
 
-export const {setAddress,setAge,setWeight,setHeight,setTargetWeight,setPhyActivity,setTargetSpeed,setTargetCalories,setDisease}=userSlice.actions
+export const {setAddress,setGender,setAge,setWeight,setHeight,setTargetWeight,setPhyActivity,setTargetSpeed,setTargetCalories,setDisease}=userSlice.actions
 
 export default userSlice.reducer

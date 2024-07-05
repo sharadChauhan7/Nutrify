@@ -1,7 +1,7 @@
 import express from 'express';
-import {setUserStatus} from '../controllers/user.controller.js';
+import {setUserStatus,getUserStatus} from '../controllers/user.controller.js';
 const router = express();
 
-router.post('/status',setUserStatus);
 
+router.route('/status').get(getUserStatus).post(setUserStatus);
 export default router;
