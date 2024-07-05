@@ -37,6 +37,9 @@ function navbar() {
         if(e.target.id=='Profile'){
             navigate('/profile');
         }
+        if(e.target.id=='Dashboard'){
+            navigate('/dashboard');
+        }
 
         setAnchorElUser(null);
     };

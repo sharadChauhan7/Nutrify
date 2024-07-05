@@ -47,8 +47,8 @@ const CalorieChart = () => {
   };
 
   const options = {
-    indexAxis: 'x',
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'top',
