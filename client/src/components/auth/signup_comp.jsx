@@ -4,27 +4,37 @@ import { useDispatch,useSelector } from "react-redux";
 import{setName,setEmail,setPassword,login} from '../../features/User/user'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import {validateSignup} from '../../util/validator'
+import {toast} from 'sonner'
+import DotLoading from '../shared/DotLoading';
 function Signup_comp({ toggleAuth }) {
 
 const {userInfo} = useSelector((state)=>state.userInfo);
+const [isloading,setIsLoading] = useState(false);
 const dispatch = useDispatch();
 const navigate = useNavigate();
 
 async function handleSignup(e){
   try{
     e.preventDefault();
+    const { error } = validateSignup.validate(userInfo);
+      if (error) {
+        throw new Error(error);
+      }
+      setIsLoading(true);
     const response = await axios.post('http://localhost:3000/api/auth/signup', 
        userInfo,
-      { withCredentials: true } // Important for sending cookies
+      { withCredentials: true }
   );
     if(response.status===200){
       console.log(response.data);
+      setIsLoading(false);
       navigate('/register');
-      // dispatch(login());
     }
   }
   catch(e){
-    console.log(e);
+    setIsLoading(false);
+    toast.error(e.message);
   }
 }
   return (
@@ -83,7 +93,7 @@ async function handleSignup(e){
       </div>
       <div className="mb-5">
         <button className="w-full bg-black text-xl text-white py-2 rounded-md" onClick={handleSignup} >
-          Signup
+          {isloading?<DotLoading/>:"Signup"}
         </button>
       </div>
 

@@ -68,7 +68,7 @@ function Profile() {
             </div>
             <div className='flex flex-col gap-2'>
               <h1 className='text-2xl font-semibold text-gray-700'>Target Calories</h1>
-              <h1 className='text-xl text-gray-700'>{userStatus && userStatus.target_calories} kg</h1>
+              <h1 className='text-xl text-gray-700'>{userStatus && userStatus.target_calories} </h1>
             </div>
             <div className='flex flex-col gap-2'>
               <h1 className='text-2xl font-semibold text-gray-700'>Age:</h1>

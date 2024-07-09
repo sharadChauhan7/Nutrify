@@ -4,6 +4,7 @@ import App from './App.jsx'
 import { store } from './app/store.js'
 import { Provider } from 'react-redux'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { Toaster, toast } from 'sonner'
 import './index.css'
 
 const theam = createTheme({
@@ -26,14 +27,17 @@ const theam = createTheme({
       fontWeight: 600
     }
   },
-  paper:{
-    
-  }
   
 })
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theam}>
     <Provider store={store}>
+    <Toaster position="top-center" expand visibleToasts={3} toastOptions={{
+    unstyled: false,
+    classNames: {
+      toast: 'p-3',
+    },
+  }}/>
       <App />
     </Provider>
   </ThemeProvider>

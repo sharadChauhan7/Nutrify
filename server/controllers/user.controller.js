@@ -2,13 +2,14 @@ import { json } from 'express';
 import User from '../modals/user.modal.js';
 import UserStatus from '../modals/userStatus.modal.js';
 import cookieParser from 'cookie-parser';
-
+import calculateCalories from '../util/calorieCounter.js'
 export const setUserStatus = async (req, res) => {
     try {
         let  status  = req.body;
         let user = req.cookies.user;
         user = await JSON.parse(user);
         status.user = user;
+        status=calculateCalories(status);
         let userStatus = new UserStatus( status );
         await userStatus.save();
         res.send("Status set");
