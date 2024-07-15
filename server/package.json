@@ -12,7 +12,9 @@
   "author": "Sharad Singh Chauhan",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "chart.js": "^4.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -21,6 +23,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.4.0",
     "mongoose": "^8.2.1",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.52.7",
     "react-chartjs-2": "^5.2.0"
   }
 }

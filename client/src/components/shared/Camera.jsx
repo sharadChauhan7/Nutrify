@@ -6,6 +6,7 @@ import { togglewebcam, capture } from "../../features/Webcam/webcamSlice";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import ChooseImage from "./ChooseImage";
 import { width } from "@mui/system";
+import axios from "axios";
 import Loader from "../home/loaders";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import Webcam from "./webcam";
@@ -84,6 +85,17 @@ function Camera({ webcam }) {
         </div>
     );
 
+    async function findCalorie(){
+        console.log("Finding calorie");
+      
+        
+
+        const res = await axios.post("http://localhost:3000/api/findcalorie", {
+        },{ withCredentials: true });
+        console.log(res.data);
+
+    }
+
     const ImageCard = (
         <div className="flex justify-center gap-5 items-center h-full  bg-gray-100 rounded-3xl ">
             <div className="w-2/3 h-full">
@@ -108,7 +120,7 @@ function Camera({ webcam }) {
                     >
                         Take Pic
                     </Button>
-                    <Button variant="contained" sx={{ margin: "0 1rem" }}>
+                    <Button variant="contained" sx={{ margin: "0 1rem" }} onClick={findCalorie} >
                         Calorie
                     </Button>
                 </div>
