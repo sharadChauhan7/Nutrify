@@ -48,8 +48,14 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
+        console.log(req.body);
         let { email, password } = req.body;
+        console.log(password);
         let user = await User.findOne({ email: email });
+        if(user==null){
+            throw new Error("User not found");
+        }
+        
         const match = await bcrypt.compare(password, user.password);
         if (user && match) {
             jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' }, async function (err, token) {

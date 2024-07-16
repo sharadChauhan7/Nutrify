@@ -33,7 +33,8 @@ function Login_comp({ toggleAuth }) {
       }
     }
     catch (e) {
-      toast.error(e.message);
+      toast.error(e.response.data);
+      setIsLoading(false);
     }
   }
 

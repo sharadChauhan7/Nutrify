@@ -90,6 +90,8 @@ const headers = {
 };
 
 app.post('/api/findcalorie', upload.single('image'),(req, res) => {
+
+  // Puneet ka function
   // const base64Image = encodeImage(imagePath);
   // console.log(base64Image.slice(0,10));
   async function main() {
@@ -115,5 +117,4 @@ app.post('/api/findcalorie', upload.single('image'),(req, res) => {
   }
   main();
   res.send('Working fine');
-
 });

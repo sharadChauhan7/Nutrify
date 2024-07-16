@@ -13,10 +13,13 @@ export const flowSlice= createSlice({
         },
         prev:(state,action)=>{
             state.value--;
+        },
+        setFlow:(state,action)=>{
+            state.value=action.payload;
         }
     }
 });
 
-export const {next,prev}=flowSlice.actions
+export const {next,prev,setFlow}=flowSlice.actions
 
 export default flowSlice.reducer

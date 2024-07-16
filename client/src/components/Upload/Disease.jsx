@@ -2,29 +2,30 @@ import { Box, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { setDisease } from '../../features/User/status';
-import {common_disease} from '../../util/formdata'
 
-function Dificulty({userStatus}) {
+function Dificulty({userStatus,options,dispatcher,property}) {
     let dispatch=useDispatch();
+
     function handleChange(e){
-        if(userStatus.disease.includes(e.target.id)){
-            dispatch(setDisease(userStatus.disease.filter((item)=>item!==e.target.id)))
+
+        if(userStatus[property].includes(e.target.id)){
+            dispatch(dispatcher(userStatus[property].filter((item)=>item!==e.target.id)))
         }
         else{
-            let curr=[...userStatus.disease,e.target.id]
-            dispatch(setDisease(curr));
+            let curr=[...userStatus[property],e.target.id]
+            dispatch(dispatcher(curr));
         }
 
     }
   return (
     <>
     <div className='flex flex-wrap justify-center items-center gap-5' >
-        {common_disease.map((disease,index)=>{
-            let style=userStatus.disease.includes(disease)?' border-primary w-1/3 border-4 ':'w-1/3 border-4 border-black';
+        {options.map((option,index)=>{
+            let style=userStatus.disease.includes(option)?' border-primary w-1/3 border-4 ':'w-1/3 border-4 border-black';
             return(
-                <div className={`${style} text-center cursor-pointer`} id={disease} key={index} onClick={handleChange} >
+                <div className={`${style} text-center cursor-pointer`} id={option} key={index} onClick={handleChange} >
                     <div>
-                        <Typography variant='h5' id={disease} >{disease}</Typography>
+                        <Typography variant='h5' id={option} >{option}</Typography>
                     </div>
                 </div>
             );
