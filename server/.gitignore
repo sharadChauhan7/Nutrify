@@ -12,5 +12,5 @@ dist-ssr
 *.local
 
 .env
-
+myenv
 node_modules
