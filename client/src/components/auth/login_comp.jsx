@@ -29,6 +29,7 @@ function Login_comp({ toggleAuth }) {
       );
       setIsLoading(false);
       if (response.status === 200) {
+        toast.success("Logedin successfully");
         dispatch(login());
       }
     }

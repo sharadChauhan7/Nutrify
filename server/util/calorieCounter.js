@@ -18,9 +18,9 @@ export default function calculateCalories(user) {
 
   const goalCalories = {
     "0.25 Kg per week": 250,
-    "0.50 Kg per week": 500,
-    "0.75 Kg per week": 750,
-    "1.00 Kg per week": 1000
+    "0.40 Kg per week": 500,
+    "0.50 Kg per week": 750,
+    "0.65 Kg per week": 1000
   };
 
   const { weight, height, age, phy_activity, target_speed, gender } = user;

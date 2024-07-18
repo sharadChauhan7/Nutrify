@@ -28,6 +28,7 @@ async function handleSignup(e){
   );
     if(response.status===200){
       console.log(response.data);
+      toast.success("Registered successfully");
       setIsLoading(false);
       navigate('/register');
     }

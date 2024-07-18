@@ -82,8 +82,20 @@ export const login = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
-
     let allUsers = await User.find();
     res.send(JSON.stringify(allUsers));
+}
+
+export const updateUser = async (req,res)=>{
+    try{
+        let user = req.body;
+        let updatedUser = await User.findByIdAndUpdate(user._id,user,{new:true});
+        console.log(updatedUser);
+        res.status(200).send("User updated successfully");
+    }
+    catch(e){
+        res.status(400).send("Error in updating user");
+    }
+
 }
 

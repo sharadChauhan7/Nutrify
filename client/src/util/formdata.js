@@ -18,7 +18,7 @@ export const common_disease = [
 export const daily_activity=["Little or No Activity","Lightly Active","Moderately Active","Super Active"];
 export const daily_activity_discription=["Mostly sitting or lying down, with little to no exercise","Light exercise or sports 1-2 days a week","Moderate exercise or sports 3-5 days a week","Hard exercise or sports 6-7 days a week"];
 
-export const goal_target = ["0.25 Kg per week","0.50 Kg per week","0.75 Kg per week","1.00 Kg per week"];
+export const goal_target = ["0.25 Kg per week","0.40 Kg per week","0.50 Kg per week","0.65 Kg per week"];
 export const goal_target_discription = ["Light exercise or sports 1-2 days a week","Moderate exercise or sports 3-5 days a week","Hard exercise or sports 6-7 days a week","Very hard exercise or a physical job"];
 
 export const medQuestions = ['What med would you like to take?','What form is the med?','Waht are you taking it for','How many times a day?','How many days?','How many pills?','Any special instructions?'];
