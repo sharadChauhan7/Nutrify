@@ -23,8 +23,7 @@ export const setUserStatus = async (req, res) => {
 
 export const getUserStatus = async (req, res) => {
     try {
-        let user = req.cookies.user;
-        user = await JSON.parse(user);
+        let user = req.user;
         if(user){
             let userStatus = await UserStatus.findOne({user:user});
             userStatus = await userStatus.populate('user');
