@@ -22,10 +22,11 @@ async function handleSignup(e){
         throw new Error(error);
       }
       setIsLoading(true);
-    const response = await axios.post('http://localhost:3000/api/auth/signup', 
-       userInfo,
-      { withCredentials: true }
-  );
+      const response = await axios.post('http://localhost:3000/api/auth/signup', 
+        userInfo,
+        { withCredentials: true }
+      );
+      console.log(userInfo);
     if(response.status===200){
       console.log(response.data);
       toast.success("Registered successfully");

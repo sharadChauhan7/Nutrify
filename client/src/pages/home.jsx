@@ -2,9 +2,27 @@ import React from 'react'
 import Camera from '../components/shared/Camera.jsx'
 import Medicine from '../components/shared/Medicine.jsx'
 import Doctors from '../components/shared/Doctors.jsx'
+import axios from 'axios'
 function Home() {
   // Home page
   // Change tab title to 'Home'
+  const [userStatus, setUserStatus] = React.useState(null);
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:3000/api/user/status',
+          { withCredentials: true } // Important for sending cookies
+        );
+        console.log(response.data);
+        setUserStatus(response.data);
+      }
+      catch (e) {
+        console.log(e);
+      }
+    };
+
+    fetchData();
+  }, []);
   document.title = 'Home'
   return (
     <>
@@ -19,7 +37,7 @@ function Home() {
             </p>
           </div>
           <div className='w-1/2 h-4/5 px-4'>
-            <Camera />
+           {userStatus&&<Camera userStatus={userStatus} />} 
           </div>
           <div className=' w-full border-red-500 flex justify-center gap-10'>
             <div>

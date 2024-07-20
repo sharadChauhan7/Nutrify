@@ -19,7 +19,7 @@ export const signup = async (req, res) => {
             };
             password = hash
             let user = new User({ name, email, password });
-
+            
             await user.save();
 
             jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' }, async function (err, token) {

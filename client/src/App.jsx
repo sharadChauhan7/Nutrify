@@ -25,7 +25,7 @@ function App() {
   return (
     <>
     {showNavbar && <Navbar />}
-        <Routes>
+    <Routes>
           <Route path='/auth' element={<Privateroute user={!isLogin} path='/'>
             <Auth />
           </Privateroute>} />
