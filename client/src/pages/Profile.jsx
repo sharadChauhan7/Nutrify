@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import Male from '../assets/Male.png'
 import Female from '../assets/Female.webp'
 import axios from 'axios'
@@ -9,9 +9,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import CalorieChart from '../components/Charts/CalorieChart';
 import WeightChart from '../components/Charts/WeightChart';
 import UserStatus from '../components/Profile/UserStatus';
+import { ref } from 'joi'
 
 function Profile() {
   const [userStatus, setUserStatus] = React.useState(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -27,12 +29,16 @@ function Profile() {
     };
 
     fetchData();
-  }, []);
+  }, [refreshTrigger]);
+  const refreshData = () => {
+    setRefreshTrigger(!refreshTrigger); // Step 3
+};
+  console.log(refreshTrigger);
   return (
     <div className='h-screen p-2 pt-[4.8rem] flex gap-4 bg-slate-50'>
-      {userStatus && <UserInfo userStatus={userStatus} />}
+      {userStatus && <UserInfo userStatus={userStatus} onEditComplete={refreshData} />}
       <div className='flex flex-col h-full w-9/12 gap-4  '>
-        {userStatus && <UserStatus userStatus={userStatus} />}
+        {userStatus && <UserStatus userStatus={userStatus} onEditComplete={refreshData} />}
         <div className='flex h-1/2 w-full gap-2'>
           <div className=' calorieChart h-full w-full  bg-white rounded-3xl p-2 shadow-xl'>
             <CalorieChart className="h-full w-full"/>

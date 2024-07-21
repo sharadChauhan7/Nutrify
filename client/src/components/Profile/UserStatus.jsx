@@ -3,7 +3,7 @@ import {goal_target,daily_activity} from '../../util/formdata'
 import axios from 'axios'
 import {toast} from 'sonner'
 import { validateStatus } from '../../util/validator'
-function UserStatus({ userStatus }) {
+function UserStatus({ userStatus ,onEditComplete}) {
 
     const [editData , setEditData] = React.useState(userStatus);
     const [toEdit, setToEdit] = React.useState(false);
@@ -22,6 +22,7 @@ function UserStatus({ userStatus }) {
             console.log(response.data);
             setToEdit(false);
             toast.success("Status updated successfully");
+            if(onEditComplete) onEditComplete();
         }
         catch(e){
             console.log(e);

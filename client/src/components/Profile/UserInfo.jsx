@@ -7,7 +7,7 @@ import Female from '../../assets/Female.webp'
 import {validateProfile} from '../../util/validator'
 import axios from 'axios'
 import {toast} from 'sonner'
-function UserInfo({userStatus}) {
+function UserInfo({userStatus,onEditComplete}) {
     // console.log(userStatus);
     async function editProfile(){
         try{
@@ -22,6 +22,7 @@ function UserInfo({userStatus}) {
             console.log(response.data);
             setToEdit(!toEdit);
             toast.success("Profile updated successfully");
+            if(onEditComplete) onEditComplete();
         }
         catch(e){
             toast.error(e.message);
