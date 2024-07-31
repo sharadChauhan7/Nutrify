@@ -1,0 +1,128 @@
+import Run from '../AI/gemini.js';
+import {createFoodItems,meal_Type} from '../middlewares/addFood.js';
+import Meal from '../modals/meal.js';
+import DailyCalorieIntake from '../modals/dailyCalorieIntake.js';
+export const getCalories = async(req,res)=>{
+    try {
+        if (!req.file) {
+          return res.status(400).send("No file uploaded.");
+        }
+        const imagePath = req.file.path;
+        // let data = await Run(imagePath);
+        // data = JSON.parse(data);
+        // console.log(data);
+        let data = [
+          {
+            calorie: '50 calories',
+            foodName: 'apple',
+            proteins: '0.5 grams',
+            carbs: '13 grams',
+            fats: '0.5 grams',
+            fiber: '2.4 grams'
+          },
+          {
+            calorie: '60 calories',
+            foodName: 'peach',
+            proteins: '1 gram',
+            carbs: '14 grams',
+            fats: '0.3 grams',
+            fiber: '2 grams'
+          },
+          {
+            calorie: '100 calories',
+            foodName: 'pear',
+            proteins: '1 gram',
+            carbs: '25 grams',
+            fats: '0.5 grams',
+            fiber: '5 grams'
+          },
+          {
+            calorie: '80 calories',
+            foodName: 'pineapple',
+            proteins: '1 gram',
+            carbs: '20 grams',
+            fats: '0.5 grams',
+            fiber: '2.5 grams'
+          }
+        ];
+        // Setting food Items
+        if(!data){
+          return res.status(400).send("No image found");
+        }
+        const foodItems = await createFoodItems(data);
+        // Calculating total calories
+        const totalCalories = foodItems.reduce((sum, item) => sum + item.calories_per_serving, 0);
+        // Setting meal type
+        let mealType = meal_Type();
+        // Setting description
+        const meal = new Meal({
+          meal_type: mealType,
+          calories: totalCalories,
+          food_items: foodItems.map(item => item._id),
+      });
+      console.log(meal);
+      await meal.save();
+
+        // Get user id from req.user
+        let user = req.user;
+        console.log(user);
+        let date = new Date(Date.now()).toISOString().slice(0, 10);
+         // Create or update DailyCalorieIntake document
+         let dailyCalorieIntake = await DailyCalorieIntake.findOne({ user: user._id, date: date });
+         console.log(dailyCalorieIntake);
+         if (!dailyCalorieIntake) {
+             dailyCalorieIntake = new DailyCalorieIntake({
+                 user: user._id,
+                 date: date,
+                 meals: [meal._id],
+                 total_calories: totalCalories
+             });
+         } else {
+             dailyCalorieIntake.meals.push(meal._id);
+             dailyCalorieIntake.total_calories += totalCalories;
+         }
+ 
+         await dailyCalorieIntake.save();
+ 
+         res.status(201).json({
+             message: 'Meal and daily calorie intake saved successfully',
+             meal,
+             dailyCalorieIntake
+         });
+      }
+      catch (e) {
+        console.log(e);
+        res.status(400).send("Error in generating response");
+      }
+}
+export const getuserMeals = async (req,res)=>{
+  try{
+      let user = req.user;
+      let userMeals = await DailyCalorieIntake.find({user:user});
+      res.status(200).send(userMeals);
+  }
+  catch(e){
+      res.status(400).send("Error in fetching user meals");
+  }
+}
+
+// Get user meals of the current date
+
+export const getuserMaelsToday = async (req,res)=>{
+  try{
+      let user = req.user;
+      let date = new Date(Date.now()).toISOString().slice(0, 10);
+      let userMeals = await DailyCalorieIntake.find({user:user,date:date}).populate({path:'meals',populate:{path:'food_items'}});
+      res.status(200).send(userMeals);
+  }
+  catch(e){
+      res.status(400).send("Error in fetching user meals");
+  }
+};
+
+
+
+
+
+
+  

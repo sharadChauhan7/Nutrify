@@ -1,7 +1,6 @@
 import { json } from 'express';
 import User from '../modals/user.modal.js';
 import UserStatus from '../modals/userStatus.modal.js';
-import UserMeal from '../modals/userMeal.js';
 import cookieParser from 'cookie-parser';
 import calculateCalories from '../util/calorieCounter.js'
 export const setUserStatus = async (req, res) => {
@@ -61,16 +60,5 @@ export const updateStatus = async (req,res)=>{
     }
     catch(e){
         res.status(400).send("Error in updating status");
-    }
-}
-export const getuserMeals = async (req,res)=>{
-    try{
-        let user = req.cookies.user;
-        user = await JSON.parse(user);
-        let userMeals = await UserMeal.find({user:user});
-        res.status(200).send(userMeals);
-    }
-    catch(e){
-        res.status(400).send("Error in fetching user meals");
     }
 }

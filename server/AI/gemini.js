@@ -7,10 +7,6 @@ import {GoogleAIFileManager} from "@google/generative-ai/server";
   const apiKey = process.env.GEMINI_API_KEY;
   const genAI = new GoogleGenerativeAI(apiKey);
   const fileManager = new GoogleAIFileManager(apiKey);
-  /**
-   * Uploads the given file to Gemini.
-   * See https://ai.google.dev/gemini-api/docs/prompting_with_media
-   */
   console.log(apiKey);
   async function uploadToGemini(path, mimeType) {
     const uploadResult = await fileManager.uploadFile(path, {
@@ -47,7 +43,7 @@ import {GoogleAIFileManager} from "@google/generative-ai/server";
             fileUri: files[0].uri
           }
         },
-        {text: "Return the following data in json format you are given an image of a food item if not return an empty object\n{\n        calorie: \"total calorie in image food\",\n    foodName: \"name of the image food\",\n        proteins: \"total proteins in image food\",\n        carbs: \"total carbs in image food\",\n        fats: \"total fats in image food\",\n        fiber: \"total fiber in image food\",    }"},
+        {text: "Return the following data in json format you are given an image of a food item or items(Note: if multiple food items is dected return array of object of eact item information) if you can not recognise food return an empty object\n[ {\n        calorie: \"total calorie in image food\",\n    foodName: \"name of the image food\",\n        proteins: \"total proteins in image food\",\n        carbs: \"total carbs in image food\",\n        fats: \"total fats in image food\",\n        fiber: \"total fiber in image food\",    } ]"},
       ]);
   
     return result.response.text();

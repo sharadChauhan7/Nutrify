@@ -7,8 +7,11 @@ import Form from './pages/UserForm.jsx'
 import Home from './pages/Home.jsx'
 import Auth from './pages/Auth.jsx'
 import Profile from './pages/Profile.jsx'
+import Meals from './pages/Meals.jsx'
 import { useSelector } from 'react-redux'
 import MedicineForm from './pages/MedicineForm.jsx'
+// Get user id rom url using useParams
+
 function App() {
   return (
     <Router>
@@ -20,7 +23,6 @@ function App() {
     const location = useLocation();
     const noNavbarRoutes = ['/auth', '/register']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
-    let { id } = useParams();
     const {isLogin} = useSelector((state)=>state.userInfo);
   return (
     <>
@@ -34,6 +36,7 @@ function App() {
             <Route path='/dashboard' element={<Home />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/setmedicine' element={<MedicineForm />} />
+            <Route path='/meals/:id' element={<Meals />} />
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
