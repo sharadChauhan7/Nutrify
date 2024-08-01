@@ -44,11 +44,13 @@ export async function resizeImage(imgSrc, maxWidth, maxHeight) {
 
 export const getMealStatus = (todayMeals) => {
     let mealStatus = {
-        total_calories: 0,
         carbs: 0,
         fats: 0,
         fiber: 0,
         protein: 0
+    }
+    if(!todayMeals){
+        return mealStatus;
     }
     todayMeals.meals.map((meal) => {
         meal.food_items.map((foodItem) => {

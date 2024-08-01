@@ -32,9 +32,8 @@ function Camera({ userStatus }) {
                     withCredentials: true,
                 });
                 const todaysMeals = response.data[0];
-
                 const mealStatus = getMealStatus(todaysMeals);
-                mealStatus.total_calories = todaysMeals.total_calories;
+                todaysMeals?mealStatus.total_calories = todaysMeals.total_calories:mealStatus.total_calories = 0;
                 console.log(mealStatus);
 
                 if (response.status === 200) {
@@ -46,6 +45,7 @@ function Camera({ userStatus }) {
         }
         getMeals();
     }, [setcalorieStatus]);
+    // console.log(calorieStatus);
     const nutrients = [
         { label: 'Proteins', value: calorieStatus.protein, max: 180, unit: 'g' },
         { label: 'Carbs', value: calorieStatus.carbs, max: 150, unit: '' },

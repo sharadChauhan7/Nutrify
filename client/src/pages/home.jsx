@@ -13,7 +13,6 @@ function Home() {
         const response = await axios.get('http://localhost:3000/api/user/status',
           { withCredentials: true } // Important for sending cookies
         );
-        console.log(response.data);
         setUserStatus(response.data);
       }
       catch (e) {

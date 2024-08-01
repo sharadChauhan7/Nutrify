@@ -22,8 +22,6 @@ import { useParams } from 'react-router-dom'
 //   )
 // }
 import React from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const MealCard = ({ mealType, calories, itemName }) => (
   <div className="border border-gray-300 rounded-lg p-4 mb-4">
@@ -46,14 +44,6 @@ const MealPlan = () => {
     <div className=' h-screen w-full flex flex-col justify-center items-center'>
   <div className="container mx-auto w-1/2 py-8">
     <div className="flex justify-between mb-6">
-        
-    <DatePicker
-          selected={selectedDate}
-          onChange={date => setSelectedDate(date)}
-          inline
-          className="bg-gray-200 p-2 rounded-lg"
-          calendarClassName="bg-white shadow-lg rounded-lg"
-        />
       <div className="text-lg font-semibold">
         500 of 2907
       </div>
