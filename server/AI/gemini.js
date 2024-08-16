@@ -8,6 +8,7 @@ import {GoogleAIFileManager} from "@google/generative-ai/server";
   const genAI = new GoogleGenerativeAI(apiKey);
   const fileManager = new GoogleAIFileManager(apiKey);
   console.log(apiKey);
+  
   async function uploadToGemini(path, mimeType) {
     const uploadResult = await fileManager.uploadFile(path, {
       mimeType,
@@ -43,7 +44,18 @@ import {GoogleAIFileManager} from "@google/generative-ai/server";
             fileUri: files[0].uri
           }
         },
-        {text: "Return the following data in json format you are given an image of a food item or items(Note: if multiple food items is dected return array of object of eact item information) if you can not recognise food return an empty object\n[ {\n        calorie: \"total calorie in image food\",\n    foodName: \"name of the image food\",\n        proteins: \"total proteins in image food\",\n        carbs: \"total carbs in image food\",\n        fats: \"total fats in image food\",\n        fiber: \"total fiber in image food\",    } ]"},
+        {text: `Return the following data in JSON array format:
+      [{
+        calorie: "total calorie in image food",
+        foodName: "name of the image food",
+        proteins: "total proteins in image food",
+        carbs: "total carbs in image food",
+        fats: "total fats in image food",
+        fiber: "total fiber in image food"
+      }]
+      If you cannot recognize the food, return an empty array [].`
+    }
+
       ]);
   
     return result.response.text();

@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
 export const isLogin = async (req,res,next)=>{
-    const {authToken} = req.cookies;
+    try{
+        const {authToken} = req.cookies;
     if(!authToken){
         res.status(401).send({redirectUrl:"/auth"});
     }
@@ -8,4 +9,10 @@ export const isLogin = async (req,res,next)=>{
    const {user}  = result;
    req.user = user;
     next();
+    }
+    catch(e){
+        // res.status(401).send({redirectUrl:"/auth"});
+        console.log("Token error")
+        console.log(e);
+    }
 }

@@ -8,43 +8,46 @@ export const getCalories = async(req,res)=>{
           return res.status(400).send("No file uploaded.");
         }
         const imagePath = req.file.path;
-        // let data = await Run(imagePath);
-        // data = JSON.parse(data);
+        let data = await Run(imagePath);
+        console.log(data);
+        const responseText = data;
+       const cleanText = responseText.replace(/```json|```/g, '');
+        data = JSON.parse(cleanText);
         // console.log(data);
-        let data = [
-          {
-            calorie: '50 calories',
-            foodName: 'apple',
-            proteins: '0.5 grams',
-            carbs: '13 grams',
-            fats: '0.5 grams',
-            fiber: '2.4 grams'
-          },
-          {
-            calorie: '60 calories',
-            foodName: 'peach',
-            proteins: '1 gram',
-            carbs: '14 grams',
-            fats: '0.3 grams',
-            fiber: '2 grams'
-          },
-          {
-            calorie: '100 calories',
-            foodName: 'pear',
-            proteins: '1 gram',
-            carbs: '25 grams',
-            fats: '0.5 grams',
-            fiber: '5 grams'
-          },
-          {
-            calorie: '80 calories',
-            foodName: 'pineapple',
-            proteins: '1 gram',
-            carbs: '20 grams',
-            fats: '0.5 grams',
-            fiber: '2.5 grams'
-          }
-        ];
+        // let data = [
+        //   {
+        //     calorie: '50 calories',
+        //     foodName: 'apple',
+        //     proteins: '0.5 grams',
+        //     carbs: '13 grams',
+        //     fats: '0.5 grams',
+        //     fiber: '2.4 grams'
+        //   },
+        //   {
+        //     calorie: '60 calories',
+        //     foodName: 'peach',
+        //     proteins: '1 gram',
+        //     carbs: '14 grams',
+        //     fats: '0.3 grams',
+        //     fiber: '2 grams'
+        //   },
+        //   {
+        //     calorie: '100 calories',
+        //     foodName: 'pear',
+        //     proteins: '1 gram',
+        //     carbs: '25 grams',
+        //     fats: '0.5 grams',
+        //     fiber: '5 grams'
+        //   },
+        //   {
+        //     calorie: '80 calories',
+        //     foodName: 'pineapple',
+        //     proteins: '1 gram',
+        //     carbs: '20 grams',
+        //     fats: '0.5 grams',
+        //     fiber: '2.5 grams'
+        //   }
+        // ];
         // Setting food Items
         if(!data){
           return res.status(400).send("No image found");

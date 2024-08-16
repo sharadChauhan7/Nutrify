@@ -31,7 +31,9 @@ function Camera({ userStatus }) {
                 const response = await axios.get("http://localhost:3000/api/calorie/getMeals/today", {
                     withCredentials: true,
                 });
+            
                 const todaysMeals = response.data[0];
+                console.log(todaysMeals);
                 const mealStatus = getMealStatus(todaysMeals);
                 todaysMeals?mealStatus.total_calories = todaysMeals.total_calories:mealStatus.total_calories = 0;
                 console.log(mealStatus);

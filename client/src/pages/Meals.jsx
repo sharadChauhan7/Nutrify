@@ -16,7 +16,7 @@ import { useParams } from 'react-router-dom'
 //             }
 //         }
 //         getMeals();
-//     })
+//     }) 
 //   return (
 //     <div className='text-5xl h-screen flex justify-center items-center'>Meals</div>
 //   )
