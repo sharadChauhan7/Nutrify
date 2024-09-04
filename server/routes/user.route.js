@@ -1,7 +1,7 @@
 import express from 'express';
 import {setUserStatus,getUserStatus,updateUser,updateStatus} from '../controllers/user.controller.js';
 import {isLogin} from '../middlewares/middleware.js'
-const router = express();
+const router = express({mergeParams:true});
 
 
 router.route('/status').get(isLogin,getUserStatus).post(setUserStatus);

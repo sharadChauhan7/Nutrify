@@ -12,7 +12,7 @@ export const isLogin = async (req,res,next)=>{
     }
     catch(e){
         // res.status(401).send({redirectUrl:"/auth"});
-        console.log("Token error")
+        console.log("Token error");
         console.log(e);
     }
 }

@@ -101,7 +101,7 @@ export const getCalories = async(req,res)=>{
 export const getuserMeals = async (req,res)=>{
   try{
       let user = req.user;
-      let userMeals = await DailyCalorieIntake.find({user:user});
+      let userMeals = await DailyCalorieIntake.find({user:user}).populate({path:'meals',populate:{path:'food_items'}});
       res.status(200).send(userMeals);
   }
   catch(e){
@@ -111,11 +111,13 @@ export const getuserMeals = async (req,res)=>{
 
 // Get user meals of the current date
 
-export const getuserMaelsToday = async (req,res)=>{
+export const getuserMealsToday = async (req,res)=>{
   try{
       let user = req.user;
+      console.log(user);
       let date = new Date(Date.now()).toISOString().slice(0, 10);
       let userMeals = await DailyCalorieIntake.find({user:user,date:date}).populate({path:'meals',populate:{path:'food_items'}});
+      console.log(userMeals)
       res.status(200).send(userMeals);
   }
   catch(e){
