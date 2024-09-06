@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage });
 
 router.post('/getCalories',isLogin, upload.single('image'),getCalories);
-router.route('/getMeals/:id').get(isLogin,getuserMeals);
+router.route('/getMeals').get(isLogin,getuserMeals);
 router.route('/getMeals/today').get(isLogin,getuserMealsToday);
 
 export default router;

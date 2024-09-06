@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Male from '../assets/Male.png'
 import Female from '../assets/Female.webp'
 import axios from 'axios'
@@ -9,10 +9,12 @@ import HomeIcon from '@mui/icons-material/Home';
 import CalorieChart from '../components/Charts/CalorieChart';
 import WeightChart from '../components/Charts/WeightChart';
 import UserStatus from '../components/Profile/UserStatus';
+import {getLast7DaysMeals} from '../util/methods'
 import { ref } from 'joi'
 
 function Profile() {
   const [userStatus, setUserStatus] = React.useState(null);
+  const [userMeals, setUserMeals] = React.useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(false);
   useEffect(() => {
     async function fetchData() {
@@ -20,7 +22,10 @@ function Profile() {
         const response = await axios.get('http://localhost:3000/api/user/status',
           { withCredentials: true } // Important for sending cookies
         );
-        console.log(response.data);
+        const mealRespons = await axios.get('http://localhost:3000/api/calorie/getMeals', { withCredentials: true });
+        console.log(mealRespons.data);
+        // console.log(response.data);
+        setUserMeals(mealRespons.data);
         setUserStatus(response.data);
       }
       catch (e) {
@@ -30,10 +35,12 @@ function Profile() {
 
     fetchData();
   }, [refreshTrigger]);
+
   const refreshData = () => {
     setRefreshTrigger(!refreshTrigger); // Step 3
-};
-  console.log(refreshTrigger);
+  };
+  // Send this fn to util
+  // console.log(refreshTrigger);
   return (
     <div className='h-screen p-2 pt-[4.8rem] flex gap-4 bg-slate-50'>
       {userStatus && <UserInfo userStatus={userStatus} onEditComplete={refreshData} />}
@@ -41,10 +48,10 @@ function Profile() {
         {userStatus && <UserStatus userStatus={userStatus} onEditComplete={refreshData} />}
         <div className='flex h-1/2 w-full gap-2'>
           <div className=' calorieChart h-full w-full  bg-white rounded-3xl p-2 shadow-xl'>
-            <CalorieChart className="h-full w-full"/>
+            <CalorieChart mealData={ userMeals && getLast7DaysMeals(userMeals)} userStatus={userStatus}  className="h-full w-full" />
           </div>
           <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
-            <WeightChart className="h-full w-full"/>
+            <WeightChart className="h-full w-full" />
           </div>
         </div>
       </div>

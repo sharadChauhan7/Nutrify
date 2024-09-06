@@ -68,3 +68,20 @@ export const getMealStatus = (todayMeals) => {
     }
     return mealStatus;
 }
+export const getLast7DaysMeals = (data) => {
+    const today = new Date();
+  const last7Days = [];
+
+  // Generate the last 7 days' dates
+  for (let i = 6; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(today.getDate() - i);
+    last7Days.push(date.toISOString().split('T')[0]);
+  }
+
+  // Map over the last 7 days and find corresponding data or assume 0 calories
+  return last7Days.map(date => {
+    const found = data.find(entry => entry.date === date);
+    return found ? { date: found.date, calories: found.total_calories    } : { date, calories: 0 };
+  });
+  };

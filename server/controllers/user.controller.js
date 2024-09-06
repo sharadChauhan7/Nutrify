@@ -2,7 +2,8 @@ import { json } from 'express';
 import User from '../modals/user.modal.js';
 import UserStatus from '../modals/userStatus.modal.js';
 import cookieParser from 'cookie-parser';
-import calculateCalories from '../util/calorieCounter.js'
+import {calculateCalories,calculateMacros} from '../util/calorieCounter.js'
+
 export const setUserStatus = async (req, res) => {
     try {
         let  status  = req.body;
@@ -10,6 +11,8 @@ export const setUserStatus = async (req, res) => {
         user = await JSON.parse(user);
         status.user = user;
         status=calculateCalories(status);
+        calculateMacros(status);
+        console.log(status);
         let userStatus = new UserStatus( status );
         await userStatus.save();
         res.send("Status set");

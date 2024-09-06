@@ -52,6 +52,28 @@ const userStatusSchema = new Schema({
         default: [],
         required: true
     },
+    macros: {
+        protein: {
+            type: Number,
+            default: null,
+            required: true
+        },
+        carbs: {
+            type: Number,
+            default: null,
+            required: true
+        },
+        fats: {
+            type: Number,
+            default: null,
+            required: true
+        },
+        fiber: {
+            type: Number,
+            default: null,
+            required: true
+        }
+    },
     user:{
         type:Schema.Types.ObjectId,
         ref:'User'

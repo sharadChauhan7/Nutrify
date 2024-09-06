@@ -4,7 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const CalorieChart = () => {
+const CalorieChart = ({mealData,userStatus}) => {
   const data = [
     { date: '2024-06-28', calories: 2000 },
     { date: '2024-06-29', calories: 1800 },
@@ -14,8 +14,8 @@ const CalorieChart = () => {
     { date: '2024-07-03', calories: 2300 },
     { date: '2024-07-04', calories: 2500 },
   ];
-  const labels = data.map(entry => entry.date);
-  const calories = data.map(entry => entry.calories);
+  const labels = mealData? mealData.map(entry => entry.date):data.map(entry => entry.date);
+  const calories = mealData? mealData.map(entry => entry.calories):data.map(entry => entry.calories);
 
   const chartData = {
     labels,
@@ -37,9 +37,9 @@ const CalorieChart = () => {
           'rgb(255, 159, 64)',
           'rgb(255, 205, 86)',
           'rgb(75, 192, 192)',
+          'rgb(201, 203, 207)',
           'rgb(54, 162, 235)',
           'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
         ],
         borderWidth: 1,
       },

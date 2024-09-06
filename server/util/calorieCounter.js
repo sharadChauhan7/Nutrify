@@ -8,7 +8,7 @@ const daily_activity_description = [
 
 const goal_target = ["0.25 Kg per week", "0.50 Kg per week", "0.75 Kg per week", "1.00 Kg per week"];
 
-export default function calculateCalories(user) {
+export function calculateCalories(user) {
   const activityMultipliers = {
     "Little or No Activity": 1.2,
     "Lightly Active": 1.375,
@@ -39,6 +39,32 @@ export default function calculateCalories(user) {
   // Set the target_calories field
   user.target_calories = Math.round(requiredCalories);
 
+  return user;
+}
+
+export function calculateMacros(user) {
+  const { target_calories, gender } = user;
+
+  // Macronutrient ratios
+  const proteinRatio = 0.3; 
+  const fatRatio = 0.25; 
+  const carbRatio = 0.45; 
+  
+  // Calculate macros in grams
+  const proteinGrams = (target_calories * proteinRatio) / 4; 
+  const fatGrams = (target_calories * fatRatio) / 9; 
+  const carbGrams = (target_calories * carbRatio) / 4; 
+
+  // Set fiber goal based on gender
+  const fiberGrams = gender === 'Male' ? 38 : 25;
+
+  // Update user object with macros
+  user.macros = {
+    protein: Math.round(proteinGrams), 
+    fats: Math.round(fatGrams), 
+    carbs: Math.round(carbGrams), 
+    fiber: fiberGrams 
+  };
   return user;
 }
 

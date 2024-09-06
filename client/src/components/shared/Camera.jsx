@@ -15,8 +15,11 @@ import { Link } from "react-router-dom";
 function Camera({ userStatus }) {
     const webcamRef = React.useRef(null);
     const dispatch = useDispatch();
+    const [refreshTrigger, setRefreshTrigger] = React.useState(false);
     const { iswebcam, imgSrc } = useSelector((state) => state.webcam);
-
+    const refreshData = () => {
+        setRefreshTrigger(!refreshTrigger); 
+    };
     const [calorieStatus, setcalorieStatus] = React.useState({
         calorie: 500,
         proteins: 13,
@@ -33,6 +36,7 @@ function Camera({ userStatus }) {
                 });
             
                 const todaysMeals = response.data[0];
+
                 console.log(todaysMeals);
                 const mealStatus = getMealStatus(todaysMeals);
                 todaysMeals?mealStatus.total_calories = todaysMeals.total_calories:mealStatus.total_calories = 0;
@@ -46,13 +50,13 @@ function Camera({ userStatus }) {
             }
         }
         getMeals();
-    }, [setcalorieStatus]);
+    }, [setcalorieStatus,refreshTrigger]);
     // console.log(calorieStatus);
     const nutrients = [
-        { label: 'Proteins', value: calorieStatus.protein, max: 180, unit: 'g' },
-        { label: 'Carbs', value: calorieStatus.carbs, max: 150, unit: '' },
-        { label: 'Fats', value: calorieStatus.fats, max: 200, unit: 'g' },
-        { label: 'Fiber', value: calorieStatus.fiber, max: 50, unit: '' },
+        { label: 'Proteins', value: calorieStatus.protein, max: userStatus.macros.protein, unit: 'g' },
+        { label: 'Carbs', value: calorieStatus.carbs, max: userStatus.macros.carbs, unit: 'g' },
+        { label: 'Fats', value: calorieStatus.fats, max: userStatus.macros.fats, unit: 'g' },
+        { label: 'Fiber', value: calorieStatus.fiber, max: userStatus.macros.fiber, unit: 'g' },
     ];
 
     const box1 = (
@@ -115,6 +119,9 @@ function Camera({ userStatus }) {
             });
             console.log(res.data);
             setcalorieStatus(calorieStatus);
+            if(calorieStatus){
+                refreshData();
+            }
         }
         catch (e) {
             console.log(e);
