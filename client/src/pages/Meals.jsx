@@ -8,7 +8,7 @@ function Meals() {
   React.useEffect(() => {
     async function getMeals() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/calorie/getMeals/${id}`, {
+        const response = await axios.get(`http://localhost:3000/api/calorie/getMeals`, {
           withCredentials: true
         });
         console.log(response.data);
