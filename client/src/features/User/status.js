@@ -13,7 +13,6 @@ let initialState = {
         disease:[]
     }
 }
-
 let userSlice = createSlice({
     name:"userStatus",
     initialState,

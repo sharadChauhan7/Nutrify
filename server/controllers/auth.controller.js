@@ -2,11 +2,9 @@ import User from '../modals/user.modal.js'
 import jwt from 'jsonwebtoken';
 import 'dotenv/config'
 import bcrypt from 'bcrypt';
-import { json } from 'express';
 
 export const signup = async (req, res) => {
-    try {
-
+    try {    
         let { name, email, password } = new User(req.body);
         // Check if user already exist
         let userExists = await User.findOne({ email });
