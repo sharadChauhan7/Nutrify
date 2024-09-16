@@ -107,6 +107,7 @@ function Camera({ userStatus }) {
 
     async function findCalorie() {
         console.log("Finding calorie");
+        console.log(calorieStatus.total_calories);
         try {
             const resizedImageBlob = await resizeImage(imgSrc, 800, 600); // Example size, adjust as needed
             const formData = new FormData();

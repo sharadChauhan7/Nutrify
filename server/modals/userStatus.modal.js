@@ -74,6 +74,29 @@ const userStatusSchema = new Schema({
             required: true
         }
     },
+    calorie_distribution:{
+        breakfast:{
+            type: Number,
+            default: null,
+            required: true
+        },
+        lunch:{
+            type: Number,
+            default: null,
+            required: true
+        },
+        snacks:{
+            type: Number,
+            default: null,
+            required: true
+        },
+        dinner:{
+            type: Number,
+            default: null,
+            required: true
+        },
+        
+    },
     user:{
         type:Schema.Types.ObjectId,
         ref:'User'

@@ -16,6 +16,7 @@ export const getCalories = async(req,res)=>{
        const cleanText = responseText.replace(/```json|```/g, '');
         data = JSON.parse(cleanText);
         // Setting food Items
+        console.log(data);
         if(!data){
           return res.status(400).send("No image found");
         }

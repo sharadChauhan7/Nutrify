@@ -39,6 +39,15 @@ export function calculateCalories(user) {
   // Set the target_calories field
   user.target_calories = Math.round(requiredCalories);
 
+  // Set the calorie_distribution field
+  user.calorie_distribution = {
+    breakfast: Math.round(requiredCalories * 0.25),
+    lunch: Math.round(requiredCalories * 0.35),
+    snacks: Math.round(requiredCalories * 0.10),
+    dinner: Math.round(requiredCalories * 0.30)
+  };
+
+
   return user;
 }
 
