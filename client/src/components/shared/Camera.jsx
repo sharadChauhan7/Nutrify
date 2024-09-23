@@ -7,7 +7,7 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import ChooseImage from "./ChooseImage";
 import { width } from "@mui/system";
 import axios from "axios";
-import Loader from "../home/loaders";
+import Loader from "./loaders";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import Webcam from "./webcam";
 import { resizeImage, getMealStatus } from '../../util/methods'

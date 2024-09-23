@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 import { logout } from '../../features/User/user';
 
 const pages = [['Dashboard','dashboard']];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Dite', 'Dashboard', 'Logout'];
 
 function navbar() {
     
@@ -39,6 +39,9 @@ function navbar() {
         }
         if(e.target.id=='Dashboard'){
             navigate('/dashboard');
+        }
+        if(e.target.id=='Dite'){
+            navigate('/dite');
         }
 
         setAnchorElUser(null);
@@ -70,7 +73,7 @@ function navbar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
-                            aria-label="account of current user"
+                            aria-label="dite plan of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}

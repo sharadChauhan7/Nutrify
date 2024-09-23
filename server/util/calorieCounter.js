@@ -76,7 +76,6 @@ export function calculateMacros(user) {
   };
   return user;
 }
-
 // Example user object
 
 // Calculate and set the required calories

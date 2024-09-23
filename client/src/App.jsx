@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx'
 import Auth from './pages/Auth.jsx'
 import Profile from './pages/Profile.jsx'
 import Meals from './pages/Meals.jsx'
+import Dite from './pages/Dite.jsx'
 import { useSelector } from 'react-redux'
 import MedicineForm from './pages/MedicineForm.jsx'
 // Get user id rom url using useParams
@@ -37,6 +38,7 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/setmedicine' element={<MedicineForm />} />
             <Route path='/meals/:id' element={<Meals />} />
+            <Route path='/dite' element={<Dite />} />
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
