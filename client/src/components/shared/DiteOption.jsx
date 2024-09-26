@@ -28,7 +28,7 @@ function DiteOption({ status, handler }) {
     ]
   }
   return (
-    <div className='flex flex-wrap flex-col justify-center items-center gap-2' >
+    <div className='flex flex-wrap  justify-center items-center  gap-10' >
       {options.values.map((option, index) => {
         // let style = status == option ? ' border-primary w-1/3 border-4 ' : 'w-1/3 border-4 border-black';
         return (

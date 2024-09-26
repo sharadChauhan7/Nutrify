@@ -2,6 +2,7 @@
 import { useParams } from 'react-router-dom'
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { nanoid } from '@reduxjs/toolkit';
 function Meals() {
   let { id } = useParams();
   console.log(id);
@@ -21,6 +22,18 @@ function Meals() {
     getMeals();
   }, [])
   const [meals, setMeals] = React.useState([]);
+
+  async function deleteMeal(id){
+    try{
+      const response = await axios.delete(`http://localhost:3000/api/calorie/deleteMeal/${id}`, {
+        withCredentials: true
+      });
+      console.log(response.data);
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
   return (
     <div className=' h-screen w-full bg-gray-300 flex flex-col justify-center items-center'>
       <div className=" mx-auto w-1/2 py-8">
@@ -29,29 +42,6 @@ function Meals() {
             of 2907
           </div>
         </div>
-        {/* <div className=' overflow-auto border-4 border-red-400  w-64 h-64 mt-[10%] py-10'>
-          {meals.map((meal, idx) => {
-          <div className='w-full'>
-            <div>Date: </div>
-            <MealCard mealType="Breakfast" calories="180" itemName="Item name" />
-            <MealCard mealType="Lunch" calories="180" itemName="Item name" />
-            <MealCard mealType="Dinner" calories="180" itemName="Item name" />
-          </div>
-          <div className='w-full h-full'>
-            <div>Date: </div>
-            <MealCard mealType="Breakfast" calories="180" itemName="Item name" />
-            <MealCard mealType="Lunch" calories="180" itemName="Item name" />
-            <MealCard mealType="Dinner" calories="180" itemName="Item name" />
-          </div>
-          <div className='w-full h-full'>
-            <div>Date: </div>
-            <MealCard mealType="Breakfast" calories="180" itemName="Item name" />
-            <MealCard mealType="Lunch" calories="180" itemName="Item name" />
-            <MealCard mealType="Dinner" calories="180" itemName="Item name" />
-          </div>Name
-
-           // })} 
-        </div> */}
         <div className="fixed z-10 inset-0 flex items-center justify-center">
           <div className="relative bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 transition ease-out duration-300 transform ">
             {/* Modal panel */}
@@ -60,18 +50,18 @@ function Meals() {
             </div>
             <div className="prose max-w-screen-md p-6 overflow-y-auto" style={{ maxHeight: '70vh', backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '0.375rem', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
               {meals.map((meal, idx) => {
-                console.log(meal);
                 return (
-                  <div className=''>
+                  <div className='' key={nanoid()} >
                     <div className='text-4xl font-bold text-gray-800'>Date: {meal.date}</div>
                     <div className=''>
                       {meal.meals.map((food,idx)=>{
                         return (
-                          <div className='flex flex-col justify-between gap-5'>
+                          <div className='flex flex-col justify-between gap-5' key={nanoid()}>
                             <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4>
+                            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(food._id)}}>Delete</button>
                             {food.food_items.map((item,idx)=>{
                               return (
-                                <MealCard mealType={food.meal_type} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
+                                <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
                               )
                             })}
                           </div>
@@ -90,11 +80,11 @@ function Meals() {
   )
 }
 
-const MealCard = ({ mealType, calories, itemName ,itemData }) => (
+const MealCard = ({ mealType,image_url, calories, itemName ,itemData }) => (
   <div className="max-w-md bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl ">
     <div className="md:flex">
       <div className="md:shrink-0">
-        <img className="h-48 w-full object-cover md:h-full md:w-48" src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D" alt="Modern building architecture">
+        <img className="h-48 w-full object-cover md:h-full md:w-48" src={image_url} alt="Modern building architecture">
         </img>
       </div>
       <div className="p-8 w-full">

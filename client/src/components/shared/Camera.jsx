@@ -12,8 +12,10 @@ import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import Webcam from "./webcam";
 import { resizeImage, getMealStatus } from '../../util/methods'
 import { Link } from "react-router-dom";
+import { set } from "mongoose";
+import { Skeleton } from "@mui/material";
 function Camera({ userStatus }) {
-    const webcamRef = React.useRef(null);
+    const [isLoading,setIsLoading] = React.useState(false);
     const dispatch = useDispatch();
     const [refreshTrigger, setRefreshTrigger] = React.useState(false);
     const { iswebcam, imgSrc } = useSelector((state) => state.webcam);
@@ -31,6 +33,7 @@ function Camera({ userStatus }) {
     React.useEffect(() => {
         async function getMeals() {
             try {
+                setIsLoading(true);
                 const response = await axios.get("http://localhost:3000/api/calorie/getMeals/today", {
                     withCredentials: true,
                 });
@@ -44,6 +47,7 @@ function Camera({ userStatus }) {
 
                 if (response.status === 200) {
                     setcalorieStatus(mealStatus);
+                    setIsLoading(false);
                 }
             } catch (e) {
                 console.log(e);
@@ -61,7 +65,7 @@ function Camera({ userStatus }) {
 
     const box1 = (
         <div className="web flex flex-col justify-center  items-center border-2 w-[35rem] h-[20rem] rounded-3xl bg-gray-100">
-            <Link to={`/meals/${userStatus.user._id}`}>
+            {isLoading?<Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />:<Link to={`/meals/${userStatus.user._id}`}>
                 <div className="flex justify-between px-4 items-center w-full h-1/2">
                     {/* Circulat loader */}
                     <div className="border-4 border-yellow-400 rounded-full p-2">
@@ -100,7 +104,8 @@ function Camera({ userStatus }) {
                         />
                     ))}
                 </div>
-                </Link>
+                </Link>}
+            
             </div>
 
     );
@@ -108,6 +113,7 @@ function Camera({ userStatus }) {
     async function findCalorie() {
         console.log("Finding calorie");
         console.log(calorieStatus.total_calories);
+        setIsLoading(true);
         try {
             const resizedImageBlob = await resizeImage(imgSrc, 800, 600); // Example size, adjust as needed
             const formData = new FormData();
@@ -120,6 +126,7 @@ function Camera({ userStatus }) {
             });
             console.log(res.data);
             setcalorieStatus(calorieStatus);
+            setIsLoading(false);
             if(calorieStatus){
                 refreshData();
             }
@@ -130,15 +137,15 @@ function Camera({ userStatus }) {
     }
 
     const ImageCard = (
-        <div className="flex justify-center gap-5 items-center h-full  bg-gray-100 rounded-3xl ">
-            <div className="w-2/3 h-full">
+        <div className="flex justify-between gap-5 items-center w-[35rem] h-[20rem] p-4 bg-gray-100 rounded-3xl ">
+            <div className="w-2/4  flex">
                 <img
                     src={imgSrc}
                     alt=""
-                    className="h-full w-full object-contain rounded-3xl  bg-black"
+                    className="h-2xl  object-contain shadow-xl rounded-3xl bg-black"
                 />
             </div>
-            <div className="w-1/3 h-full flex flex-col items-center justify-center gap-10 p-4 ">
+            <div className="w-2/3 h-full  flex flex-col items-center justify-center gap-10 p-4 ">
                 <h3 className="text-lg text-gray-700 font-bold text-center">
                     Click on calorie when you are
                     ready or take a differant pic
