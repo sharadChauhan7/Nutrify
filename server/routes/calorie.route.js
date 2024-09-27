@@ -16,6 +16,6 @@ const upload = multer({storage});
 router.post('/getCalories',isLogin, upload.single('image'),getCalories);
 router.route('/getMeals').get(isLogin,getuserMeals);
 router.route('/getMeals/today').get(isLogin,getuserMealsToday);
-router.route('/deleteMeal/:id').delete(isLogin,deleteMeal);
+router.route('/:id/meals/:mealId').delete(isLogin,deleteMeal);
 
 export default router;

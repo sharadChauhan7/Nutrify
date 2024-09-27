@@ -23,9 +23,10 @@ function Meals() {
   }, [])
   const [meals, setMeals] = React.useState([]);
 
-  async function deleteMeal(id){
+  async function deleteMeal(intake,meal){
     try{
-      const response = await axios.delete(`http://localhost:3000/api/calorie/deleteMeal/${id}`, {
+      console.log(meal,id);
+      const response = await axios.delete(`http://localhost:3000/api/calorie/${intake}/meals/${meal}`, {
         withCredentials: true
       });
       console.log(response.data);
@@ -58,7 +59,7 @@ function Meals() {
                         return (
                           <div className='flex flex-col justify-between gap-5' key={nanoid()}>
                             <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4>
-                            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(food._id)}}>Delete</button>
+                            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
                             {food.food_items.map((item,idx)=>{
                               return (
                                 <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />

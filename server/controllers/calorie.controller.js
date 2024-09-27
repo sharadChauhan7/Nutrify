@@ -93,13 +93,20 @@ export const getuserMealsToday = async (req,res)=>{
 
 export const deleteMeal = async(req,res)=>{
   try{
-    let user = req.user;
-    let id=req.prams;
-    console.log(user);
-    console.log(id);
+
+    let {id,mealId} = req.params;
+    console.log(id,mealId);
+    // Delete 
+    let resu =await Meal.findByIdAndDelete({_id:mealId});
+    console.log(resu);
+    // Update DailyCalorieIntake
+    let foodres = await DailyCalorieIntake.findByIdAndUpdate({_id:id},{$pull:{meals:mealId}});
+    console.log(foodres);
+
     res.status(200).send("Meal deleted successfully");
   }
   catch(e){
+    console.log(e);
     res.status(400).send("Error in deleting meal");
   }
 }
