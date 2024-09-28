@@ -16,7 +16,7 @@
     "@mui/material": "^5.15.15",
     "@react-spring/web": "^9.7.3",
     "@reduxjs/toolkit": "^2.2.3",
-    "axios": "^1.6.8",
+    "axios": "^1.7.4",
     "chart.js": "^4.4.3",
     "joi": "^17.13.3",
     "js-cookie": "^3.0.5",
