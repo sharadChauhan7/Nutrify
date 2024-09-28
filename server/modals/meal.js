@@ -11,10 +11,12 @@ const MealSchema = new Schema({
 
 
 MealSchema.post("findOneAndDelete",async(meal)=>{
-    // await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewid}});
-    console.log(meal);
-    // let result =await foodItem.deleteMany({id:{$in:[...meal.food_items]}});
-    // console.log(result);
+
+
+    // Write a querry to delete all the food items that present in te meal.food_items array
+    let result = await foodItem.deleteMany({_id:{$in:meal.food_items}});
+    console.log(result);
+    console.log("Post find hook");
 });
 
 export default mongoose.model('Meal', MealSchema);

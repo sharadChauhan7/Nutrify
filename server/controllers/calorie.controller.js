@@ -96,12 +96,9 @@ export const deleteMeal = async(req,res)=>{
 
     let {id,mealId} = req.params;
     console.log(id,mealId);
-    // Delete 
-    let resu =await Meal.findByIdAndDelete({_id:mealId});
-    console.log(resu);
-    // Update DailyCalorieIntake
-    let foodres = await DailyCalorieIntake.findByIdAndUpdate({_id:id},{$pull:{meals:mealId}});
-    console.log(foodres);
+    await Meal.findByIdAndDelete(mealId);
+    await DailyCalorieIntake.findByIdAndUpdate(id,{$pull:{meals:mealId}});
+    await DailyCalorieIntake.findOneAndDelete({_id:id,meals:[]});
 
     res.status(200).send("Meal deleted successfully");
   }
