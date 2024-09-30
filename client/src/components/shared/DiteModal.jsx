@@ -12,16 +12,27 @@ function DiteModal({ val, close }) {
     let [flow, setFlow] = useState(0);
 
     let [diteInfo, setDiteInfo] = useState({
-        alergies: [],
-        preferences: [],
-        diteType: []
+        foodAllergies: ["None"],
+        ditePreference: ["North Indian"],
+        diteType: "Vegiterian"
     });
     function diteInfoHandler(name, value) {
-        console.log(name, value);
+        if(name==="diteType"){
+            setDiteInfo({ ...diteInfo, [name]: value });
+            return;
+        }
+
+        if (diteInfo[name].includes(value)) {
+            setDiteInfo({ ...diteInfo, [name]: diteInfo[name].filter((val) => val !== value) });
+        }
+        else {
+            setDiteInfo({ ...diteInfo, [name]: [...diteInfo[name], value] });
+        }
     }
 
     function handleSubmit() {
         console.log("Submitting");
+        console.log(diteInfo);
     };
     return (
         <Modal
@@ -41,9 +52,9 @@ function DiteModal({ val, close }) {
                 boxShadow: 24,
                 p: 4,
             }}>
-                    {flow===0 && <DiteOption handler={diteInfoHandler} options={diteType} />}
-                    {flow===1 && <DiteOption handler={diteInfoHandler} options={alergies} />}
-                    {flow===2 && <DiteOption handler={diteInfoHandler} options={dite_preference} />}
+                    {flow===0 && <DiteOption handler={diteInfoHandler} status={diteInfo.diteType} options={diteType} />}
+                    {flow===1 && <DiteOption handler={diteInfoHandler} status={diteInfo.foodAllergies}options={alergies} />}
+                    {flow===2 && <DiteOption handler={diteInfoHandler} status={diteInfo.ditePreference}options={dite_preference} />}
                 <Stack spacing={12} sx={{ my: "24px" }} direction={"row"} justifyContent={"center"}>
                     <Button size='large' variant='contained' disabled={flow === 0} onClick={() => { if(flow===0)return;setFlow(flow - 1) }}>Prev</Button>
                     {flow != 2 ? <Button size='large' variant='contained' onClick={() => { setFlow(flow + 1) }}>Next</Button> : <Button size='large' variant='contained' onClick={handleSubmit}>Submit</Button>}

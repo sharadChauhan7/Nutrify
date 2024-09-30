@@ -59,7 +59,7 @@ const generationConfig = {
   responseMimeType: "application/json",
 };
 
-async function run(imageUrl) {
+async function findCalories(imageUrl,prompt) {
   const downloadPath = path.join('./uploads', 'temp_image.jpg');
   try {
     await downloadImage(imageUrl, downloadPath);
@@ -93,4 +93,12 @@ async function run(imageUrl) {
     deleteImage(downloadPath);
   }
 }
-export default run;
+
+export const generateData = async(prompt)=>{
+  const model  = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const result = await model.generateContent(prompt);
+  console.log(result.response.text());
+
+  }
+
+export default findCalories;

@@ -1,4 +1,4 @@
-import Run from '../AI/gemini.js';
+import findCalories from '../AI/gemini.js';
 import {createFoodItems,meal_Type} from '../middlewares/addFood.js';
 import Meal from '../modals/meal.js';
 import DailyCalorieIntake from '../modals/dailyCalorieIntake.js';
@@ -10,7 +10,7 @@ export const getCalories = async(req,res)=>{
         }
         const imagePath = req.file.path;
         // console.log(imagePath);
-        let data = await Run(imagePath);
+        let data = await findCalories(imagePath);
         const responseText = data;
        const cleanText = responseText.replace(/```json|```/g, '');
         data = JSON.parse(cleanText);

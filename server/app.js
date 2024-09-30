@@ -1,12 +1,14 @@
 import express from 'express';
 import auth from './routes/auth.route.js';
 import user from './routes/user.route.js';
+import dite from './routes/dite.route.js';
 import calorie from './routes/calorie.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
 import 'dotenv/config'
 
 
@@ -50,6 +52,7 @@ app.get('/api', (req, res) => {
 app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/calorie', calorie);
+app.use('/api/dite',dite);
 
 
 // Testing
