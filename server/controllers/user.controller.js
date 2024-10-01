@@ -56,7 +56,7 @@ export const updateStatus = async (req,res)=>{
     try{
         let status = req.body;
         status=calculateCalories(status);
-        console.log(status);
+
         let updatedStatus = await UserStatus.findByIdAndUpdate(status._id,status,{new:true});
         console.log(updatedStatus);
         res.status(200).send("Status updated successfully");
@@ -65,3 +65,26 @@ export const updateStatus = async (req,res)=>{
         res.status(400).send("Error in updating status");
     }
 }
+
+// Update user for Dite Plan need to merge the abouv api in one in future
+
+export const updateStatusDite = async (req,res)=>{
+    try{
+
+        let {foodAllergies,ditePreference,diteType} = req.body;
+        // Conver json to jsObject
+        let {_id}= await JSON.parse(req.cookies.user);
+        let Status = await UserStatus.findOne({user:_id});
+        // Update status
+        Status.foodAllergies = foodAllergies;
+        Status.dietPreference = ditePreference;
+        Status.dietType = diteType;
+        await Status.save();
+        res.status(200).send("Status updated successfully");
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).send("Error in updating status");
+    }
+}
+

@@ -1,7 +1,7 @@
 import express from 'express';
 import auth from './routes/auth.route.js';
 import user from './routes/user.route.js';
-import dite from './routes/dite.route.js';
+import dite from './routes/diet.route.js';
 import calorie from './routes/calorie.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -52,7 +52,7 @@ app.get('/api', (req, res) => {
 app.use('/api/user', user);
 app.use('/api/auth', auth);
 app.use('/api/calorie', calorie);
-app.use('/api/dite',dite);
+app.use('/api/diet',dite);
 
 
 // Testing

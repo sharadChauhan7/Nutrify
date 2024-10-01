@@ -97,6 +97,21 @@ const userStatusSchema = new Schema({
         },
         
     },
+    foodAllergies:{
+        type: [String],
+        default: [],
+        // required: true
+    },
+    dietPreference:{
+        type: [String],
+        default: [],
+        // required: true
+    },
+    dietType:{
+        type: String,
+        default: "",
+        // required: true
+    },
     user:{
         type:Schema.Types.ObjectId,
         ref:'User'
