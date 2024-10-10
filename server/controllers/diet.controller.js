@@ -2,7 +2,9 @@ import UserStatus from '../modals/userStatus.modal.js';
 import {generateData} from '../AI/gemini.js'
 import DitePlan from '../modals/dietPlan.modal.js'
 import dotenv from 'dotenv';
+import {planDite} from '../util/ditePlanner.js'
 dotenv.config();
+
 export const generateDite = async (req,res)=>{
     try{
         
@@ -29,5 +31,20 @@ export const generateDite = async (req,res)=>{
     catch(e){
         console.log(e);
         res.status(500).json({message:"Internal Server Error"});
+    }
+}
+
+export const getDite = async (req,res)=>{
+    try{
+        let {_id} = JSON.parse(req.cookies.user);
+        const ditePlan = await DitePlan.findOne({user:_id});
+        if(!ditePlan){
+            return res.status(404).json({message:"Dite Plan not found"});
+        }
+        
+        res.status(200).json(planDite(ditePlan));
+    }
+    catch(err){
+        console.log(err);
     }
 }
