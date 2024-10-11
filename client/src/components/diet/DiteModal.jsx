@@ -13,7 +13,6 @@ function DiteModal({ val, close }) {
     // const dispatch = useDispatch();
 
     const userStatus = useSelector((state) => state.userStatus);
-    console.log(userStatus);
     let [flow, setFlow] = useState(0);
 
     let [diteInfo, setDiteInfo] = useState({

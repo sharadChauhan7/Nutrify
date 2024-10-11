@@ -1,7 +1,5 @@
 let days =["mon","tue","wed","thu","fri","sat","sun"];
 export const planDite = (dite)=>{
-    console.log("Planning dite function");
-    // console.log(dite);
     let planedDite={};
     for(let i=0;i<days.length;i++){
         planedDite[days[i]]=[dite.breakfast[i%3],dite.lunch[i%3],dite.snacks[i%3],dite.dinner[i%3]];

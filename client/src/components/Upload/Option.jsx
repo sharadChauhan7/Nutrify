@@ -4,7 +4,9 @@ import { useDispatch } from 'react-redux';
 import { setDisease } from '../../features/User/status';
 
 function Option({userStatus,options,dispatcher}) {
+
     let dispatch=useDispatch();
+    
   return (
     <>
     <div className='flex flex-wrap justify-center items-center gap-5' >
