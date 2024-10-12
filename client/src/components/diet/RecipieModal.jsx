@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Skeleton } from '@mui/material';
-const RecipieModal = ({data,close}) => {
+const RecipieModal = ({data,close,choiceModal}) => {
     const [isloading,setIsloading] = useState(false);
 
-    const dummy =[
+     let dummy =[
         {
           nutrition: { calories: '250', protein: '15g', carbs: '40g', fats: '5g' },
           name: 'Vegetable Biryani',
@@ -40,13 +40,18 @@ const RecipieModal = ({data,close}) => {
   const findAlternative = async()=>{
     try{
         setIsloading(true);
-        let result = await axios.post('http://localhost:3000/api/diet/alternate',{data},{withCredentials:true});
-        console.log(result.data);
-        setIsloading(false);
+        // let result = await axios.post('http://localhost:3000/api/diet/alternate',{data},{withCredentials:true});
+        // console.log(result.data);
+        setTimeout(()=>{
+            choiceModal({open:true,data:dummy,prevMeal:data});
+            setIsloading(false);
+            close({open:false,data:null});
+        },3000);
+
     }
     catch(e){
         console.log(e);
-        setIsloading(false)
+        setIsloading(false);
     }
   }
 

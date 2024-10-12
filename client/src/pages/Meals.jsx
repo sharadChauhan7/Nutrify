@@ -36,20 +36,59 @@ function Meals() {
     }
   }
   return (
-    <div className=' h-screen w-full bg-gray-300 flex flex-col justify-center items-center'>
-      <div className=" mx-auto w-1/2 py-8">
-        <div className="flex justify-between mb-6">
-          <div className="text-lg font-semibold">
-            of 2907
-          </div>
-        </div>
-        <div className="fixed z-10 inset-0 flex items-center justify-center">
+    <div className=' h-screen w-4/5 bg-gray-300 flex flex-col justify-center items-center'>
+      <div className=" mx-auto w-full py-8">
+        <div className=" z-10 inset-0 flex items-center justify-center">
           <div className="relative bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 transition ease-out duration-300 transform ">
             {/* Modal panel */}
             <div className="px-6 py-4">
               <h3 className="text-lg leading-6 font-medium text-gray-900">You'r Daily Meals</h3>
             </div>
             <div className="prose max-w-screen-md p-6 overflow-y-auto" style={{ maxHeight: '70vh', backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '0.375rem', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}>
+              {meals.map((meal, idx) => {
+                return (
+                  <div className='' key={nanoid()} >
+                    <div className='text-4xl font-bold text-gray-800'>Date: {meal.date}</div>
+                    <div className=''>
+                      {meal.meals.map((food,idx)=>{
+                        return (
+                          <div className='flex flex-col justify-between gap-5' key={nanoid()}>
+                            <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4>
+                            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
+                            {food.food_items.map((item,idx)=>{
+                              return (
+                                <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
+                              )
+                            })}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
+              {meals.map((meal, idx) => {
+                return (
+                  <div className='' key={nanoid()} >
+                    <div className='text-4xl font-bold text-gray-800'>Date: {meal.date}</div>
+                    <div className=''>
+                      {meal.meals.map((food,idx)=>{
+                        return (
+                          <div className='flex flex-col justify-between gap-5' key={nanoid()}>
+                            <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4>
+                            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
+                            {food.food_items.map((item,idx)=>{
+                              return (
+                                <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
+                              )
+                            })}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )
+              })}
               {meals.map((meal, idx) => {
                 return (
                   <div className='' key={nanoid()} >

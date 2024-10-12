@@ -42,7 +42,7 @@ function Profile() {
   // Send this fn to util
   // console.log(refreshTrigger);
   return (
-    <div className='h-screen p-2 pt-[4.8rem] flex gap-4 bg-slate-50'>
+    <div className='h-screen w-4/5 p-2 flex gap-4 bg-slate-50'>
       {userStatus && <UserInfo userStatus={userStatus} onEditComplete={refreshData} />}
       <div className='flex flex-col h-full w-9/12 gap-4  '>
         {userStatus && <UserStatus userStatus={userStatus} onEditComplete={refreshData} />}

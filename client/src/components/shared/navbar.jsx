@@ -4,9 +4,9 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import { Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
-import {useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import {useDispatch} from 'react-redux';
 import { logout } from '../../features/User/user';
 
 const pages = [['Dashboard','dashboard']];

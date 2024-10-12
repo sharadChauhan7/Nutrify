@@ -24,7 +24,7 @@ export const signup = async (req, res) => {
                 if (err) {
                     res.send("Error in generating token");
                 }
-                res.cookie('user', JSON.stringify(user), { httpOnly: true, secure: true });
+                res.cookie('user', JSON.stringify(user), { httpOnly: false, secure: true });
                 // Set the second cookie
                 res.cookie('authToken', token, {
                     httpOnly: false,
@@ -56,11 +56,12 @@ export const login = async (req, res) => {
         
         const match = await bcrypt.compare(password, user.password);
         if (user && match) {
+            console.log("match");
             jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' }, async function (err, token) {
                 if (err) {
                     res.send("Error in generating token");
                 }
-                res.cookie('user', JSON.stringify(user), { httpOnly: true, secure: true });
+                res.cookie('user', JSON.stringify(user), { httpOnly: false, secure: true });
                 // Set the second cookie
                 res.cookie('authToken', token, {
                     httpOnly: false,

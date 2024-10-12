@@ -11,11 +11,14 @@ import Meals from './pages/Meals.jsx'
 import Dite from './pages/Diet.jsx'
 import { useSelector } from 'react-redux'
 import MedicineForm from './pages/MedicineForm.jsx'
+import SideMenu from './components/shared/SideMenu.jsx'
+
 // Get user id rom url using useParams
 
 function App() {
   return (
     <Router>
+              
       <RoutesWithNavbar />
     </Router>
   );
@@ -27,7 +30,8 @@ function App() {
     const {isLogin} = useSelector((state)=>state.userInfo);
   return (
     <>
-    {showNavbar && <Navbar />}
+    <div className='flex overflow-auto'>
+    {showNavbar && <SideMenu />}
     <Routes>
           <Route path='/auth' element={<Privateroute user={!isLogin} path='/'>
             <Auth />
@@ -45,6 +49,7 @@ function App() {
           </Route> 
 
         </Routes>
+    </div>
 
     </>
   )

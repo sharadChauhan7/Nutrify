@@ -25,8 +25,8 @@ function Home() {
   document.title = 'Home'
   return (
     <>
-      <div className='h-screen  '>
-        <div className='flex items-center justify-center flex-wrap h-4/6 pt-20'>
+      <div className='h-screen w-4/5 '>
+        <div className='flex items-center justify-center flex-wrap h-4/6 '>
           <div className='w-1/2 flex flex-col justify-center items-start px-10 gap-5  h-4/5 '>
             <p className='border-2 text-2xl rounded-xl p-2 font-semibold text-[#ffd60a] bg-gray-700'>
               Track your daily Calorie int
@@ -35,16 +35,8 @@ function Home() {
               Track your Daily <span className='text-[#ffd60a]'>Calorie intake</span> with MyHealth
             </p>
           </div>
-          <div className='w-1/2 h-4/5 px-4'>
+          <div className='w-1/2 h-4/5  px-4 '>
            {userStatus&&<Camera userStatus={userStatus} />} 
-          </div>
-          <div className=' w-full border-red-500 flex justify-center gap-10'>
-            <div>
-              <Medicine />
-            </div>
-            <div>
-              <Doctors />
-            </div>
           </div>
         </div>
       </div>

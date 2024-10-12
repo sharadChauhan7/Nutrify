@@ -81,7 +81,18 @@ export const getLast7DaysMeals = (data) => {
 
   // Map over the last 7 days and find corresponding data or assume 0 calories
   return last7Days.map(date => {
+
     const found = data.find(entry => entry.date === date);
+
     return found ? { date: found.date, calories: found.total_calories    } : { date, calories: 0 };
+
   });
+
   };
+
+//   export const updateDiet = (diet,newMeal)=>{
+
+//     let newDiet = {...diet};
+//     Object.keys
+
+//   }

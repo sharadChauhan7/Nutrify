@@ -64,7 +64,7 @@ function Camera({ userStatus }) {
     ];
 
     const box1 = (
-        <div className="web flex flex-col justify-center  items-center border-2 w-[35rem] h-[20rem] rounded-3xl bg-gray-100">
+        <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem] rounded-3xl bg-gray-100">
             {isLoading?<Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />:<Link to={`/meals/${userStatus.user._id}`}>
                 <div className="flex justify-between px-4 items-center w-full h-1/2">
                     {/* Circulat loader */}
