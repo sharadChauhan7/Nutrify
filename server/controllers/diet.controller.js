@@ -6,7 +6,7 @@ import {planDite} from '../util/ditePlanner.js'
 import { set } from 'mongoose';
 dotenv.config();
 
-export const generateDite = async (req,res)=>{
+export const generateDiet = async (req,res)=>{
     try{
         
         let {_id} = JSON.parse(req.cookies.user);
@@ -14,7 +14,6 @@ export const generateDite = async (req,res)=>{
         let prompt =user+' \n '+process.env.DITE_PROMPT;
         console.log("Generating Dite");
         console.log(prompt);
-        res.send("Generating");
         let ditePlan = await generateData(prompt);
         console.log(ditePlan);
         // const responseText = data;
@@ -28,7 +27,6 @@ export const generateDite = async (req,res)=>{
         await ditePlan.save();
 
         res.status(200).json({ditePlan});
-        // res.status(200).send("Dite Plan Generated");
     }
     catch(e){
         console.log(e);
@@ -36,7 +34,7 @@ export const generateDite = async (req,res)=>{
     }
 }
 
-export const getDite = async (req,res)=>{
+export const getDiet = async (req,res)=>{
     try{
         let {_id} = JSON.parse(req.cookies.user);
         const ditePlan = await DitePlan.findOne({user:_id});
@@ -48,6 +46,7 @@ export const getDite = async (req,res)=>{
     }
     catch(err){
         console.log(err);
+        res.status(500).json({message:"Internal Server Error"});
     }
 }
 
@@ -65,8 +64,49 @@ export const generateAlternate = async (req,res)=>{
     alternateMelas = alternateMelas.replace(/```json|```/g, '');
     alternateMelas = JSON.parse(alternateMelas);
     console.log(alternateMelas);
-    res.status(200).send("Alternate Melas");
+
+    res.status(200).send(alternateMelas);
     
+    }
+    catch(e){
+        console.log(e);
+        res.status(500).json({message:"Internal Server Error"});
+    }
+}
+
+export const updateDiet = async (req,res)=>{
+    try{
+        let {_id} = JSON.parse(req.cookies.user);
+        let newMeal = req.body.newMeal;
+
+
+
+        const updatedDietPlan1 = await DitePlan.findOneAndUpdate(
+            { user: _id, "snacks._id": newMeal._id },
+            { $set: { "snacks.$[elem]": newMeal } },
+            { arrayFilters: [{ "elem._id": newMeal._id }], new: true }
+        );
+        const updatedDietPlan2 = await DitePlan.findOneAndUpdate(
+            { user: _id, "lunch._id": newMeal._id },
+            { $set: { "lunch.$[elem]": newMeal } },
+            { arrayFilters: [{ "elem._id": newMeal._id }], new: true }
+        );
+        const updatedDietPlan3 = await DitePlan.findOneAndUpdate(
+            { user: _id, "dinner._id": newMeal._id },
+            { $set: { "dinner.$[elem]": newMeal } },
+            { arrayFilters: [{ "elem._id": newMeal._id }], new: true }
+        );
+        const updatedDietPlan4 = await DitePlan.findOneAndUpdate(
+            { user: _id, "breakfast._id": newMeal._id },
+            { $set: { "breakfast.$[elem]": newMeal } },
+            { arrayFilters: [{ "elem._id": newMeal._id }], new: true }
+        );
+
+        if (!updatedDietPlan1 && !updatedDietPlan2 && !updatedDietPlan3) {
+            return res.status(404).json({ message: "Diet plan or meal not found" });
+        }
+        const updatedDietPlan = updatedDietPlan1 || updatedDietPlan2 || updatedDietPlan3;
+        res.status(200).json(updatedDietPlan);
     }
     catch(e){
         console.log(e);

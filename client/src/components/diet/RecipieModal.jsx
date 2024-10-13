@@ -40,13 +40,11 @@ const RecipieModal = ({data,close,choiceModal}) => {
   const findAlternative = async()=>{
     try{
         setIsloading(true);
-        // let result = await axios.post('http://localhost:3000/api/diet/alternate',{data},{withCredentials:true});
-        // console.log(result.data);
-        setTimeout(()=>{
-            choiceModal({open:true,data:dummy,prevMeal:data});
+        let result = await axios.post('http://localhost:3000/api/diet/alternate',{data},{withCredentials:true});
+        console.log(result.data);
+            choiceModal({open:true,data:result.data,prevMeal:data});
             setIsloading(false);
             close({open:false,data:null});
-        },3000);
 
     }
     catch(e){

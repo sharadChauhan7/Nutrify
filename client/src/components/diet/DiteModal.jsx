@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import { dite_preference, alergies, diteType } from '../../util/formdata'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
+import {Skeleton} from '@mui/material';
 function DiteModal({ val, close }) {
     // const dispatch = useDispatch();
 
@@ -33,18 +34,23 @@ function DiteModal({ val, close }) {
             setDiteInfo({ ...diteInfo, [name]: [...diteInfo[name], value] });
         }
     }
+    let [isLoading, setIsLoading] = useState(false);
 
     async function handleSubmit() {
         console.log("Submitting");
         try {
+            setIsLoading(true);
             const result = await axios.post('http://localhost:3000/api/user/editStatusDite',
                 diteInfo,
                 { withCredentials: true }
             )
             const generateDite = await axios.get('http://localhost:3000/api/diet/generate',{ withCredentials: true });
             console.log(generateDite.data);
+            setIsLoading(false);
+            
         }
         catch (err) {
+            setIsLoading(false);
             console.log(err);
         }
     };
@@ -54,27 +60,37 @@ function DiteModal({ val, close }) {
             onClose={() => { close(!val) }}
         >
             {/* <DiteOption/> */}
-            <Box sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '70%',
-                height: '80%',
-                bgcolor: 'background.paper',
-                border: '2px solid #000',
-                boxShadow: 24,
-                p: 4,
-            }}>
-                {flow === 0 && <DiteOption handler={diteInfoHandler} status={diteInfo.diteType} options={diteType} />}
-                {flow === 1 && <DiteOption handler={diteInfoHandler} status={diteInfo.foodAllergies} options={alergies} />}
-                {flow === 2 && <DiteOption handler={diteInfoHandler} status={diteInfo.ditePreference} options={dite_preference} />}
-                <Stack spacing={12} sx={{ my: "24px" }} direction={"row"} justifyContent={"center"}>
-                    <Button size='large' variant='contained' disabled={flow === 0} onClick={() => { if (flow === 0) return; setFlow(flow - 1) }}>Prev</Button>
-                    {flow != 2 ? <Button size='large' variant='contained' onClick={() => { setFlow(flow + 1) }}>Next</Button> : <Button size='large' variant='contained' onClick={handleSubmit}>Submit</Button>}
-                </Stack>
-
-            </Box>
+            {
+                isLoading ? <Box sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '70%',
+                    height: '80%',
+                }}><Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />  </Box>:(
+                    <Box sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '70%',
+                        height: '80%',
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                    }}>
+                        {flow === 0 && <DiteOption handler={diteInfoHandler} status={diteInfo.diteType} options={diteType} />}
+                        {flow === 1 && <DiteOption handler={diteInfoHandler} status={diteInfo.foodAllergies} options={alergies} />}
+                        {flow === 2 && <DiteOption handler={diteInfoHandler} status={diteInfo.ditePreference} options={dite_preference} />}
+                        <Stack spacing={12} sx={{ my: "24px" }} direction={"row"} justifyContent={"center"}>
+                            <Button size='large' variant='contained' disabled={flow === 0} onClick={() => { if (flow === 0) return; setFlow(flow - 1) }}>Prev</Button>
+                            {flow != 2 ? <Button size='large' variant='contained' onClick={() => { setFlow(flow + 1) }}>Next</Button> : <Button size='large' variant='contained' onClick={handleSubmit}>Submit</Button>}
+                        </Stack>
+        
+                    </Box>)
+            }
         </Modal>
     )
 }

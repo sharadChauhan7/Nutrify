@@ -22,13 +22,11 @@ const AlternateModal = ({ choiceModal,fullDiet, close }) => {
             console.log(fullDiet);
 
             setIsloading(true);
-            // let result = await axios.post('http://localhost:3000/api/diet/alternate',{data},{withCredentials:true});
-            // console.log(result.data);
-            setTimeout(() => {
+            let result = await axios.patch('http://localhost:3000/api/diet/update',{newMeal},{withCredentials:true});
+            console.log(result.data);
                 console.log(newMeal);
                 setIsloading(false);
                 close({ open: false, data: null, prevMeal: null });
-            }, 3000);
         }
         catch(e){
             console.log(e);
