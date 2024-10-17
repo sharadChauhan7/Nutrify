@@ -102,10 +102,11 @@ export const updateDiet = async (req,res)=>{
             { arrayFilters: [{ "elem._id": newMeal._id }], new: true }
         );
 
-        if (!updatedDietPlan1 && !updatedDietPlan2 && !updatedDietPlan3) {
+        if (!updatedDietPlan1 && !updatedDietPlan2 && !updatedDietPlan3 && !updatedDietPlan4 ) {
             return res.status(404).json({ message: "Diet plan or meal not found" });
         }
-        const updatedDietPlan = updatedDietPlan1 || updatedDietPlan2 || updatedDietPlan3;
+        const updatedDietPlan = updatedDietPlan1 || updatedDietPlan2 || updatedDietPlan3 || updatedDietPlan4;
+        console.log(updatedDietPlan);
         res.status(200).json(updatedDietPlan);
     }
     catch(e){

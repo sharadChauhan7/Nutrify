@@ -2,62 +2,76 @@ import findCalories from '../AI/gemini.js';
 import {createFoodItems,meal_Type} from '../middlewares/addFood.js';
 import Meal from '../modals/meal.js';
 import DailyCalorieIntake from '../modals/dailyCalorieIntake.js';
+import UserStatus from '../modals/userStatus.modal.js';
 
 export const getCalories = async(req,res)=>{
-    try {
-        if (!req.file) {
-          return res.status(400).send("No file uploaded.");
-        }
-        const imagePath = req.file.path;
-        // console.log(imagePath);
-        let data = await findCalories(imagePath);
-        const responseText = data;
-       const cleanText = responseText.replace(/```json|```/g, '');
-        data = JSON.parse(cleanText);
-        // Setting food Items
-        if(!data){
-          return res.status(400).send("No image found");
-        }
-        const foodItems = await createFoodItems(data);
-        // Calculating total calories
-        const totalCalories = foodItems.reduce((sum, item) => sum + item.calories_per_serving, 0);
-        // Setting meal type
-        let mealType = meal_Type();
-        // Setting description
-        const meal = new Meal({
-          image_url:imagePath,
-          meal_type: mealType,
-          calories: totalCalories,
-          food_items: foodItems.map(item => item._id),
-      });
+  try {
+    if (!req.file) {
+      return res.status(400).send("No file uploaded.");
+    }
+    // Preparing prompt for dite genetator
+    let user = req.user;
+    let date = new Date(Date.now()).toISOString().slice(0, 10);
+    let userMeals = await DailyCalorieIntake.find({user:user,date:date}).populate({path:'meals',populate:{path:'food_items'}});
+    let userStatus = await UserStatus.findOne({user:user});
+    let cal_consumed_today=userMeals[0].total_calories;
+    let current_mealtime = meal_Type();
+    let {calorie_distribution,age,weight,height,target_calories,disease,foodAllergies,} = userStatus;
+    let prompt = process.env.CALORIE_PROMPT1+' \n '+JSON.stringify({calorie_distribution,age,weight,height,target_calories,disease,foodAllergies,current_mealtime,cal_consumed_today})+' \n '+process.env.CALORIE_PROMPT2+' \n '+process.env.CALORIE_PROMPT3;
+    console.log(prompt);
+    console.log("Calories calculated successfully");
+    // res.send("Calories calculated successfully");
 
-      await meal.save();
-        // Get user id from req.user
-        let user = req.user;
-        console.log(user);
-        let date = new Date(Date.now()).toISOString().slice(0, 10);
-         // Create or update DailyCalorieIntake document
-         let dailyCalorieIntake = await DailyCalorieIntake.findOne({ user: user._id, date: date });
-         console.log(dailyCalorieIntake);
-         if (!dailyCalorieIntake) {
-             dailyCalorieIntake = new DailyCalorieIntake({
-                 user: user._id,
-                 date: date,
-                 meals: [meal._id],
-                 total_calories: totalCalories
-             });
-         } else {
-             dailyCalorieIntake.meals.push(meal._id);
-             dailyCalorieIntake.total_calories += totalCalories;
-         }
+        // Finish preparing
+      //   const imagePath = req.file.path;
+      //   // console.log(imagePath);
+      //   let data = await findCalories(imagePath);
+      //   const responseText = data;
+      //  const cleanText = responseText.replace(/```json|```/g, '');
+      //   data = JSON.parse(cleanText);
+      //   // Setting food Items
+      //   if(!data){
+      //     return res.status(400).send("No image found");
+      //   }
+      //   const foodItems = await createFoodItems(data);
+      //   // Calculating total calories
+      //   const totalCalories = foodItems.reduce((sum, item) => sum + item.calories_per_serving, 0);
+      //   // Setting meal type
+      //   let mealType = meal_Type();
+      //   // Setting description
+      //   const meal = new Meal({
+      //     image_url:imagePath,
+      //     meal_type: mealType,
+      //     calories: totalCalories,
+      //     food_items: foodItems.map(item => item._id),
+      // });
+      
+      // await meal.save();
+      // // Get user id from req.user
+      // let user = req.user;
+      //   console.log(user);
+      //    // Create or update DailyCalorieIntake document
+      //    let dailyCalorieIntake = await DailyCalorieIntake.findOne({ user: user._id, date: date });
+      //    console.log(dailyCalorieIntake);
+      //    if (!dailyCalorieIntake) {
+      //        dailyCalorieIntake = new DailyCalorieIntake({
+      //            user: user._id,
+      //            date: date,
+      //            meals: [meal._id],
+      //            total_calories: totalCalories
+      //        });
+      //    } else {
+      //        dailyCalorieIntake.meals.push(meal._id);
+      //        dailyCalorieIntake.total_calories += totalCalories;
+      //    }
  
-         await dailyCalorieIntake.save();
+      //    await dailyCalorieIntake.save();
  
-         res.status(201).json({
-             message: 'Meal and daily calorie intake saved successfully',
-             meal,
-             dailyCalorieIntake
-         });
+      //    res.status(201).json({
+      //        message: 'Meal and daily calorie intake saved successfully',
+      //        meal,
+      //        dailyCalorieIntake
+      //    });
       }
       catch (e) {
         console.log(e);
