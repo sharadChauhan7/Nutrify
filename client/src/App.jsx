@@ -28,6 +28,7 @@ function App() {
     const noNavbarRoutes = ['/auth', '/register']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
     const {isLogin} = useSelector((state)=>state.userInfo);
+    console.log(showNavbar);
   return (
     <>
     <div className='flex overflow-auto'>

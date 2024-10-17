@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Skeleton } from '@mui/material';
 import AlternateOption from './AlternateOption';
+import {toast} from 'sonner'
 const AlternateModal = ({ choiceModal,fullDiet, close }) => {
     const [isloading, setIsloading] = useState(false);
     console.log(choiceModal);
@@ -26,10 +27,12 @@ const AlternateModal = ({ choiceModal,fullDiet, close }) => {
             console.log(result.data);
                 console.log(newMeal);
                 setIsloading(false);
+                toast.success("Meal Updated Successfully");
                 close({ open: false, data: null, prevMeal: null });
         }
         catch(e){
             console.log(e);
+            toast.error("Something went wrong");
             setIsloading(false);
         }
     }

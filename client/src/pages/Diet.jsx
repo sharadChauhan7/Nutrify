@@ -27,7 +27,7 @@ function Diet() {
 
   React.useEffect(() => {
     getDiet();
-  }, []);
+  }, [choiceModal,RecipieModalOpen]);
   return (
     <>
   {RecipieModalOpen.open && <RecipieModal data={RecipieModalOpen.data} close={setRecipieModalOpen} choiceModal={setChoiceModal} />}

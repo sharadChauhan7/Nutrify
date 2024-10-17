@@ -18,7 +18,7 @@ import {
 
 const Sidebar = () => {
   let user = Cookies.get('user');
-  user = JSON.parse(user);
+  user = user && JSON.parse(user);
   const navigate = useNavigate();
 
   const navItems = [
@@ -26,7 +26,7 @@ const Sidebar = () => {
     // { path: '/playground', icon: <PlaygroundIcon />, label: 'Playground' },
     { path: '/profile', icon: <TestsIcon />, label: 'Profile' },
     { path: '/dite', icon: <ProblemsIcon />, label: 'Diet Plan' },
-    { path: `/meals/${user._id}`, icon: <CoursesIcon />, label: 'Meals' },
+    { path: `/meals/${user?user._id:""}`, icon: <CoursesIcon />, label: 'Meals' },
     // { path: '/courses', icon: <CoursesIcon />, label: 'Courses' },
     // { path: '/leaderboard', icon: <LeaderboardIcon />, label: 'Leaderboard' },
   ];
@@ -34,7 +34,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   const getLinkClasses = (path) => {
-    const baseClasses = 'flex justify-start w-3/6 text-lg font-normal text-black hover:text-[#C967F5]';
+    const baseClasses = 'flex justify-start w-3/6 text-lg font-normal text-black hover:text-primary';
     const activeClasses = ' text-[#c967f5]';
     return location.pathname == path ? `${baseClasses} ${activeClasses}` : baseClasses;
   };
@@ -45,7 +45,7 @@ const Sidebar = () => {
       <div className='py-10 bg-transparent'>
         <NavLink to='/' className='flex justify-center items-center'>
           {/* <img src={Logo} alt="Logo" /> */}
-          <p className='text-[#C967F5] text-3xl flex gap-2 font-semibold'>
+          <p className='text-primary text-3xl flex gap-2 font-semibold'>
             Healthy <span className='text-black'>AI</span>
           </p>
         </NavLink>
@@ -58,7 +58,7 @@ const Sidebar = () => {
             <span>{label}</span>
           </NavLink>
         })}
-        <button className='flex justify-start w-3/6 text-lg font-normal text-black hover:text-[#C967F5]' onClick={() => {
+        <button className='flex justify-start w-3/6 text-lg font-normal text-black hover:text-primary' onClick={() => {
           dispatch(logout());
           navigate('/auth');
         }}>

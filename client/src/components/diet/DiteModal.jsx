@@ -10,6 +10,7 @@ import { dite_preference, alergies, diteType } from '../../util/formdata'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import {Skeleton} from '@mui/material';
+import { toast } from 'sonner';
 function DiteModal({ val, close }) {
     // const dispatch = useDispatch();
 
@@ -46,7 +47,10 @@ function DiteModal({ val, close }) {
             )
             const generateDite = await axios.get('http://localhost:3000/api/diet/generate',{ withCredentials: true });
             console.log(generateDite.data);
+            toast.success("Dite Plan Created Successfully");
             setIsLoading(false);
+            close(!val);
+
             
         }
         catch (err) {

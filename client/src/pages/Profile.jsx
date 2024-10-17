@@ -10,6 +10,7 @@ import CalorieChart from '../components/Charts/CalorieChart';
 import WeightChart from '../components/Charts/WeightChart';
 import UserStatus from '../components/Profile/UserStatus';
 import {getLast7DaysMeals} from '../util/methods'
+import InfoCard from '../components/Profile/InfoCard'
 import { ref } from 'joi'
 
 function Profile() {
@@ -42,20 +43,29 @@ function Profile() {
   // Send this fn to util
   // console.log(refreshTrigger);
   return (
-    <div className='h-screen w-4/5 p-2 flex gap-4 bg-slate-50'>
+    <>
+    <div className='h-screen w-4/5 flex flex-col overflow-auto gap-4 bg-slate-50 p-8'>
+    <p className=' font-bold text-5xl'>Profile</p>
       {userStatus && <UserInfo userStatus={userStatus} onEditComplete={refreshData} />}
-      <div className='flex flex-col h-full w-9/12 gap-4  '>
+      <div className='flex flex-col h-full w-full gap-4  '>
         {userStatus && <UserStatus userStatus={userStatus} onEditComplete={refreshData} />}
         <div className='flex h-1/2 w-full gap-2'>
-          <div className=' calorieChart h-full w-full  bg-white rounded-3xl p-2 shadow-xl'>
+          {/* <div className=' calorieChart h-full w-full  bg-white rounded-3xl p-2 shadow-xl'>
             <CalorieChart mealData={ userMeals && getLast7DaysMeals(userMeals)} userStatus={userStatus}  className="h-full w-full" />
+          </div> */}
+          <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
+            {userStatus && <InfoCard data={userStatus.calorie_distribution} title='Breakdown' />}
           </div>
           <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
-            <WeightChart className="h-full w-full" />
+            {userStatus && <InfoCard data={userStatus.macros} title='Macros' />}
           </div>
+          {/* <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
+            <WeightChart className="h-full w-full" />
+          </div> */}
         </div>
       </div>
     </div>
+    </>
   )
 }
 

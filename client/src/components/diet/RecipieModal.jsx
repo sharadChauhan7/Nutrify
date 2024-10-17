@@ -1,38 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Skeleton } from '@mui/material';
+import { toast } from 'sonner';
 const RecipieModal = ({data,close,choiceModal}) => {
     const [isloading,setIsloading] = useState(false);
 
-     let dummy =[
-        {
-          nutrition: { calories: '250', protein: '15g', carbs: '40g', fats: '5g' },
-          name: 'Vegetable Biryani',
-          image: 'https://www.indianhealthyrecipes.com/vegetable-biryani-recipe/',
-          portionSize: '1 serving',
-          recipe: 'A fragrant rice dish with mixed vegetables cooked in spices. Serve with raita.',
-          ingredients: [ 'rice', 'vegetables', 'spices', 'yogurt' ],
-          _id: '6707fe8bb394e7da1869e7c0'
-        },
-        {
-          nutrition: { calories: '200', protein: '12g', carbs: '35g', fats: '5g' },
-          name: 'Aloo Gobi Sabzi',
-          image: 'https://www.indianhealthyrecipes.com/aloo-gobi-sabzi-recipe/',
-          portionSize: '1 serving',
-          recipe: 'A simple and flavorful dish of potatoes and cauliflower cooked in spices. Serve with roti or rice.',
-          ingredients: [ 'potatoes', 'cauliflower', 'spices' ],
-          _id: '6707fe8bb394e7da1869e7c1'
-        },
-        {
-          nutrition: { calories: '230', protein: '13g', carbs: '38g', fats: '6g' },
-          name: 'Moong Dal Salad',
-          image: 'https://www.indianhealthyrecipes.com/moong-dal-salad-recipe/',
-          portionSize: '1 bowl',
-          recipe: 'A refreshing salad made with moong dal, vegetables, and a tangy dressing. Serve as a side dish.',
-          ingredients: [ 'moong dal', 'vegetables', 'lemon juice', 'spices' ],
-          _id: '6707fe8bb394e7da1869e7c2'
-        }
-      ];
   const handleClose = () => {
     close({open:false,data:null});
   };
@@ -44,11 +16,13 @@ const RecipieModal = ({data,close,choiceModal}) => {
         console.log(result.data);
             choiceModal({open:true,data:result.data,prevMeal:data});
             setIsloading(false);
+            toast.success("Alternatives generated");
             close({open:false,data:null});
 
     }
     catch(e){
         console.log(e);
+        toast.error("Something went wrong");
         setIsloading(false);
     }
   }
