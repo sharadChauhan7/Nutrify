@@ -67,16 +67,7 @@ async function findCalories(imageUrl,prompt) {
         }
       },
       {
-        text: `Return the following data in JSON array format:
-        [{
-          calorie: "total calorie in image food",
-          foodName: "name of the image food",
-          proteins: "total proteins in image food",
-          carbs: "total carbs in image food",
-          fats: "total fats in image food",
-          fiber: "total fiber in image food"
-        }]
-        If you cannot recognize the food, return an empty array [].`
+        text: prompt
       }
     ]);
     

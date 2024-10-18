@@ -11,8 +11,6 @@ const MealSchema = new Schema({
 
 
 MealSchema.post("findOneAndDelete",async(meal)=>{
-
-
     // Write a querry to delete all the food items that present in te meal.food_items array
     let result = await foodItem.deleteMany({_id:{$in:meal.food_items}});
     console.log(result);

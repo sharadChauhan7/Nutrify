@@ -35,12 +35,12 @@ const Sidebar = () => {
 
   const getLinkClasses = (path) => {
     const baseClasses = 'flex justify-start w-3/6 text-lg font-normal text-black hover:text-primary';
-    const activeClasses = ' text-[#c967f5]';
+    const activeClasses = ' text-primary';
     return location.pathname == path ? `${baseClasses} ${activeClasses}` : baseClasses;
   };
 
   return (
-    <nav className='border-2  h-screen w-1/5'>
+    <nav className='  h-screen w-1/5'>
       {/* Header */}
       <div className='py-10 bg-transparent'>
         <NavLink to='/' className='flex justify-center items-center'>

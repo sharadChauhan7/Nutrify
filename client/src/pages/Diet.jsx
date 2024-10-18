@@ -32,11 +32,11 @@ function Diet() {
     <>
   {RecipieModalOpen.open && <RecipieModal data={RecipieModalOpen.data} close={setRecipieModalOpen} choiceModal={setChoiceModal} />}
   {choiceModal.open && <AlternateModal choiceModal={choiceModal} fullDiet={diet} close={setChoiceModal} />}
-      {!diet ? (<div>
-        <div className='h-screen flex justify-center items-center'>
+      {!diet ? (<div className=' w-4/5 bg-slate-50'>
+        <div className='h-screen border-2 w-full flex justify-center items-center'>
           <div className='flex flex-col justify-center items-center w-2/5 gap-5'>
-            <h1 className='text-3xl font-bold text-center'>You dont have your dite Plan press below to make one</h1>
-            <button className='bg-primary font-bold active:bg-yellow-500 max-w-36 py-5 px-2 rounded-3xl' onClick={() => { setModelOpen(!modelOpen) }}>
+            <h1 className='text-3xl font-bold text-center'>Lets Create a dite plan for you</h1>
+            <button className='bg-primary font-bold active:bg-yellow-500 max-w-48 shadow-2xl hover:bg-yellow-400 py-5 px-3 rounded-xl' onClick={() => { setModelOpen(!modelOpen) }}>
               Create Dite Plan
             </button>
           </div>
@@ -44,8 +44,8 @@ function Diet() {
         <DiteModal val={modelOpen} close={setModelOpen} /></div>) :
         (
 
-          <div className='w-4/5 h-screen overflow-auto'>
-            <h1 className='font-bold text-4xl p-4'>My Weekly Meal Plan</h1>
+          <div className='w-4/5 h-screen overflow-auto bg-slate-50 p-8'>
+            <p className=' font-bold text-5xl pb-4'>Diet Plan</p>
             <div key={nanoid()} className=' p-3  grid grid-flow-col grid-rows-5 gap-3  bg-gray-200 overflow-auto overflow-y-scroll  rounded-xl'>
               {diet && (Object.keys(diet.planedDite).map((day, index) => {
                 return <React.Fragment key={day}>

@@ -36,7 +36,7 @@ function Meals() {
     }
   }
   return (
-    <div className=' h-screen w-4/5 bg-gray-300 flex flex-col justify-center items-center'>
+    <div className=' h-screen w-4/5 bg-slate-50 flex flex-col justify-center items-center'>
       <div className=" mx-auto w-full py-8">
         <div className=" z-10 inset-0 flex items-center justify-center">
           <div className="relative bg-white rounded-lg overflow-hidden shadow-xl max-w-screen-md w-full m-4 transition ease-out duration-300 transform ">
