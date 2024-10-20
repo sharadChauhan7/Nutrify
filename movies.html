@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Movie Title</h1>
+    <img src="http://www.example.com/movie.jpg" alt="Movie Poster">
+    
+    <h2>Details</h2>
+    <p><strong>Genre:</strong> Action</p>
+    <p><strong>Duration:</strong> 2 hours 30 minutes</p>
+    <p><strong>Language:</strong> English</p>
+    <p><strong>Country of Origin:</strong> Los Angeles, US</p>
+    <p><strong>Date Created:</strong> March 31, 2016</p>
+
+    <h2>Director</h2>
+    <p>John Doe</p>
+
+    <h2>Production Company</h2>
+    <p>Example Productions</p>
+
+    <h2>Cast</h2>
+    <ul>
+        <li>Jane Doe</li>
+        <li>Jim Doe</li>
+    </ul>
+
+    <h2>Trailer</h2>
+    <p><strong>Description:</strong> Trailer for Movie Title</p>
+    <a href="http://www.example.com/trailer" target="_blank">Watch the Trailer</a>
+    <img src="http://www.example.com/trailer.jpg" alt="Trailer Thumbnail">
+</body>
+<script type="application/ld+json">
+    {
+        "@context":"http://schema.org",
+        "@type":"Movie",
+        "countryOfOrigin":{
+            "@type":"Country",
+            "address":{
+                "@type":"PostalAddress",
+                "addressCountry":"US",
+                "addressLocality":"Los Angeles"
+            }
+        },
+        "director":{
+            "@type":"Person",
+            "name":"John Doe"
+        },
+        "duration":"PT2H30M",
+        "genre": "Action",
+        "image":"http://www.example.com/movie.jpg",
+        "name":"Movie Title",
+        "productionCompany":{
+            "@type":"Organization",
+            "name":"Example Productions"
+        },
+        "trailer":{
+            "@type":"VideoObject",
+            "description":"Trailer for Movie Title",
+            "embedUrl":"http://www.example.com/trailer",
+            "name":"Movie Title Trailer",
+            "thumbnailUrl":"http://www.example.com/trailer.jpg",
+            "uploadDate":"2016-03-31T08:00:00+08:00"
+        },
+        "actor": [
+            {
+                "@type": "Person",
+                "name": "Jane Doe"
+            },
+            {
+                "@type": "Person",
+                "name": "Jim Doe"
+            }
+        ],
+        "inLanguage": "English",
+        "dateCreated": "2016-03-31"
+    }
+</script>
+</html>
