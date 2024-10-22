@@ -56,10 +56,9 @@ export const generateAlternate = async (req,res)=>{
     const ditePlan = await UserStatus.findOne({user:_id});
     let {foodAllergies,dietPreference,dietType} = ditePlan;
     // console.log(process.env.ALTERDITE_PROMPT);
-    console.log();
+    console.log({foodAllergies,dietPreference,dietType});
     let prompt =JSON.stringify({foodAllergies,dietPreference,dietType})+' \n '+JSON.stringify(req.body.data)+' \n '+process.env.ALTERDITE_PROMPT;
     console.log(prompt);
-    console.log({foodAllergies,dietPreference,dietType});
     let alternateMelas = await generateData(prompt);
     alternateMelas = alternateMelas.replace(/```json|```/g, '');
     alternateMelas = JSON.parse(alternateMelas);

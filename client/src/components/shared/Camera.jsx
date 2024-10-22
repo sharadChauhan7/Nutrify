@@ -14,7 +14,7 @@ import { resizeImage, getMealStatus } from '../../util/methods'
 import { Link } from "react-router-dom";
 import { set } from "mongoose";
 import { Skeleton } from "@mui/material";
-function Camera({ userStatus }) {
+function Camera({ userStatus ,triggerModal}) {
     const [isLoading,setIsLoading] = React.useState(false);
     const dispatch = useDispatch();
     const [refreshTrigger, setRefreshTrigger] = React.useState(false);
@@ -64,7 +64,7 @@ function Camera({ userStatus }) {
     ];
 
     const box1 = (
-        <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem] rounded-3xl bg-gray-100">
+        <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem]  shadow-2xl border-2 border-gray-300 rounded-3xl bg-gray-200">
             {isLoading?<Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />:<Link to={`/meals/${userStatus.user._id}`}>
                 <div className="flex justify-between px-4 items-center w-full h-1/2">
                     {/* Circulat loader */}
@@ -125,6 +125,9 @@ function Camera({ userStatus }) {
                 withCredentials: true,
             });
             console.log(res.data);
+            let description = `Suggestion for ${res.data.warning.foodName} ${res.data.warning.AlternateDescription}`
+            triggerModal({open:true,title:'Suggestion',description:description});
+
             setcalorieStatus(calorieStatus);
             setIsLoading(false);
             if(calorieStatus){

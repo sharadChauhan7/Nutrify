@@ -67,50 +67,6 @@ function Meals() {
                   </div>
                 )
               })}
-              {meals.map((meal, idx) => {
-                return (
-                  <div className='' key={nanoid()} >
-                    <div className='text-4xl font-bold text-gray-800'>Date: {meal.date}</div>
-                    <div className=''>
-                      {meal.meals.map((food,idx)=>{
-                        return (
-                          <div className='flex flex-col justify-between gap-5' key={nanoid()}>
-                            <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4>
-                            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
-                            {food.food_items.map((item,idx)=>{
-                              return (
-                                <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
-                              )
-                            })}
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )
-              })}
-              {meals.map((meal, idx) => {
-                return (
-                  <div className='' key={nanoid()} >
-                    <div className='text-4xl font-bold text-gray-800'>Date: {meal.date}</div>
-                    <div className=''>
-                      {meal.meals.map((food,idx)=>{
-                        return (
-                          <div className='flex flex-col justify-between gap-5' key={nanoid()}>
-                            <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4>
-                            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
-                            {food.food_items.map((item,idx)=>{
-                              return (
-                                <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
-                              )
-                            })}
-                          </div>
-                        )
-                      })}
-                    </div>
-                  </div>
-                )
-              })}
             </div>
           </div>
         </div>

@@ -50,27 +50,21 @@ function Profile() {
       <div className='flex flex-col h-full w-full gap-4  '>
         {userStatus && <UserStatus userStatus={userStatus} onEditComplete={refreshData} />}
         <div className='flex h-1/2 w-full gap-2'>
-          {/* <div className=' calorieChart h-full w-full  bg-white rounded-3xl p-2 shadow-xl'>
-            <CalorieChart mealData={ userMeals && getLast7DaysMeals(userMeals)} userStatus={userStatus}  className="h-full w-full" />
-          </div> */}
           <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
             {userStatus && <InfoCard data={userStatus.calorie_distribution} title='Breakdown' />}
           </div>
           <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
             {userStatus && <InfoCard data={userStatus.macros} title='Macros' />}
           </div>
-          {/* <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
-            <WeightChart className="h-full w-full" />
-          </div> */}
         </div>
-        <div className='flex h-1/2  w-full gap-2'>
+        {/* <div className='flex h-1/2  w-full gap-2'>
           <div className=' calorieChart h-full w-full  bg-white rounded-3xl p-2 shadow-xl'>
             <CalorieChart mealData={ userMeals && getLast7DaysMeals(userMeals)} userStatus={userStatus}  className="h-full w-full" />
           </div>
           <div className=' weightChart h-full w-full bg-white rounded-3xl p-2 shadow-xl'>
             <WeightChart className="h-full w-full" />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
     </>
