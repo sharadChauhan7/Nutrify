@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { store } from './app/store.js'
 import { Provider } from 'react-redux'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Toaster, toast } from 'sonner'
 import './index.css'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theam = createTheme({
   palette: {
