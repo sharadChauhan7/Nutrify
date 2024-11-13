@@ -12,8 +12,9 @@ import {
   DescriptionOutlined as ProblemsIcon,
   OndemandVideoOutlined as CoursesIcon,
   EmojiEventsOutlined as LeaderboardIcon,
-  PlayCircleFilledWhiteOutlined as PlaygroundIcon
+  PlayCircleFilledWhiteOutlined as PlaygroundIcon,
 } from '@mui/icons-material';
+import FeedbackIcon from '@mui/icons-material/Feedback';
 
 
 const Sidebar = () => {
@@ -27,6 +28,7 @@ const Sidebar = () => {
     { path: '/profile', icon: <TestsIcon />, label: 'Profile' },
     { path: '/dite', icon: <ProblemsIcon />, label: 'Diet Plan' },
     { path: `/meals/${user?user._id:""}`, icon: <CoursesIcon />, label: 'Meals' },
+    {path:'/review',icon:<FeedbackIcon />,label:'Review'}
     // { path: '/courses', icon: <CoursesIcon />, label: 'Courses' },
     // { path: '/leaderboard', icon: <LeaderboardIcon />, label: 'Leaderboard' },
   ];
