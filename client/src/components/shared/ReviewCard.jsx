@@ -1,20 +1,14 @@
 import React from 'react'
 import Rating from '@mui/material/Rating';
-import { useState } from 'react'
+import DotLoading from './DotLoading';
 import TextField from '@mui/material/TextField';
-function ReviewCard({ ques,reviewAns,setReviewAns, flow }) {
-    const [rating, setRating] = useState(3);
+import CircularProgress from '@mui/material/CircularProgress';
+function ReviewCard({ ques,loading,reviewAns,handleSubmit,setReviewAns, flow }) {
     console.log(reviewAns);
-    console.log(ques);
     function handelChange(event, newValue) {
-
-        console.log( ques.id,event.target.name,newValue);
-        // console.log(newValue)
-        // setReviewAns();
-        // Update the reviewAns state at the index of ques.id
         setReviewAns((prev) => {
             return prev.map((item, idx) => {
-                if (item.id === ques.id) {
+                if (item.position === ques.id) {
                     return {
                         ...item,
                         reviewScore: newValue,
@@ -34,7 +28,7 @@ function ReviewCard({ ques,reviewAns,setReviewAns, flow }) {
         // Update the reviewAns state at the index of ques.id and subQuestions[idx]
         setReviewAns((prev) => {
             return prev.map((item) => {
-                if (item.id === ques.id) {
+                if (item.position === ques.id) {
                     const updatedSubQuestions = item.subQuestions.map((subItem, subIdx) => {
                         if (subIdx === index) {
                             return {
@@ -64,6 +58,19 @@ function ReviewCard({ ques,reviewAns,setReviewAns, flow }) {
             });
         });
     }
+    function handleTextChange(event){
+        setReviewAns((prev) => {
+            return prev.map((item) => {
+                if (item.position === ques.id) {
+                    return {
+                        ...item,
+                        feedbackText: event.target.value
+                    };
+                }
+                return item;
+            });
+        });
+    }
     return (
         <div className='h-full w-full border-4 py-10 px-10 rounded-3xl bg-white'>
             <div className='flex justify-between'>
@@ -78,7 +85,7 @@ function ReviewCard({ ques,reviewAns,setReviewAns, flow }) {
 
                         });
                     }}>Prev</button>
-                    <button className='text-2xl bg-primary text-gray-700 rounded-xl py-2 px-6 mx-1' onClick={() => {
+                    {ques.id<3?<button className='text-2xl bg-primary text-gray-700 rounded-xl py-2 px-6 mx-1' onClick={() => {
                         flow(prev => {
                             if (prev < 3) {
                                 return prev + 1
@@ -86,7 +93,8 @@ function ReviewCard({ ques,reviewAns,setReviewAns, flow }) {
                             return prev;
 
                         });
-                    }}>Next</button>
+                    }}>Next</button>:<button className='text-2xl bg-primary text-gray-700 rounded-xl py-2 px-6 mx-1' onClick={()=>{handleSubmit(reviewAns)}}>{loading?<CircularProgress color="inherit" size="30px"/>: "Submit"}</button>}
+
                 </div>
             </div>
 
@@ -124,12 +132,16 @@ function ReviewCard({ ques,reviewAns,setReviewAns, flow }) {
 
 
 <TextField
-          id="review-box"
+          id="feedbackText"
           label="Anything to say (Optional)"
           multiline
           rows={6}
           fullWidth
           variant='filled'
+          value={reviewAns[ques.id].feedbackText}
+          onChange={(event)=>{
+            handleTextChange(event);
+          }}
         />
 
         </div>

@@ -1,4 +1,5 @@
 import FoodItem from '../modals/foodItem.js';
+
 export async function createFoodItems(foodItemsData) {
     const foodItems = [];
     for (const item of foodItemsData) {
