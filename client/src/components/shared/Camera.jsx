@@ -12,7 +12,6 @@ import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import Webcam from "./webcam";
 import { resizeImage, getMealStatus } from '../../util/methods'
 import { Link } from "react-router-dom";
-import { set } from "mongoose";
 import { Skeleton } from "@mui/material";
 function Camera({ userStatus ,triggerModal}) {
     const [isLoading,setIsLoading] = React.useState(false);

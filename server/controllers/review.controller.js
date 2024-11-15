@@ -10,7 +10,11 @@ export const createReview = async (req,res)=>{
     console.log(fullReview);
     review = new Review(fullReview);
     await review.save();
-    setTimeout(()=>{
-        res.send("Review Added");
-    },1000);
+        res.status(200).json({message:"Review created successfully"});
+}
+
+export const getReview = async (req,res)=>{
+    let user = req.user;
+    let review = await Review.find({user:user});
+    res.status(200).json(review);
 }
