@@ -12,11 +12,18 @@ import { dirname } from 'path';
 
 import 'dotenv/config'
 
+const app = express();
+import path from 'path';
+
+const _dirname = path.dirname("");
+
+const buildpath = path.join(_dirname , "../client/dist")
+app.use(express.static(buildpath))
 
 
 const __filename = fileURLToPath(import.meta.url);
 // Testing
-const app = express();
+
 
 const corsOptions = {
   origin: 'http://localhost:5173',
@@ -58,7 +65,3 @@ app.use('/api/review',review);
 
 
 // Testing
-
-
-
-
