@@ -22,7 +22,7 @@ function Form() {
     const handleSubmit = async () => {
         
         try{
-            const response = await axios.post('http://localhost:3000/api/user/status', 
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}user/status`, 
                userStatus,
               { withCredentials: true } // Important for sending cookies
           );

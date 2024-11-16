@@ -30,7 +30,7 @@ function Review() {
         try {
             console.log(finalAns);
             setLoading(true);
-            let result = await axios.post('http://localhost:3000/api/review/create', finalAns, { withCredentials: true });
+            let result = await axios.post(`${import.meta.env.VITE_SERVER_URL}review/create`, finalAns, { withCredentials: true });
             console.log(result.data);
             // console.log(result.data);
             if (result.status === 200) {
@@ -49,7 +49,7 @@ function Review() {
             try {
                 setLoading(true)
                 console.log("R")
-                let result = await axios.get('http://localhost:3000/api/review', { withCredentials: true });
+                let result = await axios.get(`${import.meta.env.VITE_SERVER_URL}review`, { withCredentials: true });
                 console.log(result.data);
 
                 setLoading(false);

@@ -33,7 +33,7 @@ function Camera({ userStatus ,triggerModal}) {
         async function getMeals() {
             try {
                 setIsLoading(true);
-                const response = await axios.get("http://localhost:3000/api/calorie/getMeals/today", {
+                const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}calorie/getMeals/today`, {
                     withCredentials: true,
                 });
             
@@ -117,7 +117,7 @@ function Camera({ userStatus ,triggerModal}) {
             const resizedImageBlob = await resizeImage(imgSrc, 800, 600); // Example size, adjust as needed
             const formData = new FormData();
             formData.append('image', resizedImageBlob, 'resized.jpg');
-            const res = await axios.post("http://localhost:3000/api/calorie/getCalories", formData, {
+            const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}calorie/getCalories`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },

@@ -18,7 +18,7 @@ function UserInfo({userStatus,onEditComplete}) {
                 throw new Error(error.details[0].message);
             }
             console.log(editData);
-            const response = await axios.post('http://localhost:3000/api/user/edit',editData,{withCredentials:true});
+            const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}user/edit`,editData,{withCredentials:true});
             console.log(response.data);
             setToEdit(!toEdit);
             toast.success("Profile updated successfully");

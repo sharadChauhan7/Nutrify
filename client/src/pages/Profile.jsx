@@ -20,10 +20,10 @@ function Profile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('http://localhost:3000/api/user/status',
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}user/status`,
           { withCredentials: true } // Important for sending cookies
         );
-        const mealRespons = await axios.get('http://localhost:3000/api/calorie/getMeals', { withCredentials: true });
+        const mealRespons = await axios.get(`${import.meta.env.VITE_SERVER_URL}calorie/getMeals`, { withCredentials: true });
         console.log(mealRespons.data);
         // console.log(response.data);
         setUserMeals(mealRespons.data);

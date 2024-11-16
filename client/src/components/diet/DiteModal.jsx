@@ -41,11 +41,11 @@ function DiteModal({ val, close }) {
         console.log("Submitting");
         try {
             setIsLoading(true);
-            const result = await axios.post('http://localhost:3000/api/user/editStatusDite',
+            const result = await axios.post(`${import.meta.env.VITE_SERVER_URL}user/editStatusDite`,
                 diteInfo,
                 { withCredentials: true }
             )
-            const generateDite = await axios.get('http://localhost:3000/api/diet/generate',{ withCredentials: true });
+            const generateDite = await axios.get(`${import.meta.env.VITE_SERVER_URL}diet/generate`,{ withCredentials: true });
             console.log(generateDite.data);
             toast.success("Dite Plan Created Successfully");
             setIsLoading(false);

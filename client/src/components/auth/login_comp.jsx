@@ -23,7 +23,7 @@ function Login_comp({ toggleAuth }) {
         throw new Error(error);
       }
       setIsLoading(true);
-      const response = await axios.post('http://localhost:3000/api/auth/login',
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}auth/login`,
         userInfo,
         { withCredentials: true } // Important for sending cookies
       );

@@ -14,7 +14,7 @@ function Diet() {
 
   async function getDiet() {
     try {
-      const response = await axios.get(`http://localhost:3000/api/diet`, {
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}diet`, {
         withCredentials: true
       });
       setDiet(response.data);

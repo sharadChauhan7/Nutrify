@@ -9,7 +9,7 @@ function Meals() {
   React.useEffect(() => {
     async function getMeals() {
       try {
-        const response = await axios.get(`http://localhost:3000/api/calorie/getMeals`, {
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}calorie/getMeals`, {
           withCredentials: true
         });
         console.log(response.data);
@@ -26,7 +26,7 @@ function Meals() {
   async function deleteMeal(intake,meal){
     try{
       console.log(meal,id);
-      const response = await axios.delete(`http://localhost:3000/api/calorie/${intake}/meals/${meal}`, {
+      const response = await axios.delete(`${import.meta.env.VITE_SERVER_URL}calorie/${intake}/meals/${meal}`, {
         withCredentials: true
       });
       console.log(response.data);

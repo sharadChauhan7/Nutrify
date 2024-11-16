@@ -12,7 +12,7 @@ const RecipieModal = ({data,close,choiceModal}) => {
   const findAlternative = async()=>{
     try{
         setIsloading(true);
-        let result = await axios.post('http://localhost:3000/api/diet/alternate',{data},{withCredentials:true});
+        let result = await axios.post(`${import.meta.env.VITE_SERVER_URL}diet/alternate`,{data},{withCredentials:true});
         console.log(result.data);
             choiceModal({open:true,data:result.data,prevMeal:data});
             setIsloading(false);

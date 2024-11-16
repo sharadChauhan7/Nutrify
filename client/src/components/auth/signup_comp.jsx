@@ -22,7 +22,7 @@ async function handleSignup(e){
         throw new Error(error);
       }
       setIsLoading(true);
-      const response = await axios.post('http://localhost:3000/api/auth/signup', 
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}auth/signup`, 
         userInfo,
         { withCredentials: true }
       );

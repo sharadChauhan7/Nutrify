@@ -6,6 +6,9 @@ import { Provider } from 'react-redux'
 import { Toaster, toast } from 'sonner'
 import './index.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+// Config env
+// import 'dotenv/config'
+
 
 const theam = createTheme({
   palette: {

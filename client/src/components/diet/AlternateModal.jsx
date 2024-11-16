@@ -23,7 +23,7 @@ const AlternateModal = ({ choiceModal,fullDiet, close }) => {
             console.log(fullDiet);
 
             setIsloading(true);
-            let result = await axios.patch('http://localhost:3000/api/diet/update',{newMeal},{withCredentials:true});
+            let result = await axios.patch(`${import.meta.env.VITE_SERVER_URL}diet/update`,{newMeal},{withCredentials:true});
             console.log(result.data);
                 console.log(newMeal);
                 setIsloading(false);
