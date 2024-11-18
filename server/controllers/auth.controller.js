@@ -15,7 +15,9 @@ export const signup = async (req, res) => {
             if (err) {
                 res.status(400).send("Error in hashing password");
             };
+
             password = hash
+            
             let user = new User({ name, email, password });
             
             await user.save();

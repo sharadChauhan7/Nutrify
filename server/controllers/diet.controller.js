@@ -36,8 +36,9 @@ export const generateDiet = async (req,res)=>{
 
 export const getDiet = async (req,res)=>{
     try{
-        let {_id} = JSON.parse(req.cookies.user);
-        const ditePlan = await DitePlan.findOne({user:_id});
+        let user = req.user;
+        const ditePlan = await DitePlan.findOne({user:user._id});
+        console.log(user);
         if(!ditePlan){
             return res.status(404).json({message:"Dite Plan not found"});
         }

@@ -6,6 +6,7 @@ import { capture } from '../../features/Webcam/webcamSlice';
 function webcam() {
     const webcamRef = React.useRef(null);
     const dispatch = useDispatch();
+    console.log(webcamRef);
   return (
     <div className='flex flex-col justify-center items-center  '>
         <Webcam

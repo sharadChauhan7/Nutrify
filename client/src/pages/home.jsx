@@ -4,13 +4,13 @@ import WeightChart from '../components/Charts/WeightChart.jsx'
 import BasicModal from '../components/shared/BasicModal.jsx'
 import CalorieChart from '../components/Charts/CalorieChart.jsx'
 import {getLast7DaysMeals} from '../util/methods'
+import Webcam from 'react-webcam'
 import axios from 'axios'
 function Home() {
   // Home page
   // Change tab title to 'Home'
   const [userStatus, setUserStatus] = React.useState(null);
   const [userMeals, setUserMeals] = React.useState(null);
-  console.log(import.meta.env.VITE_SERVER_URL);
   React.useEffect(() => {
     async function fetchData() {
       try {

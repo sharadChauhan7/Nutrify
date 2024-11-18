@@ -64,7 +64,8 @@ function Camera({ userStatus ,triggerModal}) {
 
     const box1 = (
         <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem]  shadow-2xl border-2 border-gray-300 rounded-3xl bg-gray-200">
-            {isLoading?<Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />:<Link to={`/meals/${userStatus.user._id}`}>
+            {isLoading?<Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />:
+            <div >
                 <div className="flex justify-between px-4 items-center w-full h-1/2">
                     {/* Circulat loader */}
                     <div className="border-4 border-yellow-400 rounded-full p-2">
@@ -103,7 +104,7 @@ function Camera({ userStatus ,triggerModal}) {
                         />
                     ))}
                 </div>
-                </Link>}
+                </div>}
             
             </div>
 

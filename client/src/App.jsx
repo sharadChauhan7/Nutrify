@@ -13,13 +13,13 @@ import { useSelector } from 'react-redux'
 import MedicineForm from './pages/MedicineForm.jsx'
 import SideMenu from './components/shared/SideMenu.jsx'
 import Review from './pages/Review.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 // Get user id rom url using useParams
 
 function App() {
   return (
     <Router>
-              
       <RoutesWithNavbar />
     </Router>
   );
@@ -40,7 +40,7 @@ function App() {
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>
             <Route path='/' element={<Home />} />
-            <Route path='/dashboard' element={<Home />} />
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/setmedicine' element={<MedicineForm />} />
             <Route path='/meals/:id' element={<Meals />} />

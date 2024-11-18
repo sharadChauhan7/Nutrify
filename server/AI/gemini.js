@@ -81,6 +81,6 @@ async function findCalories(imageUrl,prompt) {
 export const generateData = async(prompt)=>{
   const result = await model.generateContent(prompt);
   return result.response.text();
-  }
+}
 
 export default findCalories;
