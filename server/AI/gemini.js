@@ -10,7 +10,6 @@ dotenv.config('../.env');
 const apiKey = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 const fileManager = new GoogleAIFileManager(apiKey);
-console.log(apiKey);
 
 async function uploadToGemini(path, mimeType) {
   const uploadResult = await fileManager.uploadFile(path, {

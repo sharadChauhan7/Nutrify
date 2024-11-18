@@ -9,7 +9,7 @@ main().then((res)=>{console.log("Connection is up")}).catch(err => console.log(e
 console.log("Hello");
 
 async function main() {
-  await mongoose.connect(url);
+  await mongoose.connect('mongodb://127.0.0.1:27017/Health');
 }
 
 

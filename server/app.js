@@ -17,11 +17,11 @@ import path from 'path';
 
 const _dirname = path.dirname("");
 
-const buildpath = path.join(_dirname , "../client/dist")
-app.use(express.static(buildpath))
+// const buildpath = path.join(_dirname , "../client/dist")
+// app.use(express.static(buildpath))
 
 
-const __filename = fileURLToPath(import.meta.url);
+// const __filename = fileURLToPath(import.meta.url);
 // Testing
 
 
@@ -42,8 +42,8 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-app.use(bodyParser.json({ limit: '50mb' }));
+// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+// app.use(bodyParser.json({ limit: '50mb' }));
 
 
 // Http server

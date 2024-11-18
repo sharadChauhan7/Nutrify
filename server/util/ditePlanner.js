@@ -1,4 +1,5 @@
 let days =["mon","tue","wed","thu","fri","sat","sun"];
+
 export const planDite = (dite)=>{
     let planedDite={};
     for(let i=0;i<days.length;i++){

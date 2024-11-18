@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import foodItem from './foodItem.js';
 const Schema = mongoose.Schema;
+
 const MealSchema = new Schema({
     meal_type: { type: String, enum: ['breakfast', 'lunch', 'dinner', 'snack'] },
     calories: Number,
