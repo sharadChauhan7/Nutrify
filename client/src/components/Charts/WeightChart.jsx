@@ -23,7 +23,7 @@ const WeightChart = () => {
         label: 'Weight',
         data: weights,
         fill: false,
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        backgroundColor: 'rgba(255, 255, 255, .9)',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
@@ -34,12 +34,17 @@ const WeightChart = () => {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: {
-        position: 'top',
-      },
+      // legend: {
+      //   position: 'top',
+      // },
       title: {
-        display: true,
+        // display: true,
         text: 'Weight Progress Over the Last 4 Weeks',
+      },
+      // Styling
+      layout: {
+        padding: 10,
+        backgroundColor: 'rgba(255, 255, 255, .9)',
       },
     },
     scales: {

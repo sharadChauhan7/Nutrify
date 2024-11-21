@@ -3,14 +3,12 @@ import Camera from '../components/shared/Camera.jsx'
 import WeightChart from '../components/Charts/WeightChart.jsx'
 import BasicModal from '../components/shared/BasicModal.jsx'
 import CalorieChart from '../components/Charts/CalorieChart.jsx'
-import {getLast7DaysMeals} from '../util/methods'
 import Webcam from 'react-webcam'
 import axios from 'axios'
 function Home() {
   // Home page
   // Change tab title to 'Home'
   const [userStatus, setUserStatus] = React.useState(null);
-  const [userMeals, setUserMeals] = React.useState(null);
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -18,10 +16,6 @@ function Home() {
           { withCredentials: true } // Important for sending cookies
         );
         setUserStatus(response.data);
-        const mealRespons = await axios.get(`${import.meta.env.VITE_SERVER_URL}calorie/getMeals`, { withCredentials: true });
-        console.log(mealRespons.data);
-        // console.log(response.data);
-        setUserMeals(mealRespons.data);
       }
       catch (e) {
         console.log(e);
@@ -30,6 +24,7 @@ function Home() {
 
     fetchData();
   }, []);
+
   const [modalStat, setModalStat] = React.useState({
     open: false,
     title: '',
@@ -54,8 +49,6 @@ function Home() {
           <div className=" flex  items-center">
           {userStatus && <Camera userStatus={userStatus} triggerModal={setModalStat} />}
           </div>
-          <div className=" p-4"><CalorieChart mealData={ userMeals && getLast7DaysMeals(userMeals)} userStatus={userStatus}  className="h-full w-full" /></div>
-          <div className=" p-4"><WeightChart className="h-full w-full" /></div>
         </div>
       </div>
     </>

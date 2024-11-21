@@ -4,6 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/User/user';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../../assets/HLogo.png'
 // js-cookie
 import Cookies from 'js-cookie';
 import {
@@ -26,7 +27,7 @@ const Sidebar = () => {
     { path: '/dashboard', icon: <DashboardIcon />, label: 'Dashboard' },
     // { path: '/playground', icon: <PlaygroundIcon />, label: 'Playground' },
     { path: '/profile', icon: <TestsIcon />, label: 'Profile' },
-    { path: '/dite', icon: <ProblemsIcon />, label: 'Diet Plan' },
+    { path: '/diet', icon: <ProblemsIcon />, label: 'Diet Plan' },
     { path: `/meals/${user?user._id:""}`, icon: <CoursesIcon />, label: 'Meals' },
     {path:'/review',icon:<FeedbackIcon />,label:'Review'}
     // { path: '/courses', icon: <CoursesIcon />, label: 'Courses' },
@@ -47,7 +48,9 @@ const Sidebar = () => {
       <div className='py-10 bg-transparent'>
         <NavLink to='/' className='flex justify-center items-center'>
           {/* <img src={Logo} alt="Logo" /> */}
-          <p className='text-primary text-3xl flex gap-2 font-semibold'>
+          <p className='text-primary text-3xl flex gap-2 font-semibold items-center'>
+            {/* Add logo icon */}
+            <img src={Logo} alt="" className=' size-16'/>
             Healthy <span className='text-black'>AI</span>
           </p>
         </NavLink>
