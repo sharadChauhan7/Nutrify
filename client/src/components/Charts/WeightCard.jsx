@@ -3,7 +3,7 @@ import WeightChart from "./WeightChart";
 
 const WeightCard = () => {
   return (
-    <div className="bg-white h-[60%] shadow-md border-2 rounded-2xl p-6 w-full max-w-[1250px] flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
+    <div className="bg-white h-[60%] shadow-md rounded-2xl p-6 w-full max-w-[1250px] flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6">
       {/* Left Section */}
       <div className="flex-1 space-y-4">
         <div>

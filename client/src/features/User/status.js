@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 let initialState = {
     userStatus:{
         address:"",
@@ -13,6 +14,7 @@ let initialState = {
         disease:[]
     }
 }
+
 let userSlice = createSlice({
     name:"userStatus",
     initialState,

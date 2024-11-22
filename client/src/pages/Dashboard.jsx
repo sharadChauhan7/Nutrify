@@ -29,7 +29,9 @@ function Dashboard() {
   return (
     <div className='h-screen w-4/5 flex flex-col overflow-auto gap-4 bg-slate-50 p-8'>
       <p className=' font-bold text-5xl'>Dashboard</p>
-      <div className='h-screen border-2 p-4 rounded-3xl flex flex-col gap-4 bg-white w-full '>
+      <div className='h-screen border-2 p-4 rounded-3xl overflow-y-auto flex flex-col gap-4 bg-gray-200 w-full '>
+        <WeightCard />
+        <WeightCard />
         <WeightCard />
         <WeightCard />
           {/* <div className=" p-4"><CalorieChart mealData={userMeals && getLast7DaysMeals(userMeals)} userStatus={userStatus} className="h-full w-full" /></div>

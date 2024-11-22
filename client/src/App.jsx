@@ -61,11 +61,11 @@ function App() {
             <Route path='/meals/:id' element={<Meals />} />
             <Route path='/diet' element={<Dite />} />
             <Route path='/review' element={<Review />} />
+
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
           </Route> 
-
         </Routes>
     </div>
 

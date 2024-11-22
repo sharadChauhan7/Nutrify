@@ -24,6 +24,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   const navItems = [
+    { path: '/', icon: <DashboardIcon />, label: 'Home' },
     { path: '/dashboard', icon: <DashboardIcon />, label: 'Dashboard' },
     // { path: '/playground', icon: <PlaygroundIcon />, label: 'Playground' },
     { path: '/profile', icon: <TestsIcon />, label: 'Profile' },
