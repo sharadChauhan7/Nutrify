@@ -18,6 +18,18 @@ const userStatusSchema = new Schema({
         default: null,
         required: true
     },
+    weightTracker:[
+        {
+            weight:{
+                type:Number,
+                
+            },
+            date:{
+                type:Date,
+                default:Date.now
+            }
+        }
+    ], 
     height: {
         type: Number,
         default: null,

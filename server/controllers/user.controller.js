@@ -13,6 +13,7 @@ export const setUserStatus = async (req, res) => {
         status=calculateCalories(status);
         calculateMacros(status);
         console.log(status);
+        status.weightTracker=[{weight:status.weight, date:new Date()}];
         let userStatus = new UserStatus( status );
         await userStatus.save();
         res.send("Status set");
@@ -56,7 +57,7 @@ export const updateStatus = async (req,res)=>{
     try{
         let status = req.body;
         status=calculateCalories(status);
-
+        calculateMacros(status);
         let updatedStatus = await UserStatus.findByIdAndUpdate(status._id,status,{new:true});
         console.log(updatedStatus);
         res.status(200).send("Status updated successfully");

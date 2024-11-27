@@ -4,6 +4,7 @@ import user from './routes/user.route.js';
 import dite from './routes/diet.route.js';
 import calorie from './routes/calorie.route.js';
 import review from './routes/review.route.js'
+import dashboard from './routes/dashboard.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
@@ -62,6 +63,7 @@ app.use('/api/auth', auth);
 app.use('/api/calorie', calorie);
 app.use('/api/diet',dite);
 app.use('/api/review',review);
+app.use('/api/dashboard',dashboard);
 
 
 // Testing

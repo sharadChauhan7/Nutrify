@@ -4,15 +4,11 @@ import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
-const WeightChart = () => {
-    const data = [
-        { date: '2024-06-01', weight: 70.2 },
-        { date: '2024-06-08', weight: 70.5 },
-        { date: '2024-06-15', weight: 70.2 },
-        { date: '2024-06-22', weight: 70.1 },
-        { date: '2024-06-29', weight: 69.7 },
-      ];
-  const labels = data.map(entry => entry.date);
+const WeightChart = ({data,target}) => {
+  const labels = data.map(entry => {
+    const date = entry.date.split('T')[0];
+    return date;
+  });
   const weights = data.map(entry => entry.weight);
   const minWeight = Math.min(...weights) - 1; // Adjusting the y-axis to start from a little below the minimum weight
 
