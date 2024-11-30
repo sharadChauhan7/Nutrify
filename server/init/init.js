@@ -10,7 +10,7 @@ import mongoose from 'mongoose';
 async function init(){
     // Delete all documents in the collection
     let a =await User.deleteMany({});
-    let b= await Meal.deleteMany({});
+    // let b= await Meal.deleteMany({});
     let c = await FoodItems.deleteMany({});
     let d = await DailyCalorieIntake.deleteMany({});
     let e =await UserStatus.deleteMany({});

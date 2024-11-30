@@ -11,6 +11,8 @@ export const generateDiet = async (req,res)=>{
         
         let {_id} = JSON.parse(req.cookies.user);
         const user = await UserStatus.findOne({user:_id});
+        // remove weightTracker key in user
+        user.weightTracker=[];
         let prompt =user+' \n '+process.env.DITE_PROMPT;
         console.log("Generating Dite");
         console.log(prompt);

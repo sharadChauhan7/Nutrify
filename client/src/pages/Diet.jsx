@@ -9,7 +9,6 @@ import { prev } from '../features/User/flow';
 function Diet() {
   let [modelOpen, setModelOpen] = React.useState(false);
   let [diet, setDiet] = React.useState(null);
-  console.log(diet);
   let [RecipieModalOpen, setRecipieModalOpen] = React.useState({ open: false, data: null});
   let [choiceModal, setChoiceModal] = React.useState({ open: false, data: null,prevMeal:null});
 

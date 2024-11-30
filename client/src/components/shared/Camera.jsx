@@ -63,7 +63,7 @@ function Camera({ userStatus ,triggerModal}) {
     ];
 
     const box1 = (
-        <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem]  shadow-2xl border-2 border-gray-300 rounded-3xl bg-gray-200">
+        <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem]  shadow-2xl border-2 border-gray-300 rounded-3xl bg-white">
             {isLoading?<Skeleton variant="rectangular" sx={{bgcolor: 'grey.600',width:'100%', height:'100%',borderRadius:'25px'}} />:
             <div >
                 <div className="flex justify-between px-4 items-center w-full h-1/2">
