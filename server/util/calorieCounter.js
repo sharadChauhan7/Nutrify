@@ -60,7 +60,7 @@ export function calculateMacros(user) {
   const carbRatio = 0.45; 
   
   // Calculate macros in grams
-  const proteinGrams = (target_calories * proteinRatio) / 4; 
+  const proteinGrams = (target_calories * proteinRatio) / 4*2; 
   const fatGrams = (target_calories * fatRatio) / 9; 
   const carbGrams = (target_calories * carbRatio) / 4; 
 

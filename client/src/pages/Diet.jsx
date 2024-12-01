@@ -11,6 +11,7 @@ function Diet() {
   let [diet, setDiet] = React.useState(null);
   let [RecipieModalOpen, setRecipieModalOpen] = React.useState({ open: false, data: null});
   let [choiceModal, setChoiceModal] = React.useState({ open: false, data: null,prevMeal:null});
+  const [refreshTrigger, setRefreshTrigger] = React.useState(false);
 
   async function getDiet() {
     try {
@@ -24,13 +25,16 @@ function Diet() {
       console.log(e);
     }
   }
+  const refreshData = () => {
+    setRefreshTrigger(!refreshTrigger); // Step 3
+  };
 
   React.useEffect(() => {
     getDiet();
-  }, [choiceModal,RecipieModalOpen]);
+  }, [choiceModal,RecipieModalOpen,refreshTrigger]);
   return (
     <>
-  {RecipieModalOpen.open && <RecipieModal data={RecipieModalOpen.data} close={setRecipieModalOpen} choiceModal={setChoiceModal} />}
+  {RecipieModalOpen.open && <RecipieModal data={RecipieModalOpen.data} close={setRecipieModalOpen} choiceModal={setChoiceModal}  />}
   {choiceModal.open && <AlternateModal choiceModal={choiceModal} fullDiet={diet} close={setChoiceModal} />}
       {!diet ? (<div className=' w-4/5 bg-slate-50'>
         <div className='h-screen border-2 w-full flex justify-center items-center'>
@@ -41,7 +45,7 @@ function Diet() {
             </button>
           </div>
         </div>
-        <DiteModal val={modelOpen} close={setModelOpen} /></div>) :
+        <DiteModal val={modelOpen} close={setModelOpen} refreshTrigger={refreshData} /></div>) :
         (
 
           <div className='w-4/5 h-screen overflow-auto bg-slate-50 p-8'>

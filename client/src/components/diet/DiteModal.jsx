@@ -11,7 +11,7 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import {Skeleton} from '@mui/material';
 import { toast } from 'sonner';
-function DiteModal({ val, close }) {
+function DiteModal({ val, close,refreshTrigger }) {
     // const dispatch = useDispatch();
 
     const userStatus = useSelector((state) => state.userStatus);
@@ -50,6 +50,7 @@ function DiteModal({ val, close }) {
             toast.success("Dite Plan Created Successfully");
             setIsLoading(false);
             close(!val);
+            refreshTrigger();
 
             
         }

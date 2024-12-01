@@ -13,7 +13,7 @@ function DiteOption({ status, handler, options }) {
               <div key={index} className={`w-full    mx-auto bg-whiten ${typeof status ==="object"? status.includes(option.title)? "border-primary":" border-white" :status==option.title  ? "border-primary":"border-white" } border-2  rounded-xl  m-2 shadow-md overflow-hidden`} onClick={() => { handler(options.name, option.title) }}>
                 <div className="md:flex md:min-w-2.5">
                   <div className="md:shrink-0">
-                    <img className="h-32 w-full object-cover md:h-full md:w-32" src={option.image} alt="" />
+                    <img className="h-28 w-full object-cover   md:w-32" src={option.image} alt="" />
                   </div>
                   <div className="p-4">
                     <h1 className="block mt-1 text-lg  font-medium text-black ">{option.title}</h1>

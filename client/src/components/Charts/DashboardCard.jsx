@@ -27,7 +27,7 @@ const DashboardCard = ({MyChart,chartData,cardData,updateData,type,target=0}) =>
         <div className="flex items-center space-x-2">
           <div className="hover:border-gray-200  rounded-xl p-2 border-2 border-white cursor-pointer  ">
             <h3 className="text-sm text-gray-500">Goal:</h3>  
-            <p className="text-3xl font-bold text-green-600">{chartData[0][type] || target} {cardData.unit}</p>
+            <p className="text-3xl font-bold text-green-600">{target || chartData[0][type] } {cardData.unit}</p>
           </div>
         </div>
       </div>

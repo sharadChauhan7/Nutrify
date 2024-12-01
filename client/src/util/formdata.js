@@ -47,32 +47,32 @@ export const alergies = {
   values:[
     {
       title:"None",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmVnYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5vJTIwZm9vZCUyMGFsZXJnaWVzfGVufDB8fDB8fHww",
       description:"No food allergies",
     },
     {
       title:"Dairy",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmVnYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://media.istockphoto.com/id/544807136/photo/various-fresh-dairy-products.webp?a=1&b=1&s=612x612&w=0&k=20&c=M79U7Z-a-kjb_EkbmPsw8lqv16QwOL3T1uUJFj88qkQ=",
       description:"Allergic to dairy products",
     },
     {
       title:"Gluten",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmVnYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://images.unsplash.com/photo-1585220177022-3fdf02bd9da0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGdsdXRlbnxlbnwwfHwwfHx8MA%3D%3D",
       description:"Allergic to gluten products",
     },
     {
       title:"Nuts",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmVnYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://media.istockphoto.com/id/178135187/photo/nuts-mixture.webp?a=1&b=1&s=612x612&w=0&k=20&c=skYA8Fr4xUf8olf9BnaMsTfFEV2cDBOQMTyYv8HBQL0=",
       description:"Allergic to nuts",
     },
     {
       title:"Soy",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmVnYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://images.unsplash.com/photo-1582581720432-de83a98176ab?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c295JTIwc2F1Y2V8ZW58MHx8MHx8fDA%3D",
       description:"Allergic to soy products",
     },
     {
       title:"Lactose",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmVnYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://plus.unsplash.com/premium_photo-1663126462918-89b37026420b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGFjdG9zZXxlbnwwfHwwfHx8MA%3D%3D",
       description:"Allergic to lactose products",
     }
 
@@ -83,17 +83,17 @@ export const alergies = {
     name:"ditePreference",
     values:[{
       title:"North Indian",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bm9ydGglMjBpbmRpYW4lMjBjb25kaXRpb258ZW58MHx8MHx8fDA%3D",
+      image:"https://plus.unsplash.com/premium_photo-1700752342459-c276465c177e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bm9ydGglMjBpbmRpYW4lMjBmb29kfGVufDB8fDB8fHww",
       description:"Roti, Paratha,Sabjis,Rajma...",
     },
     {
       title:"South Indian",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c291dGglMjBpbmRpYW58ZW58MHx8MHx8fDA%3D",
+      image:"https://plus.unsplash.com/premium_photo-1664702602982-7eab3da92601?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHNvdXRoJTIwaW5kaWFuJTIwZm9vZHxlbnwwfHwwfHx8MA%3D%3D",
       description:"Dosa, Idli, Sambhar, Vada...",
     },
     {
       title:"Continental",
-      image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29udGluZW50YWx8ZW58MHx8MHx8fDA%3D",
+      image:"https://images.unsplash.com/photo-1634629377376-6c6bae2d8bcf?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y29udGluZW50YWwlMjBmb29kfGVufDB8fDB8fHww",
       description:"Pasta, Pizza, Burger, Sandwich...",
     },
     {
