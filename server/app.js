@@ -66,6 +66,23 @@ app.use('/api/calorie', calorie);
 app.use('/api/diet',dite);
 app.use('/api/review',review);
 app.use('/api/dashboard',dashboard);
+// Error Handaling
+app.use((req, res, next) => {
+  const error = new Error('Not found');
+  error.status = 404;
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
+});
+
+
 
 
 // Testing
