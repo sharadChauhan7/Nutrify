@@ -4,10 +4,8 @@ export const updateUserWeight = async (req,res)=>{
    try{
         let user = req.user;
         let {newWeight} = req.body;
-        console.log(newWeight);
 
         let userStatus = await UserStatus.findOne({user:user});
-        console.log(userStatus);
         userStatus.weightTracker.push({weight:newWeight,date:new Date()});
         userStatus.weight = newWeight;
         await userStatus.save();

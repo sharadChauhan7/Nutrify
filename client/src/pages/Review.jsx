@@ -17,6 +17,7 @@ function Review() {
             reviewName: item.reviewName,
             reviewScore: 1,
             questionText: item.questionText,
+            feedbackText:"",
             subQuestions: item.subQuestion.map((subItem, subIdx) => {
                 return {
                     subQuestionText: subItem,
@@ -48,7 +49,6 @@ function Review() {
         async function getReview() {
             try {
                 setLoading(true)
-                console.log("R")
                 let result = await axios.get(`${import.meta.env.VITE_SERVER_URL}review`, { withCredentials: true });
                 console.log(result.data);
 

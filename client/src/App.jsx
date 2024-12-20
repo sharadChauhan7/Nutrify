@@ -1,4 +1,4 @@
-import {React,useEffect} from 'react'
+import {React,useEffect,useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/shared/navbar.jsx'
 import { useParams,useLocation } from 'react-router-dom'
@@ -13,13 +13,30 @@ import { useSelector } from 'react-redux'
 import SideMenu from './components/shared/SideMenu.jsx'
 import Review from './pages/Review.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import Connector from './components/shared/Connector.jsx'
+import axios from 'axios'
+import { toast } from 'sonner'
 
 // Get user id rom url using useParams
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    async function connectServer() {
+      try {
+        await axios.get(import.meta.env.VITE_SERVER_URL);
+        setLoading(false);
+        toast.success('Connected to server');
+      } catch (error) {
+        console.error('Error connecting to server:', error);
+        toast.error('Error connecting to server');
+      }
+    }
+    connectServer();
+  },[]);
   return (
     <Router>
-      <RoutesWithNavbar />
+      {loading ? <Connector /> : <RoutesWithNavbar />}
     </Router>
   );
 }
@@ -66,7 +83,7 @@ function App() {
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
           </Route> 
-        </Routes>
+      </Routes>
     </div>
 
     </>

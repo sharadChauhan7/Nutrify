@@ -7,7 +7,6 @@ export const createReview = async (req,res)=>{
     fullReview.user = user;
     fullReview.wholeReview = review;
     fullReview.date = new Date(Date.now());
-    console.log(fullReview);
     review = new Review(fullReview);
     await review.save();
         res.status(200).json({message:"Review created successfully"});

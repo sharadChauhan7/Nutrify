@@ -15,6 +15,7 @@ import 'dotenv/config'
 
 const app = express();
 import path from 'path';
+import { set } from 'mongoose';
 
 const _dirname = path.dirname("");
 
@@ -55,7 +56,8 @@ app.listen(port, (req, res) => {
 });
 
 app.get('/api', (req, res) => {
-  res.send('Working fine');
+  console.log('Request to /api');
+  res.send('Hello from the server');
 });
 
 app.use('/api/user', user);

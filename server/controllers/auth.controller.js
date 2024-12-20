@@ -48,9 +48,7 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        console.log(req.body);
         let { email, password } = req.body;
-        console.log(password);
         let user = await User.findOne({ email: email });
         if(user==null){
             throw new Error("User not found");
@@ -91,7 +89,6 @@ export const updateUser = async (req,res)=>{
     try{
         let user = req.body;
         let updatedUser = await User.findByIdAndUpdate(user._id,user,{new:true});
-        console.log(updatedUser);
         res.status(200).send("User updated successfully");
     }
     catch(e){

@@ -56,7 +56,7 @@ console.log(ditePlan);
                 Track your daily Calorie int
               </p>
               <p className='text-5xl font-semibold text-gray-700'>
-                Track your Daily <span className='text-[#ffd60a]'>Calorie intake</span> with MyHealth
+                Track your Daily <span className='text-[#ffd60a]'>Calorie intake</span> with Healthy<span className='text-[#ffd60a]'>AI</span>
               </p>
             </div>
           </div>

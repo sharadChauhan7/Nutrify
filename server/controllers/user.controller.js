@@ -12,7 +12,6 @@ export const setUserStatus = async (req, res) => {
         status.user = user;
         status=calculateCalories(status);
         calculateMacros(status);
-        console.log(status);
         status.weightTracker=[{weight:status.weight, date:new Date()}];
         let userStatus = new UserStatus( status );
         await userStatus.save();
