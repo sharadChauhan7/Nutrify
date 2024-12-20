@@ -27,14 +27,14 @@ export const signup = async (req, res) => {
                     res.send("Error in generating token");
                 }
                 res.cookie('user', JSON.stringify(user), {
-                    httpOnly: false,
+                    httpOnly: true,
                     secure: true,
                     sameSite: 'None',
                     domain: 'https://healthyai.netlify.app' // Replace with your domain
                 });
                 // Set the second cookie
                 res.cookie('authToken', token, {
-                    httpOnly: false,
+                    httpOnly: true,
                     secure: true,
                     sameSite: 'None',
                     domain: 'https://healthyai.netlify.app' // Replace with your domain
@@ -69,13 +69,13 @@ export const login = async (req, res) => {
                     res.send("Error in generating token");
                 }
                 res.cookie('user', JSON.stringify(user), {
-                    httpOnly: false,
+                    httpOnly: true,
                     secure: true,
                     sameSite: 'None',
                     domain: 'https://healthyai.netlify.app' // Replace with your domain
                 });
                 res.cookie('authToken', token, {
-                    httpOnly: false,
+                    httpOnly: true,
                     secure: true,
                     sameSite: 'None',
                     domain: 'https://healthyai.netlify.app' // Replace with your domain
