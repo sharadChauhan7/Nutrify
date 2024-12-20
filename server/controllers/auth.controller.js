@@ -30,14 +30,14 @@ export const signup = async (req, res) => {
                     httpOnly: true,
                     secure: true,
                     sameSite: 'None',
-                    domain: 'https://healthyai.netlify.app' // Replace with your domain
+                    domain: 'healthyai.netlify.app' // Replace with your domain
                 });
                 // Set the second cookie
                 res.cookie('authToken', token, {
                     httpOnly: true,
                     secure: true,
                     sameSite: 'None',
-                    domain: 'https://healthyai.netlify.app' // Replace with your domain
+                    domain: 'healthyai.netlify.app' // Replace with your domain
                 });
                 // Now send the response once after setting both cookies
                 res.send({ token: token, user: user });
@@ -72,13 +72,13 @@ export const login = async (req, res) => {
                     httpOnly: true,
                     secure: true,
                     sameSite: 'None',
-                    domain: 'https://healthyai.netlify.app' // Replace with your domain
+                    domain: 'healthyai.netlify.app' // Replace with your domain
                 });
                 res.cookie('authToken', token, {
                     httpOnly: true,
                     secure: true,
                     sameSite: 'None',
-                    domain: 'https://healthyai.netlify.app' // Replace with your domain
+                    domain: 'healthyai.netlify.app' // Replace with your domain
                 });
                 // Now send the response once after setting both cookies
                 return res.send({ token: token, user: user });
