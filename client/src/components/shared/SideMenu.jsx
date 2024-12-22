@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../features/User/user';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/HLogo.png'
+import axios from 'axios';
 // js-cookie
 import Cookies from 'js-cookie';
 import {
@@ -43,6 +44,17 @@ const Sidebar = () => {
     return location.pathname == path ? `${baseClasses} ${activeClasses}` : baseClasses;
   };
 
+  const logoutUser = async () => {
+    try{
+      let res = await axios.get(import.meta.env.VITE_SERVER_URL+'auth/logout',{ withCredentials: true });
+      console.log(res.data);
+      dispatch(logout());
+      navigate('/auth');
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
   return (
     <nav className='  h-screen w-1/5'>
       {/* Header */}
@@ -64,10 +76,7 @@ const Sidebar = () => {
             <span>{label}</span>
           </NavLink>
         })}
-        <button className='flex justify-start w-3/6 text-lg font-normal text-black hover:text-primary' onClick={() => {
-          dispatch(logout());
-          navigate('/auth');
-        }}>
+        <button className='flex justify-start w-3/6 text-lg font-normal text-black hover:text-primary' onClick={logoutUser}>
           <span className='mr-4'>{navItems[0].icon}</span>
           <span>Logout</span></button>
     </div>

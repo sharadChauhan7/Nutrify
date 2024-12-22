@@ -21,10 +21,13 @@ import { toast } from 'sonner'
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const {isLogin} = useSelector((state)=>state.userInfo);
+  console.log(isLogin);
   useEffect(() => {
-    async function connectServer() {
+    async function checkAuth() {
       try {
-        await axios.get(import.meta.env.VITE_SERVER_URL);
+        setLoading(true);
+        await axios.get(import.meta.env.VITE_SERVER_URL, { withCredentials: true });
         setLoading(false);
         toast.success('Connected to server');
       } catch (error) {
@@ -32,19 +35,18 @@ function App() {
         toast.error('Error connecting to server');
       }
     }
-    connectServer();
+    checkAuth();
   },[]);
   return (
     <Router>
-      {loading ? <Connector /> : <RoutesWithNavbar />}
+      {loading ? <Connector /> : <RoutesWithNavbar isLogin={isLogin} />}
     </Router>
   );
 }
-  function RoutesWithNavbar() {
+  function RoutesWithNavbar({isLogin}) {
     const location = useLocation();
     const noNavbarRoutes = ['/auth', '/register']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
-    const {isLogin} = useSelector((state)=>state.userInfo);
     console.log(showNavbar);
   console.log(location);
 

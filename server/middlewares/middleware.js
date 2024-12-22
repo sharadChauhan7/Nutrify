@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken'
 export const isLogin = async (req,res,next)=>{
+    
     try{
         const {authToken} = req.cookies;
+        
     if(!authToken){
         res.status(401).send({redirectUrl:"/auth"});
     }

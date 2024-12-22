@@ -11,39 +11,23 @@ export const signup = async (req, res) => {
         if (userExists) {
             return res.status(400).json({ error: "User already exists" });
         }
-        bcrypt.hash(password, 15, async function (err, hash) {
-            if (err) {
-                res.status(400).send("Error in hashing password");
-            };
+        const hash = bcrypt.hash(password, 15);
 
-            password = hash
+        password = hash;
             
-            let user = new User({ name, email, password });
+        let user = new User({ name, email, password });
             
-            await user.save();
+        await user.save();
 
-            jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' }, async function (err, token) {
-                if (err) {
-                    res.send("Error in generating token");
-                }
-                res.cookie('user', JSON.stringify(user), {
-                    httpOnly: true,
-                    secure: true,
-                    sameSite: 'None',
-                    // Replace with your domain
-                });
-                // Set the second cookie
-                res.cookie('authToken', token, {
-                    httpOnly: true,
-                    secure: true,
-                    sameSite: 'None',
-                    // Replace with your domain
-                });
-                // Now send the response once after setting both cookies
-                res.send({ token: token, user: user });
-            });
-
-        });
+            const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' });
+            const options = {
+                httpOnly: false,
+                secure: true
+            }
+            res.status(200)
+            .cookie('user', JSON.stringify(user), options)
+            .cookie('authToken', token, options)
+            .send({ token: token, user: user});
     }
     catch (err) {
         // console.log error message
@@ -62,31 +46,20 @@ export const login = async (req, res) => {
         }
         
         const match = await bcrypt.compare(password, user.password);
-        if (user && match) {
-            console.log("match");
-            jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' }, async function (err, token) {
-                if (err) {
-                    res.send("Error in generating token");
-                }
-                res.cookie('user', JSON.stringify(user), {
-                    httpOnly: true,
-                    secure: true,
-                    sameSite: 'None',
-                    // Replace with your domain
-                });
-                res.cookie('authToken', token, {
-                    httpOnly: true,
-                    secure: true,
-                    sameSite: 'None',
-                    // Replace with your domain
-                });
-                // Now send the response once after setting both cookies
-                return res.send({ token: token, user: user });
-            });
+        if (!user && !match) {
+            throw new Error("User not found");
         }
-        else {
-            res.status(400).send("Invalid Credentials");
+        console.log("match");
+        const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' })
+        const options = {
+            httpOnly: false,
+            secure: true
         }
+        res
+        .status(200)
+        .cookie('user', JSON.stringify(user), options)
+        .cookie('authToken', token, options)
+        .send({ token: token, user: user });
     } catch (err) {
         console.log(err.message);
         res.status(400).send(err.message);
@@ -108,5 +81,32 @@ export const updateUser = async (req,res)=>{
         res.status(400).send("Error in updating user");
     }
 
+}
+
+export const logout = async (req,res)=>{
+    console.log("logout triggered");
+    res.clearCookie('user');
+    res.clearCookie('authToken');
+    res.status(200).send("Logged out successfully");
+}
+export const isLogin = async (req,res)=>{
+    console.log("isLogin triggered");
+
+    try{
+
+        console.log(JSON.stringify(req.cookies));
+        const {authToken} = req.cookies;
+        console.log(authToken);
+        let user = req.cookies.user;
+        if(user){
+            res.status(200).send("User is logged in");
+        }
+        else{
+            res.status(400).send("User is not logged in");
+        }
+    }
+    catch(e){
+        res.status(400).send("User is not logged in");
+    }
 }
 
