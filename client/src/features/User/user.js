@@ -15,6 +15,13 @@ const isLogin = async ()=>{
         return false;
     }
 }
+async function initializeState() {
+    const loginStatus = await isLogin();
+    return {
+        ...initialState,
+        isLogin: loginStatus
+    };
+}
 const initialState = {
     userInfo:{
         name:"",
@@ -23,7 +30,7 @@ const initialState = {
         phone:""
     },
     // Check if usre is in cookies or not 
-    isLogin:await isLogin()
+    isLogin:false
 }
 const userSlice = createSlice({
     name:"userInfo",
@@ -44,13 +51,20 @@ const userSlice = createSlice({
         login:(state,action)=>{
             state.isLogin=true;
         },
+        setLoginStatus: (state, action) => {
+            state.isLogin = action.payload;
+        },
         logout:(state,action)=>{
-            Cookies.remove('user');
             Cookies.remove('authToken');
             state.isLogin=false;
         }
     }})
 
-export const {setName,setEmail,setPassword,setPhone,login,logout}=userSlice.actions
+export const {setName,setEmail,setPassword,setPhone,login,logout,setLoginStatus}=userSlice.actions
 
-export default userSlice.reducer
+export default userSlice.reducer;
+
+export const initializeUserState = () => async (dispatch) => {
+    const state = await initializeState();
+    dispatch(setLoginStatus(state.isLogin));
+};

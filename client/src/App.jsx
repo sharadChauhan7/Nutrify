@@ -17,12 +17,15 @@ import Connector from './components/shared/Connector.jsx'
 import Notfound from './pages/Notfound.jsx'
 import axios from 'axios'
 import { toast } from 'sonner'
+import { useDispatch } from 'react-redux'
+import { initializeUserState } from './features/User/user.js'
 
 // Get user id rom url using useParams
 
 function App() {
   const [loading, setLoading] = useState(true);
   const {isLogin} = useSelector((state)=>state.userInfo);
+  const dispatch = useDispatch();
   console.log(isLogin);
   // const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
@@ -39,6 +42,10 @@ function App() {
     }
     checkAuth();
   },[]);
+  useEffect(() => {
+    dispatch(initializeUserState());
+  }, [dispatch]);
+
   return (
     <Router>
       {loading ? <Connector /> : <RoutesWithNavbar isLogin={isLogin} />}

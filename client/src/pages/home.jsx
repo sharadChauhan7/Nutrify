@@ -78,4 +78,4 @@ console.log(ditePlan);
   )
 }
 
-export default Home
+export default Home;
