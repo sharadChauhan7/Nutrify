@@ -22,10 +22,10 @@ export const signup = async (req, res) => {
             const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' });
             const options = {
                 httpOnly: true,
-                secure: true
+                secure: true,
+                sameSite: 'none',
             }
             res.status(200)
-            .cookie('user', JSON.stringify(user), options)
             .cookie('authToken', token, options)
             .send({ token: token, user: user});
     }
@@ -53,11 +53,11 @@ export const login = async (req, res) => {
         const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' })
         const options = {
             httpOnly: true,
-            secure: true
+            secure: true,
+            sameSite: 'none'
         }
         res
         .status(200)
-        .cookie('user', JSON.stringify(user), options)
         .cookie('authToken', token, options)
         .send({ token: token, user: user });
     } catch (err) {
