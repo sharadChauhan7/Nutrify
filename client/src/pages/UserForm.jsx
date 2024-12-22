@@ -28,7 +28,7 @@ function Form() {
           );
             if(response.status===200){
                 dispatch(setFlow(0));
-              dispatch(login());
+                dispatch(login());
             }
         }
         catch(e){

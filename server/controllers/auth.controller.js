@@ -11,11 +11,11 @@ export const signup = async (req, res) => {
         if (userExists) {
             return res.status(400).json({ error: "User already exists" });
         }
-        const hash = bcrypt.hash(password, 15);
+        const hash = await bcrypt.hash(password, 15);
 
         password = hash;
             
-        let user = new User({ name, email, password });
+        let user =  new User({ name, email, password });
             
         await user.save();
 
@@ -92,15 +92,14 @@ export const isLogin = async (req,res)=>{
     console.log("isLogin triggered");
 
     try{
-
-        console.log(JSON.stringify(req.cookies));
         const {authToken} = req.cookies;
-        if(authToken){
-            res.status(200).send("User is logged in");
+        if(!authToken){
+            return res.status(400).send("User is not logged in");
+                
         }
-        else{
-            res.status(400).send("User is not logged in");
-        }
+           const result =  jwt.verify(authToken,'meninblack');
+           const {user}  = result;
+           res.status(200).send({user:user});
     }
     catch(e){
         res.status(400).send("User is not logged in");

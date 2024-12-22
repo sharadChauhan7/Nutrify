@@ -23,6 +23,7 @@ import { toast } from 'sonner'
 function App() {
   const [loading, setLoading] = useState(true);
   const {isLogin} = useSelector((state)=>state.userInfo);
+  console.log(isLogin);
   // const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     async function checkAuth() {

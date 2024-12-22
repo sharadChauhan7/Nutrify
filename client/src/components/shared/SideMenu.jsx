@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 // import Logo from '../assets/Logo.svg';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../features/User/user';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/HLogo.png'
+
 import axios from 'axios';
 // js-cookie
 import Cookies from 'js-cookie';
@@ -17,11 +18,25 @@ import {
   PlayCircleFilledWhiteOutlined as PlaygroundIcon,
 } from '@mui/icons-material';
 import FeedbackIcon from '@mui/icons-material/Feedback';
+import { use } from 'react';
 
 
 const Sidebar = () => {
-  let user = Cookies.get('user');
-  user = user && JSON.parse(user);
+  const [user , setUser] = useState(null);
+  useEffect(()=>{
+    async function getUser(){
+      try{
+        let res = await axios.get(import.meta.env.VITE_SERVER_URL+'auth/isLogin',{ withCredentials: true });
+        if(res.status==200){
+          setUser(res.data.user);
+        }
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    getUser();
+  },[]);
   const navigate = useNavigate();
 
   const navItems = [

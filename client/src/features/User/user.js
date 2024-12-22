@@ -23,7 +23,7 @@ const initialState = {
         phone:""
     },
     // Check if usre is in cookies or not 
-    isLogin:isLogin()
+    isLogin:await isLogin()
 }
 const userSlice = createSlice({
     name:"userInfo",

@@ -5,9 +5,9 @@ import {isLogin} from '../middlewares/middleware.js'
 
 const router = express.Router({mergeParams:true});
 
-router.get('/generate',generateDiet);
+router.get('/generate',isLogin,generateDiet);
 router.get('/',isLogin,getDiet);
 router.post('/alternate',isLogin,generateAlternate);
-router.patch('/update',updateDiet);
+router.patch('/update',isLogin,updateDiet);
 
 export default router;

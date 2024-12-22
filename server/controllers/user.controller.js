@@ -7,8 +7,9 @@ import {calculateCalories,calculateMacros} from '../util/calorieCounter.js'
 export const setUserStatus = async (req, res) => {
     try {
         let  status  = req.body;
-        let user = req.cookies.user;
-        user = await JSON.parse(user);
+        console.log(status);
+        let user = req.user;
+        console.log(user);
         status.user = user;
         status=calculateCalories(status);
         calculateMacros(status);
@@ -73,7 +74,7 @@ export const updateStatusDite = async (req,res)=>{
 
         let {foodAllergies,ditePreference,diteType} = req.body;
         // Conver json to jsObject
-        let {_id}= await JSON.parse(req.cookies.user);
+        let {_id}= await JSON.parse(req.user);
         let Status = await UserStatus.findOne({user:_id});
         // Update status
         Status.foodAllergies = foodAllergies;

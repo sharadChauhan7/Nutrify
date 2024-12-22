@@ -9,7 +9,7 @@ dotenv.config();
 export const generateDiet = async (req,res)=>{
     try{
         
-        let {_id} = JSON.parse(req.cookies.user);
+        let {_id} = req.user;
         const user = await UserStatus.findOne({user:_id});
         // remove weightTracker key in user
         user.weightTracker=[];
@@ -50,7 +50,7 @@ export const getDiet = async (req,res)=>{
 
 export const generateAlternate = async (req,res)=>{
     try{
-        let {_id} = JSON.parse(req.cookies.user);
+        let {_id} = req.user;
     const ditePlan = await UserStatus.findOne({user:_id});
     let {foodAllergies,dietPreference,dietType} = ditePlan;
     // console.log(process.env.ALTERDITE_PROMPT);
@@ -70,7 +70,7 @@ export const generateAlternate = async (req,res)=>{
 
 export const updateDiet = async (req,res)=>{
     try{
-        let {_id} = JSON.parse(req.cookies.user);
+        let {_id}=req.user;
         let newMeal = req.body.newMeal;
 
 
