@@ -85,7 +85,6 @@ export const updateUser = async (req,res)=>{
 
 export const logout = async (req,res)=>{
     console.log("logout triggered");
-    res.clearCookie('user');
     res.clearCookie('authToken');
     res.status(200).send("Logged out successfully");
 }
@@ -96,9 +95,7 @@ export const isLogin = async (req,res)=>{
 
         console.log(JSON.stringify(req.cookies));
         const {authToken} = req.cookies;
-        console.log(authToken);
-        let user = req.cookies.user;
-        if(user){
+        if(authToken){
             res.status(200).send("User is logged in");
         }
         else{

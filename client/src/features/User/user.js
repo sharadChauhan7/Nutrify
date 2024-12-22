@@ -1,5 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from 'js-cookie';
+import axios from 'axios';
+
+const isLogin = async ()=>{
+    try{
+        let res = await axios.get(import.meta.env.VITE_SERVER_URL+'auth/isLogin',{ withCredentials: true });
+        if(res.status==200){
+            return true;
+        }
+        return false;
+    }
+    catch(err){
+        console.log(err);
+        return false;
+    }
+}
 const initialState = {
     userInfo:{
         name:"",
@@ -8,8 +23,7 @@ const initialState = {
         phone:""
     },
     // Check if usre is in cookies or not 
-    isLogin:Cookies.get('authToken')?true:false
-
+    isLogin:isLogin()
 }
 const userSlice = createSlice({
     name:"userInfo",

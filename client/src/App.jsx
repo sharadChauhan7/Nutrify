@@ -14,6 +14,7 @@ import SideMenu from './components/shared/SideMenu.jsx'
 import Review from './pages/Review.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Connector from './components/shared/Connector.jsx'
+import Notfound from './pages/Notfound.jsx'
 import axios from 'axios'
 import { toast } from 'sonner'
 
@@ -22,7 +23,7 @@ import { toast } from 'sonner'
 function App() {
   const [loading, setLoading] = useState(true);
   const {isLogin} = useSelector((state)=>state.userInfo);
-  console.log(isLogin);
+  // const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -31,8 +32,8 @@ function App() {
         setLoading(false);
         toast.success('Connected to server');
       } catch (error) {
-        console.error('Error connecting to server:', error);
-        toast.error('Error connecting to server');
+        console.error('Error connecting to server:', error.response.data);
+        toast.error(error.response.data);
       }
     }
     checkAuth();
@@ -45,7 +46,7 @@ function App() {
 }
   function RoutesWithNavbar({isLogin}) {
     const location = useLocation();
-    const noNavbarRoutes = ['/auth', '/register']; 
+    const noNavbarRoutes = ['/auth', '/register','/meals']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
     console.log(showNavbar);
   console.log(location);
@@ -84,7 +85,9 @@ function App() {
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
-          </Route> 
+          </Route>
+           {/*Page not found route  */}
+          <Route path='*' element={<Notfound />} />
       </Routes>
     </div>
 
