@@ -12,9 +12,10 @@ export const generateDiet = async (req,res)=>{
         let {_id} = req.user;
         const user = await UserStatus.findOne({user:_id});
         // remove weightTracker key in user
+        console.log("Generating Dite");
+        console.log(user);
         user.weightTracker=[];
         let prompt =user+' \n '+process.env.DITE_PROMPT;
-        console.log("Generating Dite");
         let ditePlan = await generateData(prompt);
         // const responseText = data;
         ditePlan = ditePlan.replace(/```json|```/g, '');

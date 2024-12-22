@@ -74,7 +74,7 @@ export const updateStatusDite = async (req,res)=>{
 
         let {foodAllergies,ditePreference,diteType} = req.body;
         // Conver json to jsObject
-        let {_id}= await JSON.parse(req.user);
+        let {_id}= await req.user;
         let Status = await UserStatus.findOne({user:_id});
         // Update status
         Status.foodAllergies = foodAllergies;

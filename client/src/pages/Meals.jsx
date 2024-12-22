@@ -40,7 +40,7 @@ function Meals() {
           {/* <div className="relative bg-white border-2 border-red-500 rounded-lg overflow-hidden shadow-xl max-w-screen w-full m-4 transition ease-out duration-300 transform "> */}
             {/* Modal panel */}
             {/* <div className=" max-w-screen-md p-6 " style={{ maxHeight: '70vh', backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '0.375rem', boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.1)' }}> */}
-              {meals?<div className='flex items-center h-full font-semibold justify-center text-5xl'>No Meals Found</div>:meals.reverse().map((meal, idx) => {
+              {meals.length==0?<div className='flex items-center h-full font-semibold justify-center text-5xl'>No Meals Found</div>:meals.reverse().map((meal, idx) => {
                 return (
                   <div className=' border-2 m-2 rounded-3xl p-2 bg-slate-50 overflow-x-auto no-scrollbar ' key={nanoid()} >
                     <div className='text-4xl my-2 font-bold text-gray-800'>Date: {meal.date}</div>
