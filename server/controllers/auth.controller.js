@@ -21,7 +21,7 @@ export const signup = async (req, res) => {
 
             const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' });
             const options = {
-                httpOnly: false,
+                httpOnly: true,
                 secure: true
             }
             res.status(200)
@@ -52,7 +52,7 @@ export const login = async (req, res) => {
         console.log("match");
         const token = jwt.sign({ user }, process.env.JWT_KEY, { expiresIn: '7d' })
         const options = {
-            httpOnly: false,
+            httpOnly: true,
             secure: true
         }
         res

@@ -46,10 +46,10 @@ const Sidebar = () => {
 
   const logoutUser = async () => {
     try{
-      let res = await axios.get(import.meta.env.VITE_SERVER_URL+'auth/logout',{ withCredentials: true });
-      console.log(res.data);
-      dispatch(logout());
-      navigate('/auth');
+      // let res = await axios.get(import.meta.env.VITE_SERVER_URL+'auth/logout',{ withCredentials: true });
+      // console.log(res.data);
+      // dispatch(logout());
+      // navigate('/auth');
     }
     catch(err){
       console.log(err);
