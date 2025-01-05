@@ -11,7 +11,7 @@ function Auth() {
     <div className='py-20 px-36 bg-slate-300 w-full h-screen'>
       <div className='bg-white flex h-[80vh]'>
       {auth && <div className='w-3/5 px-24 py-16'>
-          <h1 className='font-medium text-xl mb-10'>Interective Brand</h1>
+          <h1 className='font-medium text-xl mb-10'>Demo Account</h1>
            <Login_Component toggleAuth={()=>setAuth(!auth)}/>
         </div>}
         <div className='w-2/5'>
