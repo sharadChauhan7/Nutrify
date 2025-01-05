@@ -62,7 +62,7 @@ This project is open-source and does not have a specific license. Feel free to u
 
 For inquiries or support related to HealthyAI, please reach out via:
 
-- Instagram: [Your Instagram Handle](https://www.instagram.com/sharad.s.chauhan/reels)
-- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/sharad-chauhan-24a62126a/)
+- Instagram: [ Instagram ](https://www.instagram.com/sharad.s.chauhan/reels)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/sharad-chauhan-24a62126a/)
 
 Your feedback and suggestions are greatly appreciated!
