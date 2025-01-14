@@ -10,7 +10,6 @@ import Profile from './pages/Profile.jsx'
 import Meals from './pages/Meals.jsx'
 import Dite from './pages/Diet.jsx'
 import { useSelector } from 'react-redux'
-import SideMenu from './components/shared/SideMenu.jsx'
 import Review from './pages/Review.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Connector from './components/shared/Connector.jsx'
@@ -19,6 +18,11 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
 import { initializeUserState } from './features/User/user.js'
+
+// Testing 
+
+import SideBar from './components/shared/SideBar.jsx'
+
 
 // Get user id rom url using useParams
 
@@ -56,8 +60,6 @@ function App() {
     const location = useLocation();
     const noNavbarRoutes = ['/auth', '/register','/meals']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
-    console.log(showNavbar);
-  console.log(location);
 
   useEffect(() => {
     const routeTitles = {
@@ -77,19 +79,20 @@ function App() {
   return (
     <>
     <div className='flex overflow-auto'>
-    {showNavbar && <SideMenu />}
+    {showNavbar && <SideBar />}
+
     <Routes>
           <Route path='/auth' element={<Privateroute user={!isLogin} path='/'>
             <Auth />
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>
+            {/* <Route path='/test' element={<Test/>} /> */}
             <Route path='/' element={<Home />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/meals/:id' element={<Meals />} />
             <Route path='/diet' element={<Dite />} />
             <Route path='/review' element={<Review />} />
-
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />

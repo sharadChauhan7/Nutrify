@@ -42,7 +42,7 @@ async function handleSignup(e){
   return (
     <form className="w-full" >
       <div className="flex justify-between">
-        <h1 className="text-4xl font-semi-bold mb-5">Signup</h1>
+        <h1 className="text-4xl max-sm:text-3xl  font-semi-bold mb-5">Signup</h1>
         {/* <Stack position={"relative"} spacing={0} width="3rem">
           <Avatar sx={{ height: "4rem", width: "4rem", objectFit: "cover" }} src={yourAvatar.preview} />
           <IconButton
@@ -94,7 +94,7 @@ async function handleSignup(e){
         />
       </div>
       <div className="mb-5">
-        <button className="w-full bg-black text-xl text-white py-2 rounded-md" onClick={handleSignup} >
+        <button className="w-full max-xs:text-lg max-xs:py-1 bg-black text-xl text-white py-2 rounded-md" onClick={handleSignup} >
           {isloading?<DotLoading/>:"Signup"}
         </button>
       </div>

@@ -66,7 +66,7 @@ function Review() {
 
 
     return (
-        <div className='h-screen w-4/5 flex flex-col overflow-auto gap-4 bg-slate-50 p-8'>
+        <div className='h-screen w-full mt-10  flex flex-col overflow-auto gap-4 bg-slate-50 p-8'>
             <p className=' font-bold text-5xl'>Review</p>
 
             {isReviewed?        <div className='h-screen border-2 rounded-3xl bg-white w-full flex justify-center items-center'>

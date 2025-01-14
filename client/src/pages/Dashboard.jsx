@@ -90,7 +90,7 @@ console.log(userMeals);
   }
 
   return (
-    !loading && <div className='h-screen w-4/5 flex flex-col overflow-auto gap-4 bg-slate-50 p-8'>
+    !loading && <div className='h-screen w-full flex mt-10 flex-col overflow-auto gap-4 bg-slate-50 p-8'>
       <p className=' font-bold text-5xl'>Dashboard</p>
       <div className='h-screen border-2 p-4 rounded-3xl overflow-y-auto flex flex-col gap-4 bg-gray-200 w-full '>
         <DashboardCard MyChart={WeightChart} cardData={weightData} chartData={userWeight} updateData={updateWeight} type="weight" target={userStatus.target_weight} />

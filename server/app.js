@@ -28,7 +28,7 @@ const _dirname = path.dirname("");
 
 
 const corsOptions = {
-  origin: ['http://localhost:5173','https://healthyai.netlify.app'],
+  origin: ['http://localhost:5173','https://healthyai.netlify.app','http://192.168.1.13:5173'],
   credentials: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   optionsSuccessStatus: 200

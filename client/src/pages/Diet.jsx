@@ -36,7 +36,7 @@ function Diet() {
     <>
   {RecipieModalOpen.open && <RecipieModal data={RecipieModalOpen.data} close={setRecipieModalOpen} choiceModal={setChoiceModal}  />}
   {choiceModal.open && <AlternateModal choiceModal={choiceModal} fullDiet={diet} close={setChoiceModal} />}
-      {!diet ? (<div className=' w-4/5 bg-slate-50'>
+      {!diet ? (<div className=' w-full bg-slate-50 '>
         <div className='h-screen border-2 w-full flex justify-center items-center'>
           <div className='flex flex-col justify-center items-center w-2/5 gap-5'>
             <h1 className='text-3xl font-bold text-center'>Lets Create a dite plan for you</h1>
@@ -48,7 +48,7 @@ function Diet() {
         <DiteModal val={modelOpen} close={setModelOpen} refreshTrigger={refreshData} /></div>) :
         (
 
-          <div className='w-4/5 h-screen overflow-auto bg-slate-50 p-8'>
+          <div className='w-full h-screen mt-10 overflow-auto bg-slate-50 p-8'>
             <p className=' font-bold text-5xl pb-4'>Diet Plan</p>
             <div key={nanoid()} className=' p-3  grid grid-flow-col grid-rows-5 gap-3  bg-gray-200 overflow-auto overflow-y-scroll  rounded-xl'>
               {diet && (Object.keys(diet.planedDite).map((day, index) => {

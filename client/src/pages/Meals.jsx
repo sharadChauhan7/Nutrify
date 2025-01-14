@@ -33,7 +33,7 @@ function Meals() {
     }
   }
   return (
-    <div className='h-screen w-4/5 flex flex-col overflow-auto  bg-slate-50 p-8'>
+    <div className='h-screen w-full flex flex-col overflow-auto mt-10   bg-slate-50 p-8'>
             <p className=' font-bold text-5xl pb-4'>You'r Meals</p>
           <div className='border-2 rounded-3xl bg-gray-200 overflow-auto no-scrollbar h-full overflow-y-scroll  p-1'>
         {/* <div className=" z-10 inset-0 flex items-center justify-center"> */}

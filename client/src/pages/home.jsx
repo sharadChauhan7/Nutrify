@@ -44,7 +44,7 @@ console.log(ditePlan);
   return (
     <>
       <BasicModal modalStat={modalStat} setOpen={setModalStat} />
-      <div className='h-screen w-4/5 bg-slate-50 overflow-auto '>
+      <div className='h-screen w-full bg-slate-50 overflow-auto pt-10'>
         <div className=' h-full grid grid-rows-2 grid-cols-2 gap-2 p-2'>
 
           <div className="p-2">

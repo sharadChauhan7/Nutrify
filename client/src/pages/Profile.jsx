@@ -44,7 +44,7 @@ function Profile() {
   // console.log(refreshTrigger);
   return (
     <>
-    <div className='h-screen w-4/5 flex flex-col overflow-auto gap-4 bg-slate-50 p-8'>
+    <div className='h-screen w-full flex flex-col mt-10 overflow-auto gap-4 bg-slate-50 p-8'>
     <p className=' font-bold text-5xl'>Profile</p>
       {userStatus && <UserInfo userStatus={userStatus} onEditComplete={refreshData} />}
       <div className='flex flex-col h-full w-full gap-4  '>
