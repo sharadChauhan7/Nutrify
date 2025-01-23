@@ -89,10 +89,10 @@ function App() {
             {/* <Route path='/test' element={<Test/>} /> */}
             <Route path='/' element={<Home />} />
             <Route path='/meals/:id' element={<Meals />} />
-            {/* <Route path='/profile' element={<Profile />} />
             <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/profile' element={<Profile />} />
             <Route path='/diet' element={<Dite />} />
-            <Route path='/review' element={<Review />} /> */}
+            <Route path='/review' element={<Review />} />
           </Route> 
           <Route element={<Privateroute user={!isLogin}/>}>
             <Route path='/register' element={<Form />} />
