@@ -115,7 +115,7 @@ export default function SideBar() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        Healthy AI
+                        Nutrify
                     </Typography>
                 </Toolbar>
             </AppBar>

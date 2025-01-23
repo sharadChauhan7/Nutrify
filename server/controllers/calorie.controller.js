@@ -24,18 +24,35 @@ export const getCalories = async(req,res)=>{
         // Finish preparing
         const imagePath = req.file.path;
         let data = await findCalories(imagePath,prompt);
+        console.log("Got Data");
+        console.log(data)
         const responseText = data;
        let cleanText = responseText.replace(/```json|```/g, '');
        cleanText = jsonrepair(cleanText);
        data = JSON.parse(cleanText);
+       console.log("clean data");
+       console.log(data);
 
-        let warning = data.pop();
+        let warning;
+
+        if(data.length>1){
+          warning = data.pop();
+        }
+        else{
+          warning = {
+            foodName: "None",
+            type: "healthy",
+            AlternateDescription: "Nothing Unhealthy detected",
+          }
+        }
         // Setting food Items
         if(!data){
           return res.status(400).send("No image found");
         }
         const foodItems = await createFoodItems(data);
+        console.log(foodItems);
         // Calculating total calories
+
         const totalCalories = foodItems.reduce((sum, item) => sum + item.calories_per_serving, 0);
         // Setting meal type
         let mealType = meal_Type();
