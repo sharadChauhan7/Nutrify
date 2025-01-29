@@ -44,99 +44,23 @@ console.log(ditePlan);
   return (
     <>
       <BasicModal modalStat={modalStat} setOpen={setModalStat} />
-      <div className='h-screen w-full bg-slate-50 overflow-auto pt-10 flex flex-wrap'>
-        <div className='flex gap-5 w-full h-full p-5 max-ss:p-1 max-ss:pt-5 max-ss:flex-col' >
-          <div className="p-2 ">
-            <div className=' flex flex-col justify-center items-start h-full px-10 max-ss:px-2 gap-5 '>
-              <p className=' text-2xl max-ss:text-lg rounded-xl p-2 font-semibold text-[#ffd60a] bg-gray-700'>
+      <div className='h-screen w-full bg-slate-50 overflow-auto pt-10'>
+        <div className=' h-full grid grid-rows-2 grid-cols-2 gap-2 p-2'>
+
+          <div className="p-2">
+            <div className=' flex flex-col justify-center items-start h-full px-10 gap-5 '>
+              <p className=' text-2xl rounded-xl p-2 font-semibold text-[#ffd60a] bg-gray-700'>
                 Track your daily Calorie int
               </p>
-              <p className='text-5xl max-ss:text-2xl font-semibold text-gray-700'>
+              <p className='text-5xl font-semibold text-gray-700'>
                 Track your Daily <span className='text-[#ffd60a]'>Calorie intake</span> with Healthy<span className='text-[#ffd60a]'>AI</span>
               </p>
             </div>
           </div>
-
           <div className=" flex  items-center">
-            {null ? <Camera userStatus={userStatus} triggerModal={setModalStat} />:
-            <div className="web flex flex-col justify-center  items-center  w-[35rem] h-[20rem]  shadow-2xl border-2 border-gray-300 rounded-3xl bg-white">
-            <div >
-                <div className="flex justify-between px-4 max-ss:px-2 items-center w-full h-1/2 max-ss:h-1/3">
-                    {/* Circulat loader */}
-                    <div className="border-4 border-yellow-400 rounded-full p-2">
-
-                        {/* change make icon fontSize small for mobile */}
-
-                        {/* <LocalDiningIcon sx={{ 
-                            
-                            fontSize: "3rem"
-
-
-                         }} /> */}
-                         <LocalDiningIcon sx={{ 
-                            
-                            fontSize: "2rem"
-
-
-                         }} />
-
-
-                    </div>
-                    <div>
-                        <h1 className="text-xl max-ss:text-base font-bold text-gray-700">
-                            {calorieStatus.total_calories} of {userStatus.target_calories}
-                        </h1>
-                        <p className="font-bold max-ss:text-base text-gray-500">Cal Eaten</p>
-                    </div>
-                    <div className="flex gap-5 max-ss:gap-2">
-                        <Button
-                            className=" rounded-full mt-10"
-                            variant="contained"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                dispatch(togglewebcam());
-                            }}
-                        >
-                            <PhotoCamera />
-                        </Button>
-                        <div onClick={(e)=>{e.stopPropagation()}} >
-                            <ChooseImage />
-                        </div>
-                    </div>
-                </div>
-                {/* Nutritions dashboard */}
-                <div className="h-1/2   flex flex-wrap  max-ss:px-2 max-ss:py-6   gap-4 justify-between px-6 items-center py-6 ">
-                <Loader
-                            key={1}
-                            label={"Protien"}
-                            percentage={20}
-                            val={25}
-                        />
-                <Loader
-                            key={1}
-                            label={"Protien"}
-                            percentage={20}
-                            val={25}
-                        />
-                <Loader
-                            key={1}
-                            label={"Protien"}
-                            percentage={20}
-                            val={25}
-                        />
-                <Loader
-                            key={1}
-                            label={"Protien"}
-                            percentage={20}
-                            val={25}
-                        />
-                </div>
-                </div>
-            
-            </div>}
-            {/* if screen size is smallr render camera 2  */}
+            {userStatus && <Camera userStatus={userStatus} triggerModal={setModalStat} />}
           </div>
-          {/* <div className="border-2 col-span-2 rounded-3xl bg-white shadow-2xl  p-4">
+          <div className="border-2 col-span-2 rounded-3xl bg-white shadow-2xl  p-4">
           {ditePlan ? <TodaysDiet ditePlan={ditePlan} />:        <div className=' w-full h-full flex justify-center items-center'>
           <div className='flex flex-col justify-center items-center w-2/5 gap-5'>
             <h1 className='text-3xl font-bold text-center'>Lets Create a dite plan for you</h1>
@@ -147,7 +71,7 @@ console.log(ditePlan);
             </Link>
           </div>
         </div>}
-          </div> */}
+          </div>
         </div>
       </div>
     </>

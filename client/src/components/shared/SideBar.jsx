@@ -49,7 +49,8 @@ export default function SideBar() {
         { path: '/profile', icon: <TestsIcon />, label: 'Profile' },
         { path: '/diet', icon: <ProblemsIcon />, label: 'Diet Plan' },
         { path: `/meals/${user ? user._id : ""}`, icon: <CoursesIcon />, label: 'Meals' },
-        { path: '/review', icon: <FeedbackIcon />, label: 'Review' }
+        { path: '/review', icon: <FeedbackIcon />, label: 'Review' },
+        {path: '/voice',icon:<FeedbackIcon/>,label:'Voice'}
     ];
 
     const getLinkClasses = (path) => {

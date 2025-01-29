@@ -17,6 +17,7 @@ import Notfound from './pages/Notfound.jsx'
 import axios from 'axios'
 import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
+import Voice from './pages/Voice.jsx'
 import { initializeUserState } from './features/User/user.js'
 
 // Testing 
@@ -87,6 +88,7 @@ function App() {
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>
             {/* <Route path='/test' element={<Test/>} /> */}
+            <Route path='/voice' element={<Voice />} />
             <Route path='/' element={<Home />} />
             <Route path='/meals/:id' element={<Meals />} />
             <Route path='/dashboard' element={<Dashboard />} />
