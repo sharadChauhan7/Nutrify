@@ -18,6 +18,8 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
 import Voice from './pages/Voice.jsx'
+import Microphone from './pages/Microphone.jsx'
+import MicrophoneButton from './pages/MicrophoneButton.jsx'
 import { initializeUserState } from './features/User/user.js'
 
 // Testing 
@@ -88,7 +90,7 @@ function App() {
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>
             {/* <Route path='/test' element={<Test/>} /> */}
-            <Route path='/voice' element={<Voice />} />
+            <Route path='/voice' element={<MicrophoneButton />} />
             <Route path='/' element={<Home />} />
             <Route path='/meals/:id' element={<Meals />} />
             <Route path='/dashboard' element={<Dashboard />} />

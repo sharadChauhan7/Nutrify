@@ -20,6 +20,8 @@
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
     "dotenv": "^16.4.5",
+    "elevenlabs": "^1.50.4",
+    "framer-motion": "^12.0.6",
     "joi": "^17.13.3",
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
