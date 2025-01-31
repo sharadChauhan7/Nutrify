@@ -101,6 +101,7 @@ const MicrophoneButton = () => {
         if (!input.trim()) return;
 
         setMessages([...messages, { sender: "You", text: input }]);
+        
         setInput("");
     };
 
