@@ -94,7 +94,7 @@ console.log(userMeals);
       <p className=' font-bold text-5xl'>Dashboard</p>
       <div className='h-screen border-2 p-4 rounded-3xl overflow-y-auto flex flex-col gap-4 bg-gray-200 w-full '>
         <DashboardCard MyChart={WeightChart} cardData={weightData} chartData={userWeight} updateData={updateWeight} type="weight" target={userStatus.target_weight} />
-        <DashboardCard MyChart={CalorieChart} cardData={caloriData} chartData={userMeals} updateData={updateCalorie} type="calories" target={userStatus.target_calories}/>
+        {/* <DashboardCard MyChart={CalorieChart} cardData={caloriData} chartData={userMeals} updateData={updateCalorie} type="calories" target={userStatus.target_calories}/> */}
         {/* <DashboardCard MyChart={WeightChart} />
         <DashboardCard MyChart={WeightChart} />
         <DashboardCard MyChart={WeightChart} /> */}

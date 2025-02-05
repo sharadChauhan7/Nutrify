@@ -28,7 +28,7 @@ async function handleSignup(e){
       );
       console.log(userInfo);
     if(response.status===200){
-      console.log(response.data);
+      // localStorage.setItem('token', response.data.token);
       toast.success("Registered successfully");
       setIsLoading(false);
       navigate('/register');

@@ -5,6 +5,7 @@ import dite from './routes/diet.route.js';
 import calorie from './routes/calorie.route.js';
 import review from './routes/review.route.js'
 import dashboard from './routes/dashboard.route.js';
+import userChats from './routes/userChats.route.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
@@ -66,6 +67,7 @@ app.use('/api/calorie', calorie);
 app.use('/api/diet',dite);
 app.use('/api/review',review);
 app.use('/api/dashboard',dashboard);
+app.use('/api/userChats',userChats);
 // Error Handaling
 app.use((req, res, next) => {
   const error = new Error('Not found');

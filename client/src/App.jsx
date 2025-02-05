@@ -18,8 +18,6 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import { useDispatch } from 'react-redux'
 import Voice from './pages/Voice.jsx'
-import Microphone from './pages/Microphone.jsx'
-import MicrophoneButton from './pages/MicrophoneButton.jsx'
 import { initializeUserState } from './features/User/user.js'
 
 // Testing 
@@ -43,8 +41,8 @@ function App() {
         setLoading(false);
         toast.success('Connected to server');
       } catch (error) {
-        console.error('Error connecting to server:', error.response.data);
-        toast.error(error.response.data);
+        console.error('Error connecting to server:', error.response);
+        toast.error(error.response);
       }
     }
     checkAuth();
@@ -90,7 +88,8 @@ function App() {
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>
             {/* <Route path='/test' element={<Test/>} /> */}
-            <Route path='/voice' element={<MicrophoneButton />} />
+            <Route path='/voice' element={<Voice />} />
+            <Route path='/voice/:id' element={<Voice />} />
             <Route path='/' element={<Home />} />
             <Route path='/meals/:id' element={<Meals />} />
             <Route path='/dashboard' element={<Dashboard />} />
@@ -111,4 +110,3 @@ function App() {
 }
 
 export default App
-

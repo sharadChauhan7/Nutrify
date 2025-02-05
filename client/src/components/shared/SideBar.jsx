@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { nanoid } from '@reduxjs/toolkit';
 
 import {
     AssessmentOutlined as DashboardIcon,
@@ -131,7 +132,7 @@ export default function SideBar() {
                     {navItems.map(({ path, icon, label }) => {
                         return (
                             <>
-                                <NavLink key={path} to={path} className={getLinkClasses(path)}>
+                                <NavLink key={nanoid()} to={path} className={getLinkClasses(path)}>
                                     <ListItem key={label} disablePadding sx={{ display: 'block', background: location.pathname == path ? 'rgb(0,0,0,0.1)' : '' }} >
                                         <ListItemButton
                                             sx={[{ minHeight: 48, px: 2.5, },

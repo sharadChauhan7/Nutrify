@@ -29,6 +29,7 @@ function Login_comp({ toggleAuth }) {
       );
       setIsLoading(false);
       if (response.status === 200) {
+        // localStorage.setItem('token', response.data.token);
         toast.success("Logedin successfully");
         dispatch(login());
       }

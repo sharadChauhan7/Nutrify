@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { nanoid } from '@reduxjs/toolkit';
 function Meals() {
-  let { id } = useParams();
   React.useEffect(() => {
     async function getMeals() {
       try {
@@ -26,7 +25,6 @@ function Meals() {
       const response = await axios.delete(`${import.meta.env.VITE_SERVER_URL}calorie/${intake}/meals/${meal}`, {
         withCredentials: true
       });
-      console.log(response.data);
     }
     catch(e){
       console.log(e);
@@ -46,6 +44,7 @@ function Meals() {
                     <div className='text-4xl my-2 font-bold text-gray-800'>Date: {meal.date}</div>
                     <div className='flex'>
                       {meal.meals.map((food,idx)=>{
+                        console.log(food);
                         return (
                           <div className='flex flex-col mx-2 border-2 shadow-xl rounded-xl' key={nanoid()}>
                             {/* <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4> */}
