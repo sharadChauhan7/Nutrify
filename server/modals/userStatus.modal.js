@@ -59,11 +59,6 @@ const userStatusSchema = new Schema({
         default:"",
         required:true
     },
-    disease: {
-        type: [String],
-        default: [],
-        required: true
-    },
     macros: {
         protein: {
             type: Number,

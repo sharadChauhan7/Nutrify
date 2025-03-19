@@ -26,14 +26,10 @@ function Review() {
             })
         }
     }));
-    console.log(loading);
     async function handleSubmit(finalAns) {
         try {
-            console.log(finalAns);
             setLoading(true);
             let result = await axios.post(`${import.meta.env.VITE_SERVER_URL}review/create`, finalAns, { withCredentials: true });
-            console.log(result.data);
-            // console.log(result.data);
             if (result.status === 200) {
                 setIsReviewed(true);
                 toast.success("Review submitted successfully");
@@ -50,7 +46,6 @@ function Review() {
             try {
                 setLoading(true)
                 let result = await axios.get(`${import.meta.env.VITE_SERVER_URL}review`, { withCredentials: true });
-                console.log(result.data);
 
                 setLoading(false);
                 if (result.data[0]) {

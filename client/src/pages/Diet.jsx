@@ -6,6 +6,7 @@ import AlternateModal from '../components/diet/AlternateModal';
 // Nanoid
 import { nanoid } from '@reduxjs/toolkit';
 import { prev } from '../features/User/flow';
+import { toast } from 'sonner';
 function Diet() {
   let [modelOpen, setModelOpen] = React.useState(false);
   let [diet, setDiet] = React.useState(null);
@@ -22,7 +23,7 @@ function Diet() {
     }
     catch (e) {
       setDiet(null);
-      console.log(e);
+      toast.error(e.response.data.message);
     }
   }
   const refreshData = () => {

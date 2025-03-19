@@ -15,7 +15,7 @@ function TodaysMeal({meal,type}) {
         <div className="">
           <div className="h-2/5 ">
             <img
-              src={image[time[type]]}
+              src={meal.image}
               alt="Berry Cereal"
               className="rounded-lg object-cover w-full h-full"
             />

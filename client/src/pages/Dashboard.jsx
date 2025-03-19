@@ -31,7 +31,6 @@ function Dashboard() {
       sub:"Remaining"
     },
   }
-console.log(userMeals);
 
   React.useEffect(() => {
     setLoading(true);
@@ -42,14 +41,10 @@ console.log(userMeals);
         );
         setUserWeight(response.data.weightTracker);
         const mealRespons = await axios.get(`${import.meta.env.VITE_SERVER_URL}calorie/getMeals`, { withCredentials: true });
-        console.log(mealRespons.data);
-        
 
         const userStatres = await axios.get(`${import.meta.env.VITE_SERVER_URL}user/status`,{withCredentials:true});
-        console.log(userStatres.data);
         setUserStatus(userStatres.data);
-      
-        // console.log(response.data);
+
 
         setUserMeals( getLast7DaysMeals(mealRespons.data));
         setLoading(false);
@@ -66,15 +61,12 @@ console.log(userMeals);
   };
 
   async function updateWeight(value){
-    console.log(value);
-    console.log("Value updated");
     try{
       const newWeight = value;
       const res = await axios.post(`${import.meta.env.VITE_SERVER_URL}dashboard/updateUserWeight`,{newWeight},{
         withCredentials:true
       });
 
-      console.log(res.data);
       toast.success(res.data);
       refreshData();
       
@@ -94,7 +86,7 @@ console.log(userMeals);
       <p className=' font-bold text-5xl'>Dashboard</p>
       <div className='h-screen border-2 p-4 rounded-3xl overflow-y-auto flex flex-col gap-4 bg-gray-200 w-full '>
         <DashboardCard MyChart={WeightChart} cardData={weightData} chartData={userWeight} updateData={updateWeight} type="weight" target={userStatus.target_weight} />
-        {/* <DashboardCard MyChart={CalorieChart} cardData={caloriData} chartData={userMeals} updateData={updateCalorie} type="calories" target={userStatus.target_calories}/> */}
+        <DashboardCard MyChart={CalorieChart} cardData={caloriData} chartData={userMeals} updateData={updateCalorie} type="calories" target={userStatus.target_calories}/>
         {/* <DashboardCard MyChart={WeightChart} />
         <DashboardCard MyChart={WeightChart} />
         <DashboardCard MyChart={WeightChart} /> */}

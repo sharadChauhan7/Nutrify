@@ -24,8 +24,6 @@ function Profile() {
           { withCredentials: true } // Important for sending cookies
         );
         const mealRespons = await axios.get(`${import.meta.env.VITE_SERVER_URL}calorie/getMeals`, { withCredentials: true });
-        console.log(mealRespons.data);
-        // console.log(response.data);
         setUserMeals(mealRespons.data);
         setUserStatus(response.data);
       }
@@ -40,8 +38,6 @@ function Profile() {
   const refreshData = () => {
     setRefreshTrigger(!refreshTrigger); // Step 3
   };
-  // Send this fn to util
-  // console.log(refreshTrigger);
   return (
     <>
     <div className='h-screen w-full flex flex-col mt-10 overflow-auto gap-4 bg-slate-50 p-8'>

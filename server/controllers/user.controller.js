@@ -1,4 +1,4 @@
-import { json } from 'express';
+
 import User from '../modals/user.modal.js';
 import UserStatus from '../modals/userStatus.modal.js';
 import cookieParser from 'cookie-parser';
@@ -27,6 +27,7 @@ export const setUserStatus = async (req, res) => {
 export const getUserStatus = async (req, res) => {
     try {
         let user = req.user;
+        console.log(user);
         if(user){
             let userStatus = await UserStatus.findOne({user:user});
             userStatus = await userStatus.populate('user');

@@ -131,8 +131,8 @@ export default function SideBar() {
                 <List >
                     {navItems.map(({ path, icon, label }) => {
                         return (
-                            <>
-                                <NavLink key={nanoid()} to={path} className={getLinkClasses(path)}>
+                            <React.Fragment key={nanoid()}>
+                                <NavLink to={path} className={getLinkClasses(path)}>
                                     <ListItem key={label} disablePadding sx={{ display: 'block', background: location.pathname == path ? 'rgb(0,0,0,0.1)' : '' }} >
                                         <ListItemButton
                                             sx={[{ minHeight: 48, px: 2.5, },
@@ -179,7 +179,7 @@ export default function SideBar() {
                                         </ListItemButton>
                                     </ListItem></NavLink>
 
-                            </>)
+                                    </React.Fragment>)
                     })}
                     <ListItem key='Logout' disablePadding className=' text-3xl font-normal text-black hover:text-primary' sx={{ display: 'block' }} onClick={logoutUser}>
                         <ListItemButton

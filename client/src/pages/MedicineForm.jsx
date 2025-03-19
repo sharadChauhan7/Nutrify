@@ -14,8 +14,6 @@ function MedicineForm() {
     let idx = useSelector((state) => state.flow.value);
     // let idx=1;
     let { medicine } = useSelector((state) => state.medicine);
-    console.log(medicine)
-    console.log(medType);
     const handleSubmit = async () => {
 
     }

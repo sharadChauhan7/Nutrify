@@ -4,6 +4,7 @@ import BasicModal from '../components/shared/BasicModal.jsx'
 import { Link } from 'react-router-dom'
 import TodaysDiet from '../components/diet/TodaysDiet.jsx'
 import axios from 'axios'
+import { toast } from 'sonner'
 function Home() {
   // Home page
   // Change tab title to 'Home'
@@ -28,13 +29,13 @@ function Home() {
         }
       }
       catch (e) {
-        console.log(e);
+        // console.log(e);
+        toast.error(e.response.data.message);
       }
     };
 
     fetchData();
   }, []);
-console.log(ditePlan);
   const [modalStat, setModalStat] = React.useState({
     open: false,
     title: '',

@@ -38,11 +38,8 @@ function Camera({ userStatus ,triggerModal}) {
                 });
             
                 const todaysMeals = response.data[0];
-
-                console.log(todaysMeals);
                 const mealStatus = getMealStatus(todaysMeals);
                 todaysMeals?mealStatus.total_calories = todaysMeals.total_calories:mealStatus.total_calories = 0;
-                console.log(mealStatus);
 
                 if (response.status === 200) {
                     setcalorieStatus(mealStatus);
@@ -54,7 +51,6 @@ function Camera({ userStatus ,triggerModal}) {
         }
         getMeals();
     }, [setcalorieStatus,refreshTrigger]);
-    // console.log(calorieStatus);
     const nutrients = [
         { label: 'Proteins', value: calorieStatus.protein, max: userStatus.macros.protein, unit: 'g' },
         { label: 'Carbs', value: calorieStatus.carbs, max: userStatus.macros.carbs, unit: 'g' },
@@ -127,8 +123,6 @@ function Camera({ userStatus ,triggerModal}) {
     );
 
     async function findCalorie() {
-        console.log("Finding calorie");
-        console.log(calorieStatus.total_calories);
         setIsLoading(true);
         try {
             const resizedImageBlob = await resizeImage(imgSrc, 800, 600); // Example size, adjust as needed
@@ -140,7 +134,6 @@ function Camera({ userStatus ,triggerModal}) {
                 },
                 withCredentials: true,
             });
-            console.log(res.data);
             let description = `Suggestion for ${res.data.warning.foodName} ${res.data.warning.AlternateDescription}`
             triggerModal({open:true,title:'Suggestion',description:description});
 

@@ -44,18 +44,30 @@ function Meals() {
                     <div className='text-4xl my-2 font-bold text-gray-800'>Date: {meal.date}</div>
                     <div className='flex'>
                       {meal.meals.map((food,idx)=>{
-                        console.log(food);
-                        return (
-                          <div className='flex flex-col mx-2 border-2 shadow-xl rounded-xl' key={nanoid()}>
-                            {/* <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4> */}
-                            {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
-                            {food.food_items.map((item,idx)=>{
-                              return (
-                                <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item} />
-                              )
-                            })}
-                          </div>
-                        )
+                        if(food.food_items.length>1){
+                          let item={name:"Multi Item",nutrients:{protein:0,carbs:0,fats:0}};
+                          for(let meal of food.food_items){
+                            item.nutrients.protein+=meal.nutrients.protein;
+                            item.nutrients.carbs+=meal.nutrients.carbs;
+                            item.nutrients.fats+=meal.nutrients.fats;
+                          }
+                        
+                          return (<MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={food.calories} itemName={"Multi Item"} itemData={item} multiValue={food.food_items} />)
+                        }
+                        else{
+                          return (
+                            <div className='flex flex-col mx-2 border-2 shadow-xl rounded-xl' key={nanoid()}>
+                              {/* <h4 className='text-3xl font-bold text-gray-700'>Meal :{idx+1}</h4> */}
+                              {/* <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={()=>{deleteMeal(meal._id,food._id)}}>Delete</button> */}
+                              {food.food_items.map((item,idx)=>{
+                                return (
+                                  <MealCard key={nanoid()} mealType={food.meal_type} image_url={food.image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item}  />
+                                )
+                              })}
+                            </div>
+                          )
+
+                        }
                       })}
                     </div>
                   </div>
@@ -70,9 +82,10 @@ function Meals() {
   )
 }
 
-const MealCard = ({ mealType,image_url, calories, itemName ,itemData }) => 
+const MealCard = ({ mealType,image_url, calories, itemName ,itemData,multiValue=[] }) => 
   {
-  return <div className="bg-white rounded-xl shadow-lg max-w-64 min-w-64 max-h-80 min-h-80 p-5 ">
+    const [showMultimeal, setShowMultimeal] = React.useState(false);
+  return(<> <div onMouseEnter={()=>{setShowMultimeal(true)}} onMouseLeave={()=>{setShowMultimeal(false)}} className="bg-white rounded-xl shadow-lg max-w-64 min-w-64 max-h-80 min-h-80 p-5 ">
 
   <div className="flex flex-col gap-3">
     {/* Image Section */}
@@ -93,7 +106,7 @@ const MealCard = ({ mealType,image_url, calories, itemName ,itemData }) =>
 
       <div className="flex justify-evenly mt-4 ">
         <div className="text-center ">
-          <p className="text-xl font-semibold">{itemData.calories_per_serving}</p>
+          <p className="text-xl font-semibold">{calories}</p>
           <p className="text-xs text-gray-500">CALORIES</p>
         </div>
         <div className="text-center">
@@ -112,6 +125,16 @@ const MealCard = ({ mealType,image_url, calories, itemName ,itemData }) =>
     </div>
   </div>
   </div>
+  {multiValue.length>1&& showMultimeal&&
+  <div className='border-2  gap-2 flex mx-2 shadow-xl rounded-xl'>
+                            {multiValue.map((item,idx)=>{
+                                return (
+                                  <MealCard key={nanoid()} mealType={mealType} image_url={image_url} calories={item.calories_per_serving} itemName={item.name} itemData={item}  />
+                                )
+                              })}
+  </div>  }
+  </>
+)
   };
 
 

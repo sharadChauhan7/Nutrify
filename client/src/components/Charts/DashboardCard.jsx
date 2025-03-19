@@ -3,8 +3,6 @@ import WeightChart from "./WeightChart";
 import UpdateDisplay from "./UpdateDisplay";
 import { useState } from "react";
 const DashboardCard = ({MyChart,chartData,cardData,updateData,type,target=0}) => {
-  // console.log(chartData[chartData.length-1].weight)
-  console.log(cardData);
 
   const [update, setUpdate] = useState(false);
   return (

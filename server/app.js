@@ -16,7 +16,6 @@ import 'dotenv/config'
 
 const app = express();
 import path from 'path';
-import { set } from 'mongoose';
 
 const _dirname = path.dirname("");
 
@@ -45,8 +44,8 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-// app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
-// app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
 
 
 // Http server

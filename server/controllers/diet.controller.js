@@ -3,6 +3,7 @@ import {generateData} from '../AI/gemini.js'
 import DitePlan from '../modals/dietPlan.modal.js'
 import dotenv from 'dotenv';
 import {planDite} from '../util/ditePlanner.js'
+import {setDietImages,setAlternateDietImages} from '../util/ditePlanner.js'
 import { set } from 'mongoose';
 dotenv.config();
 
@@ -21,11 +22,19 @@ export const generateDiet = async (req,res)=>{
         ditePlan = ditePlan.replace(/```json|```/g, '');
         ditePlan = JSON.parse(ditePlan);
         // Add useId
+        if(ditePlan && !ditePlan.breakfast){
+            if(ditePlan.dietPlan){
+                ditePlan = ditePlan.dietPlan;
+            }
+        }
         ditePlan.user = _id;
-        ditePlan = new DitePlan(ditePlan);
-        await ditePlan.save();
-
-        res.status(200).json({ditePlan});
+        let newdiet = await setDietImages(ditePlan);
+        // let newdiet = ditePlan;
+        console.log(JSON.stringify(newdiet));
+        newdiet = new DitePlan(newdiet);
+        console.log(newdiet);
+        await newdiet.save();
+        res.status(200).json({newdiet});
     }
     catch(e){
         console.log(e);
@@ -60,7 +69,9 @@ export const generateAlternate = async (req,res)=>{
     alternateMelas = alternateMelas.replace(/```json|```/g, '');
     alternateMelas = JSON.parse(alternateMelas);
 
-    res.status(200).send(alternateMelas);
+    let newMeals = await setAlternateDietImages(alternateMelas);
+
+    res.status(200).send(newMeals);
     
     }
     catch(e){

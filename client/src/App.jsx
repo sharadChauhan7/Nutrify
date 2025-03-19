@@ -1,7 +1,7 @@
 import {React,useEffect,useState} from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/shared/navbar.jsx'
-import { useParams,useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Privateroute from './components/auth/privateroute.jsx'
 import Form from './pages/UserForm.jsx'
 import Home from './pages/Home.jsx'
@@ -31,7 +31,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const {isLogin} = useSelector((state)=>state.userInfo);
   const dispatch = useDispatch();
-  console.log(isLogin);
   // const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     async function checkAuth() {
@@ -41,7 +40,7 @@ function App() {
         setLoading(false);
         toast.success('Connected to server');
       } catch (error) {
-        console.error('Error connecting to server:', error.response);
+        console.log('Error connecting to server:', error.response);
         toast.error(error.response);
       }
     }

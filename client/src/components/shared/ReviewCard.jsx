@@ -1,10 +1,9 @@
 import React from 'react'
 import Rating from '@mui/material/Rating';
-import DotLoading from './DotLoading';
+import { nanoid } from '@reduxjs/toolkit';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 function ReviewCard({ ques,loading,reviewAns,handleSubmit,setReviewAns, flow }) {
-    console.log(reviewAns);
     function handelChange(event, newValue) {
         setReviewAns((prev) => {
             return prev.map((item, idx) => {
@@ -24,8 +23,6 @@ function ReviewCard({ ques,loading,reviewAns,handleSubmit,setReviewAns, flow }) 
             })});
     }
     function handleSubRating(event, newValue, index) {
-        console.log(event.target.name, newValue);
-        // Update the reviewAns state at the index of ques.id and subQuestions[idx]
         setReviewAns((prev) => {
             return prev.map((item) => {
                 if (item.position === ques.id) {
@@ -115,7 +112,7 @@ function ReviewCard({ ques,loading,reviewAns,handleSubmit,setReviewAns, flow }) 
                     <p className='text-3xl font-semibold text-gray-600'>Sub Questions</p>
                     {/* Sub review Question */}
                     {ques.subQuestion.map((subQues, idx) => {
-                        return <div className='flex  my-4  py-2 justify-between items-center '>
+                        return <div key={nanoid()} className='flex  my-4  py-2 justify-between items-center '>
                             <p className='text-xl '>{subQues}</p>
                             <Rating
                                 name="subQuestionText"

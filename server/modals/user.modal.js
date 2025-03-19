@@ -5,12 +5,10 @@ import 'dotenv/config'
 
 let url=process.env.MONGO_URL;
 
-main().then((res)=>{console.log("Connection is up")}).catch(err => console.log(err));
-console.log("Hello");
-
 async function main() {
-  await mongoose.connect(url);
+    await mongoose.connect(url);
 }
+main().then((res)=>{console.log("Connection is up")}).catch(err => console.log(err));
 
 
 const userSchema = new Schema({

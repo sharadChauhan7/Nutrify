@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { nanoid } from '@reduxjs/toolkit'
 function InfoCard({data,title}) {
 
     return (
@@ -11,12 +11,10 @@ function InfoCard({data,title}) {
             <div className='grid grid-cols-2  gap-x-10 gap-y-5  py-10'>
                 {Object.keys(data).map((key,index)=>{
                     return(
-                        <>
-                        <div  className=''>
+                        <div key={nanoid()}  className=''>
                             <h1 className='text-xl font-semibold text-gray-700'>{key.toUpperCase()}</h1>
                             <h1 className='text-2xl text-gray-700'>{data[key]}</h1>
                         </div>
-                        </>
                     )
                 })}
 

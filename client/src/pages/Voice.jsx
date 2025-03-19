@@ -118,6 +118,7 @@ const Voice = () => {
         let timestamps = {
             userSentAt: new Date(Date.now())
         }
+        // input = input+" Answer in minimum possible words"
         
         setInput("");
         const res = await axios.post('http://127.0.0.1:5000/analyze_query', { query: input });
@@ -131,13 +132,16 @@ const Voice = () => {
                 withCredentials: true
             }
         );
-
-    
+        
+        
         setMessages((prev) => {
             let newMessages = [...prev];
             newMessages[newMessages.length - 1].aiResponse = res.data.response;
             return newMessages;
         });
+        setAudioSrc((prev)=>"");
+        const audioBase64 = await texttospeech(res.data.response);
+        setAudioSrc((prev)=>`data:audio/mp3;base64,${audioBase64}`);
         if(!id){
             navigate(`${saveChat.data.id}`);
         }
@@ -245,6 +249,12 @@ const Voice = () => {
                        
                                 })}
                             </div>
+                            {audioSrc && (
+                            <audio autoPlay onPlay={() => setIsPlaying(true)} onEnded={() => setIsPlaying(false)} className='invisible'>
+                                <source src={audioSrc} type="audio/mp3" />
+                                Your browser does not support the audio element.
+                            </audio>
+                            )}
 
                             <div className="flex items-center pt-2">
                                 <form className="flex items-center w-full space-x-2" onSubmit={sendMessage}>

@@ -44,9 +44,9 @@ const RecipieModal = ({data,close,choiceModal}) => {
           {/* Image Section */}
           <div className="flex-shrink-0">
             <img
-              src="https://via.placeholder.com/200"
+              src={data.image}
               alt="Berry Cereal"
-              className="rounded-lg w-full md:w-48"
+              className="rounded-lg w-full h-full object-cover md:w-48"
             />
           </div>
 

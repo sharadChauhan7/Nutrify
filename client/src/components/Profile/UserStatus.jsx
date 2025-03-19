@@ -7,19 +7,16 @@ function UserStatus({ userStatus ,onEditComplete}) {
 
     const [editData , setEditData] = React.useState(userStatus);
     const [toEdit, setToEdit] = React.useState(false);
-    console.log(editData);
     function handleChange(event){
         setEditData({...editData,[event.target.name]:event.target.value});
     }
     async function editStatus(){
-        console.log(editData);
         try{
             const error = validateStatus.validate(editData).error;
             if(error){
                 throw new Error(error.details[0].message);
             }
             const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}user/editstatus`,editData,{withCredentials:true});
-            console.log(response.data);
             setToEdit(false);
             toast.success("Status updated successfully");
             if(onEditComplete) onEditComplete();
