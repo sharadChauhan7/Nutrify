@@ -2,7 +2,7 @@ import React from 'react'
 import Webcam from 'react-webcam'
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { capture } from '../../features/Webcam/webcamSlice';
+// import { capture } from '../../features/Webcam/webcamSlice';
 function webcam() {
     const webcamRef = React.useRef(null);
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ function webcam() {
         videoConstraints={{ width: 1280, height: 620, }}
         
     />
-        <Button variant="contained" sx={{ margin: "0 1rem", width: "100%" }} onClick={() => { dispatch(capture(webcamRef.current.getScreenshot())) }}>Capture</Button>
+        {/* <Button variant="contained" sx={{ margin: "0 1rem", width: "100%" }} onClick={() => { dispatch(capture(webcamRef.current.getScreenshot())) }}>Capture</Button> */}
 
     </div>
   )

@@ -82,7 +82,7 @@ function App() {
     {showNavbar && <SideBar />}
 
     <Routes>
-          <Route path='/auth' element={<Privateroute user={!isLogin} path='/'>
+          <Route path='/' element={<Privateroute user={!isLogin} path='/'>
             <Auth />
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>
