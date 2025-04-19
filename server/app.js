@@ -15,9 +15,7 @@ import { dirname } from 'path';
 import 'dotenv/config'
 
 const app = express();
-import path from 'path';
 
-const _dirname = path.dirname("");
 
 // const buildpath = path.join(_dirname , "../client/dist")
 // app.use(express.static(buildpath))

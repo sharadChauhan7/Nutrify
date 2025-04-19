@@ -4,7 +4,6 @@ import DitePlan from '../modals/dietPlan.modal.js'
 import dotenv from 'dotenv';
 import {planDite} from '../util/ditePlanner.js'
 import {setDietImages,setAlternateDietImages} from '../util/ditePlanner.js'
-import { set } from 'mongoose';
 dotenv.config();
 
 export const generateDiet = async (req,res)=>{
@@ -28,8 +27,8 @@ export const generateDiet = async (req,res)=>{
             }
         }
         ditePlan.user = _id;
-        let newdiet = await setDietImages(ditePlan);
-        // let newdiet = ditePlan;
+        // let newdiet = await setDietImages(ditePlan);
+        let newdiet = ditePlan;
         console.log(JSON.stringify(newdiet));
         newdiet = new DitePlan(newdiet);
         console.log(newdiet);
@@ -69,7 +68,8 @@ export const generateAlternate = async (req,res)=>{
     alternateMelas = alternateMelas.replace(/```json|```/g, '');
     alternateMelas = JSON.parse(alternateMelas);
 
-    let newMeals = await setAlternateDietImages(alternateMelas);
+    // let newMeals = await setAlternateDietImages(alternateMelas);
+    let newMeals = alternateMelas;
 
     res.status(200).send(newMeals);
     

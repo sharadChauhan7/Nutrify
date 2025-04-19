@@ -31,7 +31,6 @@ function App() {
   const [loading, setLoading] = useState(true);
   const {isLogin} = useSelector((state)=>state.userInfo);
   const dispatch = useDispatch();
-  // const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -50,6 +49,7 @@ function App() {
     dispatch(initializeUserState());
   }, [dispatch]);
 
+
   return (
     <Router>
       {loading ? <Connector /> : <RoutesWithNavbar isLogin={isLogin} />}
@@ -60,7 +60,6 @@ function App() {
     const location = useLocation();
     const noNavbarRoutes = ['/auth', '/register','/meals']; 
     const showNavbar = !noNavbarRoutes.includes(location.pathname);
-
   useEffect(() => {
     const routeTitles = {
       '/': 'Home',
@@ -82,7 +81,7 @@ function App() {
     {showNavbar && <SideBar />}
 
     <Routes>
-          <Route path='/' element={<Privateroute user={!isLogin} path='/'>
+          <Route path='/auth' element={<Privateroute user={!isLogin} path='/'>
             <Auth />
           </Privateroute>} />
           <Route element={<Privateroute user={isLogin}/>}>

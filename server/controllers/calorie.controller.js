@@ -24,8 +24,6 @@ export const getCalories = async(req,res)=>{
         // Finish preparing
         const imagePath = req.file.path;
         let data = await findCalories(imagePath,prompt);
-        console.log("Got Data");
-        console.log(data)
         const responseText = data;
        let cleanText = responseText.replace(/```json|```/g, '');
        cleanText = jsonrepair(cleanText);
