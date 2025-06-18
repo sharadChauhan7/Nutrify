@@ -96,7 +96,8 @@ const Voice = () => {
         // Triger API 
         resetTranscript();
         // url / fun text
-        const response = await axios.post('http://127.0.0.1:5000/analyze_query', { query: text });
+        console.log("yash sharma")
+        const response = await axios.post('http://127.0.0.1:5001/get_response', { query: text });
         
         const updatedResponse = await checkWeight(response.data.response);
         setAudioSrc("");
@@ -121,7 +122,11 @@ const Voice = () => {
         // input = input+" Answer in minimum possible words"
         
         setInput("");
-        const res = await axios.post('http://127.0.0.1:5000/analyze_query', { query: input });
+        const res = await axios.post('http://127.0.0.1:5001/get_response', { query: input },{
+            headers: {
+              "Content-Type": "application/json"
+            }
+          });
         
         timestamps.aiRespondedAt = new Date(Date.now());
         
@@ -198,7 +203,7 @@ const Voice = () => {
                         <div className="w-[80%]">
                             <div className="flex flex-col space-y-1.5 pb-6">
                                 <h2 className="font-semibold text-lg">Nutrify AI</h2>
-                                <p className="text-sm text-gray-500">Powered by Sharad and Subham</p>
+                                <p className="text-sm text-gray-500">Powered by Yash</p>
                             </div>
 
                             <div className="pr-4 h-[474px] overflow-y-auto">

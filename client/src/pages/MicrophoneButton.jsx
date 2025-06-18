@@ -65,7 +65,7 @@ const MicrophoneButton = () => {
 
     const createAudioStreamFromText = async (text) => {
         const audioStream = await client.generate({
-            voice: 'Rachel',
+            voice: 'Bella',
             model_id: 'eleven_turbo_v2_5',
             text,
         });
